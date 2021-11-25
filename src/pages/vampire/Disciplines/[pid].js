@@ -30,7 +30,7 @@ const Page = ({ disData, data }) => {
     <div>
       <Head>
         <title>{pageData.title} | Vamp By Night Studio </title>
-        <meta name="description" content={pageData.summary[0]} />
+        <meta name="description" content={get(pageData, 'summary[0]','Disciplines are supernatural powers granted by the Embrace. Vampires cultivate these powers and bring them to bear against foes and prey. Fueled by blood and will disciplines provide an incomparable, mystical edge and are the hallmarks of a vampire’s clan or bloodline.' )} />
         <link rel="icon" href="/favicon.ico" />
         <meta
           property="og:image"

@@ -69,7 +69,7 @@ export function ClanPage(props) {
   }
 
   useEffect(() => {
-    const id = props.pageData.title;
+    const id = get(props, 'pageData.title',{});
     const hash = split(router.asPath, '#');
     if (hash.length > 1) {
       const hashKey = split(router.asPath, '#')[1];

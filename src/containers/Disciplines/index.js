@@ -93,7 +93,7 @@ export function ClanPage(props) {
   );
 
   useEffect(() => {
-    const id = props.pageData.title;
+    const id = get(props, 'pageData.title',{});
 
     const findClanData = find(filterClans, o => o.power === trim(id));
 
