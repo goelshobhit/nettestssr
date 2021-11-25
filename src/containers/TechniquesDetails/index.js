@@ -10,7 +10,7 @@
  */
 
 import React, { memo, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
@@ -25,13 +25,10 @@ import { Typography, Select, Button, Row } from 'antd';
 import homePageReducer from 'containers/HomePage/reducer';
 import homePageSaga from 'containers/HomePage/saga';
 import makeSelectHomePage from 'containers/HomePage/selectors';
-import { makeSelectApp } from 'containers/App/selectors';
 
 import makeSelectClanPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-
-import './style.css';
 
 const { Paragraph } = Typography;
 const { Option } = Select;
@@ -49,8 +46,7 @@ export function ClanPage(props) {
 
   const {
     app: {
-      techniques: { data: clanItems },
-      disciplines: { data: disciplinesItems },
+      clans: { data: clanItems },
     },
     match,
   } = props;
@@ -60,14 +56,10 @@ export function ClanPage(props) {
   }, []);
 
   useEffect(() => {
-    const {
-      match: {
-        params: { id },
-      },
-    } = props;
+    const id = get(props, 'pageData.technique', null);
     const findClanData = find(clanItems, { technique: id });
     setSelectedClan(findClanData);
-  }, [match]);
+  }, [props]);
 
   const filterClans = clanItemsList;
 
@@ -311,51 +303,6 @@ export function ClanPage(props) {
               </ol>
             </nav>
 
-            <div className="collapse navbar-collapse navbarBottom" id="navbarResponsive">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item active">
-                  <a className="nav-link" href="/vampire/clan/">
-                    Clans & Bloodlines
-                    <span className="sr-only">(current)</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Disciplines">
-                    Disciplines
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Techniques">
-                    Techniques
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Skills">
-                    Skills
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Merits">
-                    Merits
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Flaws">
-                    Flaws
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Attributes">
-                    Attributes
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Backgrounds">
-                    Backgrounds
-                  </a>
-                </li>
-              </ul>
-            </div>
             <div className="boxWhite">
               <Row type="flex">
                 <Select
@@ -423,13 +370,12 @@ export function ClanPage(props) {
                 {map(filterClans, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.technique} key={index}>
                     <Link
-                      to={`/vampire/Techniques/${items.technique}`}
-                      className={`nav-link ${getClassName(items.technique)}`}
+                      href={`/vampire/Techniques/${items.technique}`}
                       value={items.technique}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}>
-                      {items.technique}
+                      <span className={`nav-link ${getClassName(items.technique)}`}>{items.technique}</span>
                     </Link>
                   </li>
                 ))}
@@ -449,14 +395,11 @@ ClanPage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   clanPage: makeSelectClanPage(),
   homePage: makeSelectHomePage(),
-  app: makeSelectApp(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    // onRequestData: () => dispatch(getData()),
-    // OnRequestDropDownItems: params => dispatch(getDropDownItems(params)),
   };
 }
 

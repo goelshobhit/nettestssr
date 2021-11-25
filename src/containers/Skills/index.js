@@ -10,7 +10,7 @@
 
 import React, { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
@@ -24,7 +24,6 @@ import { useInjectSaga } from 'utils/inject-saga';
 import homePageReducer from 'containers/HomePage/reducer';
 import homePageSaga from 'containers/HomePage/saga';
 import makeSelectHomePage from 'containers/HomePage/selectors';
-import { makeSelectApp } from 'containers/App/selectors';
 
 import { getData } from 'containers/App/actions';
 
@@ -33,7 +32,6 @@ import reducer from './reducer';
 import saga from './saga';
 
 import { getDropDownItems } from './actions';
-import './style.css';
 
 const { Paragraph } = Typography;
 export function ClanPage(props) {
@@ -47,23 +45,17 @@ export function ClanPage(props) {
 
   const {
     app: {
-      skills: { data: clanItems },
+      clans: { data: clanItems },
     },
-    match,
   } = props;
 
   const filterClans = clanItems;
 
   useEffect(() => {
-    const {
-      match: {
-        params: { id },
-      },
-    } = props;
-
+    const id = get(props, 'pageData.title', {});
     const findClanData = find(clanItems, { title: trim(id) });
     setSelectedClan(findClanData);
-  }, [match]);
+  }, [props]);
 
   function handleNavItemsClick(e) {
     if (e.target) {
@@ -106,11 +98,7 @@ export function ClanPage(props) {
       <div className="container main-content">
         <div className="row">
           <div className="col-md-8 order-md-12">
-            <div
-              className={`header-single ${getClassHeaderName(
-                get(selectedClan, 'title'),
-              )}`}
-            >
+            <div className={`header-single ${getClassHeaderName(get(selectedClan, 'title'))}`}>
               <div className="row" style={{ fontSize: 18 }}>
                 <h1>{get(selectedClan, 'title', '')}</h1>
                 {get(selectedClan, 'title', '') ? (
@@ -118,8 +106,7 @@ export function ClanPage(props) {
                     copyable={{
                       text: `${window.location.href}`,
                     }}
-                    style={{ marginLeft: 10, color: '#fff' }}
-                  >
+                    style={{ marginLeft: 10, color: '#fff' }}>
                     <i>Share Link</i>
                   </Paragraph>
                 ) : null}
@@ -183,60 +170,40 @@ export function ClanPage(props) {
               {isEmpty(selectedClan) ? (
                 <p>
                   <p>
-                    Attributes represent your character’s raw potential, but
-                    skills represent the experience and training she’s received
-                    throughout her life — both mortal and immortal. A character
-                    with high skills is well-educated or has a great deal of
-                    knowledge about the world. A character with low skills might
+                    Attributes represent your character’s raw potential, but skills represent the experience and
+                    training she’s received throughout her life — both mortal and immortal. A character with high skills
+                    is well-educated or has a great deal of knowledge about the world. A character with low skills might
                     be naive, sheltered, or uneducated.{' '}
                   </p>{' '}
                   <p>
-                    You can purchase up to 5 dots of each skill. It’s not
-                    normally possible to buy more than 5 dots in a skill.
+                    You can purchase up to 5 dots of each skill. It’s not normally possible to buy more than 5 dots in a
+                    skill.
                   </p>
                   <p>
-                    Skills provide two kinds of bonuses to your character.
-                    First, they allow a character to perform certain actions
-                    that an untrained character simply cannot attempt. Second,
-                    they augment a character’s attributes, making certain
-                    actions easier because the character has experience or
+                    Skills provide two kinds of bonuses to your character. First, they allow a character to perform
+                    certain actions that an untrained character simply cannot attempt. Second, they augment a
+                    character’s attributes, making certain actions easier because the character has experience or
                     education with a related skill.{' '}
                   </p>{' '}
                   <p>
-                    For example, a character with a high Physical attribute
-                    rating who does not have the Athletics skill might find it
-                    difficult to scale a wall or to leap a series of hurdles. A
-                    character with a high Social attribute who does not have the
-                    Intimidate skill might find it difficult to bully her way
+                    For example, a character with a high Physical attribute rating who does not have the Athletics skill
+                    might find it difficult to scale a wall or to leap a series of hurdles. A character with a high
+                    Social attribute who does not have the Intimidate skill might find it difficult to bully her way
                     past a security guard.
                   </p>{' '}
                   <p>
                     {' '}
-                    You should select your character’s skills based on that
-                    character’s background, and then place (or purchase) more
-                    dots in the skills with which the character should be most
-                    profi cient. Skill levels range from novice to master, as
-                    follows:
+                    You should select your character’s skills based on that character’s background, and then place (or
+                    purchase) more dots in the skills with which the character should be most profi cient. Skill levels
+                    range from novice to master, as follows:
                   </p>
+                  <p>• Novice: You have learned the fundamentals of this field of knowledge.</p>
+                  <p>•• Practiced: You have mastered the basics of this area of study. </p>{' '}
+                  <p>••• Competent: You are good enough to earn a professional living in this field.</p>
+                  <p>•••• Expert: You have surpassed the majority of your peers and are considered an expert.</p>{' '}
                   <p>
-                    • Novice: You have learned the fundamentals of this field of
-                    knowledge.
-                  </p>
-                  <p>
-                    •• Practiced: You have mastered the basics of this area of
-                    study.{' '}
-                  </p>{' '}
-                  <p>
-                    ••• Competent: You are good enough to earn a professional
-                    living in this field.
-                  </p>
-                  <p>
-                    •••• Expert: You have surpassed the majority of your peers
-                    and are considered an expert.
-                  </p>{' '}
-                  <p>
-                    ••••• Master: You are world-class at this activity and
-                    considered to be amongst the best in the field.
+                    ••••• Master: You are world-class at this activity and considered to be amongst the best in the
+                    field.
                   </p>
                 </p>
               ) : (
@@ -267,74 +234,18 @@ export function ClanPage(props) {
                 </li>
               </ol>
             </nav>
-
-            <div
-              className="collapse navbar-collapse navbarBottom"
-              id="navbarResponsive"
-            >
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item active">
-                  <a className="nav-link" href="/vampire/clan/">
-                    Clans & Bloodlines
-                    <span className="sr-only">(current)</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Disciplines">
-                    Disciplines
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Techniques">
-                    Techniques
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Skills">
-                    Skills
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Merits">
-                    Merits
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Flaws">
-                    Flaws
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Attributes">
-                    Attributes
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Backgrounds">
-                    Backgrounds
-                  </a>
-                </li>
-              </ul>
-            </div>
             <div className="boxWhite">
               <h3>SKILLS</h3>
               <ul className="nav flex-column nav-clans">
                 {map(filterClans, (items, index) => (
-                  <li
-                    className="nav-item"
-                    onClick={handleNavItemsClick}
-                    value={items.title}
-                    key={index}
-                  >
+                  <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
                     <Link
-                      to={`/vampire/Skills/${items.title}`}
-                      className={`nav-link ${getClassName(items.title)}`}
+                      href={`/vampire/Skills/${items.title}`}
                       value={items.title}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}
-                    >
-                      {items.title}
+                      }}>
+                      <span className={`nav-link ${getClassName(items.title)}`}>{items.title}</span>
                     </Link>
                   </li>
                 ))}
@@ -356,7 +267,6 @@ ClanPage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   clanPage: makeSelectClanPage(),
   homePage: makeSelectHomePage(),
-  app: makeSelectApp(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -367,12 +277,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(ClanPage);
+export default compose(withConnect, memo)(ClanPage);

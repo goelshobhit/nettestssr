@@ -10,18 +10,18 @@
  */
 
 import React, { memo, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import history from 'utils/history';
+import Link from 'next/link';
+import Router from 'next/router'
+import { useRouter } from 'next/router'
 import last from 'lodash/last';
 import split from 'lodash/split';
 import map from 'lodash/map';
 import getMatchId from './getMatchId';
-import './style.css';
 
 
 const renderLink = (item, paddingLeft) => (
   <Link
-    to={`/vampire/Library/${item}`}
+    href={`/vampire/Library/${item}`}
     value={item}
     onClick={() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -33,15 +33,16 @@ const renderLink = (item, paddingLeft) => (
 );
 
 function TreeData({ openMenu, setOpenMenu }) {
-  useEffect(() => {
-    const {
-      location: { pathname },
-    } = history;
-    const matchId = last(split(pathname, '/'));
 
-    const elements = getMatchId(matchId);
-    map(elements, item => handleOnClick(item));
-  }, []);
+  const useRouter1 = useRouter();
+
+  useEffect(() => {
+    console.log(useRouter1);
+    // const matchId = last(split(pathname, '/'));
+
+    // const elements = getMatchId(matchId);
+    // map(elements, item => handleOnClick(item));
+  }, [useRouter1]);
 
   const handleOnClick = item => {
     const ele = document.getElementById(item);
@@ -57,7 +58,7 @@ function TreeData({ openMenu, setOpenMenu }) {
       ele.parentElement.querySelector('.nested').classList.toggle('active');
       ele.classList.toggle('caret-down');
     }
-    history.push(`/vampire/Library/${item}`)
+    Router.push({pathname:`/vampire/Library/${item}`, query: {}});
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

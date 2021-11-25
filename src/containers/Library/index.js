@@ -12,22 +12,10 @@
  */
 
 import React, { memo, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import {
-  map,
-  get,
-  isEmpty,
-  find,
-  filter,
-  groupBy,
-  sortBy,
-  concat,
-  includes,
-} from 'lodash';
+import { map, get, isEmpty, find, filter, groupBy, sortBy, concat, includes } from 'lodash';
 import { Typography, Menu } from 'antd';
 
 import { useInjectReducer } from 'utils/inject-reducer';
@@ -44,8 +32,6 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import makeSelectClanPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import './style.css';
-
 
 const { Paragraph } = Typography;
 const { SubMenu } = Menu;
@@ -63,18 +49,13 @@ export function ClanPage(props) {
 
   const {
     app: {
-      contentPages: { data: clanItems },
-      attributes: { data: clanItems_1 },
-      backgrounds: { data: clanItems_2 },
+      clans: { data: clanItems },
     },
     match,
   } = props;
 
   const hasSubMenu = (item1, item2) => {
-    const parentClans = map(
-      item2,
-      data2 => data2.directLibraryParent_html.fields.title,
-    );
+    const parentClans = map(item2, data2 => data2.directLibraryParent_html.fields.title);
     const mappedItems = map(item1, data => ({
       ...data,
       hasSubMenu: includes(parentClans, data.title),
@@ -86,16 +67,9 @@ export function ClanPage(props) {
   const filterClans = filter(clanItems, o => !o.exclude);
 
   useEffect(() => {
-    const {
-      match: {
-        params: { id },
-      },
-    } = props;
+    const id = get(props, 'pageData.title', {});
     const findClanData = find(clanItems, { title: id });
-    const openedItem = get(
-      findClanData,
-      'directLibraryParent_html.fields.title',
-    );
+    const openedItem = get(findClanData, 'directLibraryParent_html.fields.title');
     if (openedItem) {
       setOpenMenu(openedItem);
     } else {
@@ -103,7 +77,7 @@ export function ClanPage(props) {
     }
 
     setSelectedClan(findClanData);
-  }, [match]);
+  }, [props]);
 
   useEffect(() => {
     const isLibraryEntryClanItems = filter(clanItems, { isLibraryEntry: true });
@@ -154,30 +128,17 @@ export function ClanPage(props) {
 
   return (
     <div className="clan-page">
-      <Helmet>
-        <title>
-          {`World of Darkness - MET - Vampire - Library -
-          ${get(selectedClan, 'title')}`}
-        </title>
-        <meta name="description" content="Description of QuickStart" />
-      </Helmet>
       <div className="container main-content">
         <div className="row">
           <div className="col-md-8 order-md-12">
-            <div
-              className={`header-single ${getClassHeaderName(
-                get(selectedClan, 'title'),
-              )}`}
-              style={{ fontSize: 18 }}
-            >
+            <div className={`header-single ${getClassHeaderName(get(selectedClan, 'title'))}`} style={{ fontSize: 18 }}>
               <h1>{get(selectedClan, 'title', '')}</h1>
               {get(selectedClan, 'title', '') ? (
                 <Paragraph
                   copyable={{
                     text: `${window.location.href}`,
                   }}
-                  style={{ marginLeft: 10, color: '#fff' }}
-                >
+                  style={{ marginLeft: 10, color: '#fff' }}>
                   {' '}
                   <i>Share Link</i>
                 </Paragraph>
@@ -190,9 +151,7 @@ export function ClanPage(props) {
                   <div
                     /* eslint-disable-next-line react/no-danger */
                     dangerouslySetInnerHTML={{
-                      __html: documentToHtmlString(
-                        selectedClan.description_html,
-                      ),
+                      __html: documentToHtmlString(selectedClan.description_html),
                     }}
                   />
                 </div>
@@ -277,9 +236,8 @@ export function ClanPage(props) {
               {isEmpty(selectedClan) ? (
                 <div>
                   <i>
-                    “My childe, alway remember this most important lesson:
-                    sanguis pretium amissis ludum. Blood is the price of losing
-                    the game.”
+                    “My childe, alway remember this most important lesson: sanguis pretium amissis ludum. Blood is the
+                    price of losing the game.”
                   </i>
                   <p>— Alain Martel, Luminary Elder, Clan Ventrue</p>
                 </div>
@@ -312,10 +270,7 @@ export function ClanPage(props) {
               </ol>
             </nav>
 
-            <div
-              className="collapse navbar-collapse navbarBottom"
-              id="navbarResponsive"
-            >
+            <div className="collapse navbar-collapse navbarBottom" id="navbarResponsive">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
                   <a className="nav-link" href="/vampire/clan/">
@@ -364,13 +319,6 @@ export function ClanPage(props) {
               <h3>LIBRARY</h3>
               {/* <Tree /> */}
               <ul className="nav flex-column nav-clans">
-                {/* {renderMenu(
-                  libMenu,
-                  subItemsList,
-                  subItemsList1,
-                  openMenu,
-                  setOpenMenu,
-                )} */}
                 <Tree
                   openMenu={match !== openMenu ? openMenu : ''}
                   setOpenMenu={handleOpenMenu}
@@ -403,12 +351,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(ClanPage);
+export default compose(withConnect, memo)(ClanPage);

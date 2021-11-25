@@ -12,7 +12,7 @@
  */
 
 import React, { memo, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
@@ -20,8 +20,6 @@ import { compose } from 'redux';
 import { Row, Typography, Select, Button } from 'antd';
 
 import { map, find, get, isEmpty, slice, uniq, uniqBy, filter, orderBy, size, trim } from 'lodash';
-
-import history from 'utils/history';
 
 import { useInjectReducer } from 'utils/inject-reducer';
 import { useInjectSaga } from 'utils/inject-saga';
@@ -32,13 +30,9 @@ import homePageReducer from 'containers/HomePage/reducer';
 import homePageSaga from 'containers/HomePage/saga';
 import makeSelectHomePage from 'containers/HomePage/selectors';
 
-import { makeSelectApp } from 'containers/App/selectors';
-
 import makeSelectClanPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-
-import './style.css';
 
 const { Paragraph } = Typography;
 const { Option } = Select;
@@ -58,22 +52,16 @@ export function ClanPage(props) {
   const { app } = props;
 
   const {
-    yearBooks: { data: clanItems },
+    clans: { data: clanItems },
     match,
   } = app;
 
   useEffect(() => {
     setSelectedClanItemsList(clanItems);
-  }, []);
+  }, [props]);
 
   useEffect(() => {
-    const {
-      match: {
-        params: { id },
-      },
-    } = props;
-    const findClanData = find(clanItems, { name: id });
-    setSelectedClan(findClanData);
+    setSelectedClan(get(props, 'pageData', {}));
   }, [props]);
 
   useEffect(() => {}, [match]);
@@ -159,28 +147,12 @@ export function ClanPage(props) {
     }
   };
 
-  console.log(selectedClan);
-
   const renderLink = (item, refLink) => {
     return `/vampire/${getLinks(refLink)}/${trim(item)}`;
   };
 
   return (
     <div className="clan-page">
-      <Helmet>
-        <name>
-          {`
-           World of Darkness - MET - Vampire - Clan`}
-        </name>
-        <meta
-          name={`${get(selectedClan, 'name', '')}`}
-          content={`${get(
-            selectedClan,
-            'description[0]',
-            'Legend says that the first few generations of vampires did not suffer the divisions of clan, and that they were capable of performing miracle-like feats. As progenitors passed the Embrace down to their childer, and from there, to more childer, the powers inherent in vampiric vitae grew weaker.'
-          )}`}
-        />
-      </Helmet>
       <div className="container main-content">
         <div className="row">
           <div className="col-md-8 order-md-12">
@@ -285,20 +257,21 @@ export function ClanPage(props) {
                 <p>
                   <h2>specialties</h2>
                   <Row>
-                    {map(get(selectedClan, 'referemces', []), (item, index) => (
+                    {/* {map(get(selectedClan, 'referemces', []), (item, index) => (
                       <Link
                         to={renderLink(item.fields.title, item.sys.contentType.sys.id)}
                         key={index}
-                        className="anchorTag"
                         style={{ marginRight: 10 }}
                         role="button"
                         onClick={() => {
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}>
-                        {item.fields.title}
-                        {size(get(selectedClan, 'referemces', [])) - 1 !== index ? ' ,' : null}
+                        <span className="anchorTag">
+                          {item.fields.title}
+                          {size(get(selectedClan, 'referemces', [])) - 1 !== index ? ' ,' : null}
+                        </span>
                       </Link>
-                    ))}
+                    ))} */}
                   </Row>
                 </p>
               ) : (
@@ -325,10 +298,10 @@ export function ClanPage(props) {
                 <p>
                   <h2>IN CLAN MERITS</h2>
                   <ul>
-                    {map(getSortedList(get(selectedClan, 'inClanMerits', [])), item => (
+                    {/* {map(getSortedList(get(selectedClan, 'inClanMerits', [])), item => (
                       <li>
                         <Link
-                          to={`/vampire/Merits/${item.fields.merit}`}
+                          href={`/vampire/Merits/${item.fields.merit}`}
                           className="anchorTag"
                           style={{ marginRight: 10 }}
                           onClick={() => {
@@ -337,7 +310,7 @@ export function ClanPage(props) {
                           {item.fields.merit}&nbsp;({item.fields.meritCost})
                         </Link>
                       </li>
-                    ))}
+                    ))} */}
                   </ul>
                 </p>
               ) : (
@@ -348,10 +321,10 @@ export function ClanPage(props) {
                 <p>
                   <h2>IN CLAN FLAWS</h2>
                   <ul>
-                    {map(getSortedFlawList(get(selectedClan, 'flaws', [])), item => (
+                    {/* {map(getSortedFlawList(get(selectedClan, 'flaws', [])), item => (
                       <li>
                         <Link
-                          to={`/vampire/Flaws/${item.fields.flaw}`}
+                          href={`/vampire/Flaws/${item.fields.flaw}`}
                           className="anchorTag"
                           style={{ marginRight: 10 }}
                           onClick={() => {
@@ -360,7 +333,7 @@ export function ClanPage(props) {
                           {item.fields.flaw}&nbsp;({item.fields.flawCost})
                         </Link>
                       </li>
-                    ))}
+                    ))} */}
                   </ul>
                 </p>
               ) : (
@@ -425,52 +398,6 @@ export function ClanPage(props) {
                 </li>
               </ol>
             </nav>
-
-            <div className="collapse navbar-collapse navbarBottom" id="navbarResponsive">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item active">
-                  <a className="nav-link" href="/vampire/clan/">
-                    Clans & Bloodlines
-                    <span className="sr-only">(current)</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Disciplines">
-                    Disciplines
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Techniques">
-                    Techniques
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Skills">
-                    Skills
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Merits">
-                    Merits
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Flaws">
-                    Flaws
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Attributes">
-                    Attributes
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Backgrounds">
-                    Backgrounds
-                  </a>
-                </li>
-              </ul>
-            </div>
             <div className="boxWhite">
               <Row type="flex">
                 <Select
@@ -526,13 +453,12 @@ export function ClanPage(props) {
                 {map(clanItemsList, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.name} key={index}>
                     <Link
-                      to={`/vampire/YearBook/${items.name}`}
-                      className="nav-link"
+                      href={`/vampire/YearBook/${items.name}`}
                       value={items.name}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}>
-                      {items.name}
+                      <span className="nav-link">{items.name}</span>
                     </Link>
                   </li>
                 ))}
@@ -552,7 +478,6 @@ ClanPage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   clanPage: makeSelectClanPage(),
   homePage: makeSelectHomePage(),
-  app: makeSelectApp(),
 });
 
 function mapDispatchToProps(dispatch) {
