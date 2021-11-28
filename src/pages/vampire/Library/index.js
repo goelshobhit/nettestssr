@@ -18,13 +18,15 @@ export default function Home({ data }) {
     },
   };
 
+  console.log(apps)
+
   return (
     <div>
       <Header />
       <div className={styles.container}>
         <Head>
-          <title>Skills | Vamp ByNightStudio </title>
-          <meta property="og:title" content="Discipline | Vamp ByNightStudio" />
+          <title>Library | Vamp ByNightStudio </title>
+          <meta property="og:title" content="Library | Vamp ByNightStudio" />
           <meta
             name="description"
             content="Skills provide two kinds of bonuses to your character.

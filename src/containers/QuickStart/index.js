@@ -7,8 +7,6 @@
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { get } from 'lodash';
@@ -19,9 +17,7 @@ import { useInjectSaga } from 'utils/inject-saga';
 import makeSelectQuickStart from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
 import { defaultAction } from './actions';
-import './style.css';
 
 export function QuickStart({ getContentPage, quickStart }) {
   useInjectReducer({ key: 'quickStart', reducer });
@@ -33,10 +29,6 @@ export function QuickStart({ getContentPage, quickStart }) {
 
   return (
     <div>
-      <Helmet>
-        <title>{`World of Darkness - MET - Vampire - QuickStart`}</title>
-        <meta name="description" content="Description of Merits" />
-      </Helmet>
       <div className="container main-content">
         <div className="row">
           <div className="col-md-12 order-md-12">

@@ -21,7 +21,6 @@ import reducer from './reducer';
 import saga from './saga';
 
 import { defaultAction } from './actions';
-import './style.css';
 
 export function QuickStart({ getContentPage, quickStart }) {
   useInjectReducer({ key: 'quickStart', reducer });
@@ -29,7 +28,6 @@ export function QuickStart({ getContentPage, quickStart }) {
 
   useEffect(() => {
     getContentPage();
-
   }, []);
 
   return (
@@ -47,8 +45,7 @@ export function QuickStart({ getContentPage, quickStart }) {
                   style={{
                     width: '100%',
                     textAlign: 'center',
-                  }}
-                >
+                  }}>
                   {get(quickStart, 'data.title')}
                 </h1>
                 <div
@@ -73,16 +70,8 @@ export function QuickStart({ getContentPage, quickStart }) {
                   }}
                 />
               </div>
-              <form
-                action="https://www.paypal.com/donate"
-                method="post"
-                target="_top"
-              >
-                <input
-                  type="hidden"
-                  name="hosted_button_id"
-                  value="8PUS5TKR868YA"
-                />
+              <form action="https://www.paypal.com/donate" method="post" target="_top">
+                <input type="hidden" name="hosted_button_id" value="8PUS5TKR868YA" />
                 <input
                   type="image"
                   src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
@@ -123,12 +112,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(QuickStart);
+export default compose(withConnect, memo)(QuickStart);

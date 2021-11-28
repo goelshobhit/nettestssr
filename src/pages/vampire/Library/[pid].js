@@ -11,6 +11,8 @@ import extractEntryDataFromResponse from '../../../utils/parsingText';
 
 import contentPages_1 from 'scripts/contentPages_0.json';
 
+
+
 export default function Home({ data, disData }) {
   const apps = {
     clans: {
@@ -150,7 +152,7 @@ export async function getStaticProps({ params }) {
 
   const data = orderBy(concat(contentful_discipline_1), [item => getItems(item).toLowerCase()], ['asc']);
 
-  const pageData = find(data, item => item.title === params.pid);
+  const pageData = find(data, item => item.title === params);
 
   return { props: { disData: JSON.stringify(pageData), data: JSON.stringify(data) } };
 }

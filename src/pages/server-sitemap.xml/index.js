@@ -1,5 +1,5 @@
+import React from 'react';
 import { getServerSideSitemap } from 'next-sitemap';
-
 import { orderBy, concat } from 'lodash';
 import extractEntryDataFromResponse from 'utils/parsingText';
 
@@ -62,4 +62,6 @@ export const getServerSideProps = async ctx => {
   return getServerSideSitemap(ctx, concat(fields, discipleFields));
 };
 
-export default function Site() {}
+export default function Site() {
+  return <div />;
+}

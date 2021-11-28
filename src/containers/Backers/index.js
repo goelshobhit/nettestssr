@@ -7,7 +7,6 @@
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { get } from 'lodash';
@@ -19,7 +18,6 @@ import makeSelectQuickStart from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { defaultAction } from './actions';
-import './style.css';
 
 export function QuickStart(props) {
   useInjectReducer({ key: 'quickStart', reducer });
@@ -31,16 +29,10 @@ export function QuickStart(props) {
 
   const { match, getContentPage, quickStart } = props;
 
-  useEffect(() => {
-
-  }, [match]);
+  useEffect(() => {}, [match]);
 
   return (
     <div>
-      <Helmet>
-        <title>{`World of Darkness - MET - Vampire - Backers`} </title>
-        <meta name="description" content="Description of QuickStart" />
-      </Helmet>
       <div className="container main-content">
         <div className="row">
           <div className="col-md-12 order-md-12">
@@ -50,8 +42,7 @@ export function QuickStart(props) {
                   style={{
                     width: '100%',
                     textAlign: 'center',
-                  }}
-                >
+                  }}>
                   {get(quickStart, 'data.title')}
                 </h1>
                 <div
@@ -103,12 +94,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(QuickStart);
+export default compose(withConnect, memo)(QuickStart);
