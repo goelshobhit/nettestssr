@@ -13,14 +13,14 @@ import contentPages_1 from 'scripts/contentPages_0.json';
 
 
 
-export default function Home({ data, disData }) {
+export default function Home({ data, disData1 }) {
   const apps = {
     clans: {
       data: JSON.parse(data),
     },
   };
 
-  const pageData = JSON.parse(disData);
+  const pageData = JSON.parse(disData1);
 
   return (
     <div>
@@ -99,49 +99,12 @@ function getItems(item) {
 }
 
 export async function getStaticPaths() {
-  const data = [
-    'Auctoritas Ritae-  The Vaulderie (Sabbat)',
-    'Auctoritas Ritae- High Holidays (Sabbat)',
-    'Auctoritas Ritae- Monomancy (Sabbat)',
-    'Auctoritas Ritae- War Party and Wild Hunt (Sabbat)',
-    'Sabbat',
-    'Factions and Faction Ritae (Sabbat)',
-    'The Auctoritas Ritae (Sabbat)',
-    'The Ignoblis Ritae (Sabbat)',
-    'Character Creation Quick Start Guide',
-    'Combat Maneuvers',
-    'Aerial Combat Maneuvers',
-    'Feral Combat Maneuvers',
-    'Ghoul Rules',
-    'Animal Retainers',
-    'Influences- General',
-    'Influence- Elite and Underworld Actions',
-    'Optional Rules',
-    'Advanced Feeding (Optional Rules)',
-    'Blood Resonance (Optional Rules)',
-    'Feeding Territories (Optional Rules)',
-    'Spending XP',
-    'Stock Locations',
-    'Stock Locations - Iconic and Supernatural Qualities',
-    'Stock Locations - Standard Qualities',
-    'Stock Locations- Undermining Locations',
-    'Stock Locations- Controlling them',
-    'Stock NPC Generation',
-    'Hunters: Arcanum',
-    'Hunters: Project Twilight',
-    'Hunters: Those of Faith',
-    'Storytelling',
-    'Cooperative Conflict and Advanced Narration: Expert Tools for Story Creation',
-    'Platinum Rule',
-    'The Temptation of the Beast',
-    'Expanded Beast Trait System',
-    'Expanded Path Mechanics',
-    'Frenzy',
-    'Vampire Sects and the Paths of Enlightenment',
-  ];
+  const contentful_discipline_1 = extractEntryDataFromResponse(contentPages_1);
+
+  const data = orderBy(concat(contentful_discipline_1), [item => getItems(item).toLowerCase()], ['asc']);
 
   const paths = map(data, page => ({
-    params: { pid: toString(page) },
+    params: { pid: toString(page.title) },
   }));
 
   return { paths, fallback: 'blocking' };
@@ -151,8 +114,13 @@ export async function getStaticProps({ params }) {
   const contentful_discipline_1 = extractEntryDataFromResponse(contentPages_1);
 
   const data = orderBy(concat(contentful_discipline_1), [item => getItems(item).toLowerCase()], ['asc']);
-
   const pageData = find(data, item => item.title === params.pid);
 
-  return { props: { disData: JSON.stringify(pageData), data: JSON.stringify(data) } };
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return { props: { disData1: JSON.stringify(pageData), data: JSON.stringify(data) } };
 }

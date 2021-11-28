@@ -99,6 +99,11 @@ export async function getStaticProps() {
 
   const data = orderBy(concat(contentful_discipline_1), [item => getItems(item).toLowerCase()], ['asc']);
 
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: { data: JSON.stringify(data) },
     revalidate: 10, // will be passed to the page component as props
