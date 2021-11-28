@@ -13,7 +13,7 @@ import clanMock from 'scripts/clans.json';
 export default function Home({ data }) {
   const apps = {
     clans: {
-      data: data,
+      data: JSON.parse(data),
     },
   };
   return (
@@ -88,7 +88,7 @@ export async function getStaticProps() {
   }
 
   return {
-    props: { data },
+    props: { data: JSON.stringify(data) },
     revalidate: 10, // will be passed to the page component as props
   };
 }
