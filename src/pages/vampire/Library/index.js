@@ -18,8 +18,6 @@ export default function Home({ data }) {
     },
   };
 
-  console.log(apps)
-
   return (
     <div>
       <Header />

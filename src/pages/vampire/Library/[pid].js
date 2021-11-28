@@ -11,14 +11,16 @@ import extractEntryDataFromResponse from '../../../utils/parsingText';
 
 import contentPages_1 from 'scripts/contentPages_0.json';
 
+
+
 export default function Home({ data, disData }) {
   const apps = {
     clans: {
-      data: data,
+      data: JSON.parse(data),
     },
   };
 
-  const pageData = disData;
+  const pageData = JSON.parse(disData);
 
   return (
     <div>
@@ -146,12 +148,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log(params);
   const contentful_discipline_1 = extractEntryDataFromResponse(contentPages_1);
 
   const data = orderBy(concat(contentful_discipline_1), [item => getItems(item).toLowerCase()], ['asc']);
 
   const pageData = find(data, item => item.title === params.pid);
 
-  return { props: { disData: pageData, data: data } };
+  return { props: { disData: JSON.stringify(pageData), data: JSON.stringify(data) } };
 }
