@@ -27,8 +27,8 @@ export default function Home({ data, disData }) {
       <Header />
       <div className={styles.container}>
         <Head>
-          <title>Skills | Vamp ByNightStudio </title>
-          <meta property="og:title" content="Discipline | Vamp ByNightStudio" />
+          <title>Library | Vamp ByNightStudio </title>
+          <meta property="og:title" content="Library | Vamp ByNightStudio" />
           <meta
             name="description"
             content="Skills provide two kinds of bonuses to your character.
@@ -152,7 +152,7 @@ export async function getStaticProps({ params }) {
 
   const data = orderBy(concat(contentful_discipline_1), [item => getItems(item).toLowerCase()], ['asc']);
 
-  const pageData = find(data, item => item.title === params);
+  const pageData = find(data, item => item.title === params.pid);
 
   return { props: { disData: JSON.stringify(pageData), data: JSON.stringify(data) } };
 }
