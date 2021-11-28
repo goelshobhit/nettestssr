@@ -10,7 +10,7 @@
 
 import React, { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
@@ -24,13 +24,10 @@ import { useInjectSaga } from 'utils/inject-saga';
 import homePageReducer from 'containers/HomePage/reducer';
 import homePageSaga from 'containers/HomePage/saga';
 import makeSelectHomePage from 'containers/HomePage/selectors';
-import { makeSelectApp } from 'containers/App/selectors';
 
 import makeSelectClanPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-
-import './style.css';
 
 const { Paragraph } = Typography;
 export function ClanPage(props) {
@@ -43,7 +40,6 @@ export function ClanPage(props) {
 
   const { match } = props;
 
-
   const {
     app: {
       attributes: { data: clanItems },
@@ -53,15 +49,8 @@ export function ClanPage(props) {
   const filterClans = clanItems;
 
   useEffect(() => {
-    const {
-      match: {
-        params: { id },
-      },
-    } = props;
-
-    const findClanData = find(clanItems, { attribute: trim(id) });
-    setSelectedClan(findClanData);
-  }, [match]);
+    setSelectedClan(props.pageData);
+  }, [props]);
 
   function handleNavItemsClick(e) {
     if (e.target) {
@@ -94,7 +83,8 @@ export function ClanPage(props) {
   return (
     <div className="clan-page">
       <Helmet>
-        <title>{`
+        <title>
+          {`
           World of Darkness - MET - Vampire - Attributes -
           ${get(selectedClan, 'attribute')}`}
         </title>
@@ -104,22 +94,19 @@ export function ClanPage(props) {
         <div className="row">
           <div className="col-md-8 order-md-12">
             <div
-              className={`header-single ${getClassHeaderName(
-                get(selectedClan, 'attribute'),
-              )}`}
-              style={{ fontSize: 18 }}
-            >
+              className={`header-single ${getClassHeaderName(get(selectedClan, 'attribute'))}`}
+              style={{ fontSize: 18 }}>
               <h1>{get(selectedClan, 'attribute', '')}</h1>
-              {get(selectedClan, 'attribute', '') ?
-                    <Paragraph
-                      copyable={{
-                        text: `${window.location.href}`,
-                      }}
-                      style={{ marginLeft: 10, color: '#fff' }}
-                    >
-                      {' '}
-                      <i>Share Link</i>
-                    </Paragraph> : null}
+              {get(selectedClan, 'attribute', '') ? (
+                <Paragraph
+                  copyable={{
+                    text: `${window.location.href}`,
+                  }}
+                  style={{ marginLeft: 10, color: '#fff' }}>
+                  {' '}
+                  <i>Share Link</i>
+                </Paragraph>
+              ) : null}
             </div>
             <div className="boxWhite">
               {!isEmpty(get(selectedClan, 'description')) ? (
@@ -176,34 +163,25 @@ export function ClanPage(props) {
               {isEmpty(selectedClan) ? (
                 <p>
                   <p>
-                    Attributes quantify a character’s innate strengths and
-                    weaknesses. Depending upon how a player allocates her
-                    starting dots, the character might be strong and perceptive,
-                    quick and intelligent, or witty and beautiful, based on
-                    whether the character has high Physical, Social, or Mental
-                    attributes. A character should also be weak in some
-                    attributes.
+                    Attributes quantify a character’s innate strengths and weaknesses. Depending upon how a player
+                    allocates her starting dots, the character might be strong and perceptive, quick and intelligent, or
+                    witty and beautiful, based on whether the character has high Physical, Social, or Mental attributes.
+                    A character should also be weak in some attributes.
                   </p>
                   <p>
-                    Creating a character who is an imperfect individual makes
-                    her more realistic, and gives the character weaknesses that
-                    she can overcome during the course of the chronicle. Moments
-                    of growth are good for a protagonist, and raising an
-                    attribute can be a wonderful reward after a tense moment in
-                    the story. It could indicate that the character learned from
-                    her experiences, growing wiser, stronger, or more capable of
-                    surviving in a dangerous social setting.
+                    Creating a character who is an imperfect individual makes her more realistic, and gives the
+                    character weaknesses that she can overcome during the course of the chronicle. Moments of growth are
+                    good for a protagonist, and raising an attribute can be a wonderful reward after a tense moment in
+                    the story. It could indicate that the character learned from her experiences, growing wiser,
+                    stronger, or more capable of surviving in a dangerous social setting.
                   </p>{' '}
                   <p>
                     {' '}
-                    Most characters have attribute ratings between 3 (poor) and
-                    5 (average), though exceptionally gifted individuals may
-                    have ratings of 7 (excellent) or even 10 (peak human
-                    capacity). As vampires are supernatural creatures, their
-                    players receive bonus points that they can add to their
-                    potential attribute maximums. The number of points a vampire
-                    character receives in this manner varies according to her
-                    Generation, reflecting the potency of the vampire’s blood.
+                    Most characters have attribute ratings between 3 (poor) and 5 (average), though exceptionally gifted
+                    individuals may have ratings of 7 (excellent) or even 10 (peak human capacity). As vampires are
+                    supernatural creatures, their players receive bonus points that they can add to their potential
+                    attribute maximums. The number of points a vampire character receives in this manner varies
+                    according to her Generation, reflecting the potency of the vampire’s blood.
                   </p>
                 </p>
               ) : (
@@ -235,10 +213,7 @@ export function ClanPage(props) {
               </ol>
             </nav>
 
-            <div
-              className="collapse navbar-collapse navbarBottom"
-              id="navbarResponsive"
-            >
+            <div className="collapse navbar-collapse navbarBottom" id="navbarResponsive">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
                   <a className="nav-link" href="/vampire/clan/">
@@ -287,21 +262,14 @@ export function ClanPage(props) {
               <h3>ATTRIBUTES</h3>
               <ul className="nav flex-column nav-clans">
                 {map(filterClans, (items, index) => (
-                  <li
-                    className="nav-item"
-                    onClick={handleNavItemsClick}
-                    value={items.title}
-                    key={index}
-                  >
+                  <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
                     <Link
-                      to={`/vampire/Attributes/${items.attribute}`}
-                      className={`nav-link ${getClassName(items.attribute)}`}
+                      href={`/vampire/Attributes/${items.attribute}`}
                       value={items.attribute}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}
-                    >
-                      {items.attribute}
+                      }}>
+                      <span className={`nav-link ${getClassName(items.attribute)}`}>{items.attribute}</span>
                     </Link>
                   </li>
                 ))}
@@ -323,7 +291,6 @@ ClanPage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   clanPage: makeSelectClanPage(),
   homePage: makeSelectHomePage(),
-  app: makeSelectApp(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -334,12 +301,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(ClanPage);
+export default compose(withConnect, memo)(ClanPage);

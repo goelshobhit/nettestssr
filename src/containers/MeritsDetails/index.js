@@ -9,46 +9,27 @@
  */
 
 import React, { memo, useState, useEffect } from 'react';
-import PropTypes, { func } from 'prop-types';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Link from 'next/link';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import {
-  map,
-  get,
-  isEmpty,
-  find,
-  trim,
-  without,
-  uniq,
-  filter,
-  concat,
-  includes,
-  toLower,
-  split,
-  intersectionWith,
-  isEqual,
-  sortBy,
-} from 'lodash';
+import { map, get, isEmpty, find, trim, without, uniq, filter, concat, includes, split, isEqual, sortBy } from 'lodash';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import { useInjectReducer } from 'utils/inject-reducer';
 import { useInjectSaga } from 'utils/inject-saga';
 
-import { Typography, Select, Button, Row } from 'antd';
+import { Typography, Select, Button, Row, Spin } from 'antd';
 
 import homePageReducer from 'containers/HomePage/reducer';
 import homePageSaga from 'containers/HomePage/saga';
 import makeSelectHomePage from 'containers/HomePage/selectors';
-import { makeSelectApp } from 'containers/App/selectors';
 
 import makeSelectClanPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-
-import './style.css';
 
 import handleClanFilter from './handleFilterClans';
 
@@ -72,7 +53,6 @@ export function ClanPage(props) {
       merits: { data: clanItems },
       clans: { data: clansDataWithMerits },
     },
-    match,
   } = props;
 
   const filterClans = clanItems;
@@ -82,15 +62,12 @@ export function ClanPage(props) {
   }, []);
 
   useEffect(() => {
-    const {
-      match: {
-        params: { id },
-      },
-    } = props;
+    console.log(props);
+    const id = get(props, 'pageData.merit', null);
 
     const findClanData = find(clanItems, { merit: trim(id) });
     setSelectedClan(findClanData);
-  }, [match]);
+  }, [props]);
 
   function handleNavItemsClick(e) {
     if (e.target) {
@@ -120,9 +97,7 @@ export function ClanPage(props) {
     return `icon-${item}`;
   }
 
-  const sourceBook = map(clanItemsList, item =>
-    get(item, 'sourceBook_html.fields.bookTitle', ''),
-  );
+  const sourceBook = map(clanItemsList, item => get(item, 'sourceBook_html.fields.bookTitle', ''));
 
   const uniqSourceBook = without(uniq(sourceBook), '');
 
@@ -165,21 +140,12 @@ export function ClanPage(props) {
     'Ventrue',
   ];
 
-  const concatedListOfClanAndBloodLine = concat(
-    clanItemsOfMap,
-    withoutBloodlineList,
-  );
-  const sortedListOfClanAndBloodLine = sortBy(
-    concatedListOfClanAndBloodLine,
-    o => (o.clan ? o.clan : o),
-  );
+  const concatedListOfClanAndBloodLine = concat(clanItemsOfMap, withoutBloodlineList);
+  const sortedListOfClanAndBloodLine = sortBy(concatedListOfClanAndBloodLine, o => (o.clan ? o.clan : o));
 
   function handleChangeFilter(item) {
     setBook(item);
-    let filterClanItems = filter(
-      clanItems,
-      o => trim(get(o, 'sourceBook_html.fields.bookTitle')) === trim(item),
-    );
+    let filterClanItems = filter(clanItems, o => trim(get(o, 'sourceBook_html.fields.bookTitle')) === trim(item));
 
     // filterClanItems = handleClanFilter(
     //   disc,
@@ -188,10 +154,7 @@ export function ClanPage(props) {
     // );
 
     if (costName && costName !== 'filter by Cost') {
-      filterClanItems = filter(
-        filterClanItems,
-        o => get(o, 'meritCost') === costName,
-      );
+      filterClanItems = filter(filterClanItems, o => get(o, 'meritCost') === costName);
     }
     setSelectedClanItemsList(filterClanItems);
   }
@@ -201,22 +164,19 @@ export function ClanPage(props) {
 
     let filterClanItems = filter(clanItems, o => get(o, 'meritCost') === item);
     if (book && book !== 'filter by source book') {
-      filterClanItems = filter(
-        filterClanItems,
-        o => get(o, 'sourceBook_html.fields.bookTitle') === book,
-      );
+      filterClanItems = filter(filterClanItems, o => get(o, 'sourceBook_html.fields.bookTitle') === book);
     }
     setSelectedClanItemsList(filterClanItems);
   }
 
   let clanNames = uniq(
-    without(map(clanItems, o => get(o, 'clanSpecific[0]')), undefined),
+    without(
+      map(clanItems, o => get(o, 'clanSpecific[0]')),
+      undefined
+    )
   );
 
-  clanNames = concat(
-    ['Anarch', 'Camarilla', 'Clan', 'General', 'Sabbat', 'Morality'],
-    clanNames,
-  ).sort();
+  clanNames = concat(['Anarch', 'Camarilla', 'Clan', 'General', 'Sabbat', 'Morality'], clanNames).sort();
 
   function compareFunc(a, b) {
     if (isEqual(get(a, 'merit'), get(b, 'fields.merit'))) {
@@ -247,26 +207,17 @@ export function ClanPage(props) {
     return type;
   }
 
-
-
   function handleFilterType(type) {
     setDisc(type);
     let filterClanItems = [];
 
-
     filterClanItems = handleClanFilter(type, clanItems, clansDataWithMerits);
 
     if (costName && costName !== 'filter by Cost') {
-      filterClanItems = filter(
-        filterClanItems,
-        o => get(o, 'meritCost') === costName,
-      );
+      filterClanItems = filter(filterClanItems, o => get(o, 'meritCost') === costName);
     }
     if (book && book !== 'filter by source book') {
-      filterClanItems = filter(
-        filterClanItems,
-        o => get(o, 'sourceBook_html.fields.bookTitle') === book,
-      );
+      filterClanItems = filter(filterClanItems, o => get(o, 'sourceBook_html.fields.bookTitle') === book);
     }
     setSelectedClanItemsList(filterClanItems);
   }
@@ -287,22 +238,10 @@ export function ClanPage(props) {
 
   return (
     <div className="clan-page">
-      <Helmet>
-        <title>
-          {`
-           World of Darkness - MET - Vampire - Merits -{' '}
-           ${get(selectedClan, 'merit', '')}`}
-        </title>
-        <meta name="description" content="Description of Merits" />
-      </Helmet>
       <div className="container main-content">
         <div className="row">
           <div className="col-md-8 order-md-12">
-            <div
-              className={`header-single ${getClassHeaderName(
-                get(selectedClan, 'merit'),
-              )}`}
-            >
+            <div className={`header-single ${getClassHeaderName(get(selectedClan, 'merit'))}`}>
               <div className="row" style={{ fontSize: 18 }}>
                 <h1>{get(selectedClan, 'merit', '')}</h1>
                 {get(selectedClan, 'merit', '') ? (
@@ -310,8 +249,7 @@ export function ClanPage(props) {
                     copyable={{
                       text: `${window.location.href}`,
                     }}
-                    style={{ marginLeft: 10, color: '#fff' }}
-                  >
+                    style={{ marginLeft: 10, color: '#fff' }}>
                     {' '}
                     <i>Share Link</i>
                   </Paragraph>
@@ -359,9 +297,7 @@ export function ClanPage(props) {
                   <div
                     /* eslint-disable-next-line react/no-danger */
                     dangerouslySetInnerHTML={{
-                      __html: documentToHtmlString(
-                        selectedClan.meritDescription_html,
-                      ),
+                      __html: documentToHtmlString(selectedClan.meritDescription_html),
                     }}
                   />
                 </div>
@@ -415,56 +351,37 @@ export function ClanPage(props) {
               {isEmpty(selectedClan) ? (
                 <p>
                   <p>
-                    Merits are special advantages that help distinguish a
-                    character and show the effects of her history and ongoing
-                    story. If you don’t see any that suit your character, you
-                    can create your character and play without adding any to
-                    your sheet. You may purchase up to 7 points of merits.
-                    However, a character can never have more than 7 points of
-                    merits at any time. This rule encourages players to make
-                    significant choices about the qualities that make a
-                    character unique.
+                    Merits are special advantages that help distinguish a character and show the effects of her history
+                    and ongoing story. If you don’t see any that suit your character, you can create your character and
+                    play without adding any to your sheet. You may purchase up to 7 points of merits. However, a
+                    character can never have more than 7 points of merits at any time. This rule encourages players to
+                    make significant choices about the qualities that make a character unique.
                   </p>{' '}
                   <p>
-                    A Storyteller may choose to include or prohibit any merit or
-                    flaw that she feels is inappropriate for her chronicle.
-                    Merits can be removed from a character sheet or flaws may be
-                    added to that sheet (either temporarily or permanently) as
-                    the Storyteller sees fit, so long as a character never has
-                    more than 7 XP of merits and does not receive more than 7 XP
-                    from flaws at any time. Any merit effect that requires the
-                    expenditure of Blood counts as a supernatural power. For the
-                    purpose of powers like Possession, clan-specific merits
-                    count as 1-dot in-clan powers; general merits are not
-                    considered in-clan. It is possible to lose access to part of
-                    a merit without losing access to the entire merit. For
-                    example, while using Possession, a Giovanni’s wraith
-                    Retainer will not disappear, but without the proper focus,
-                    the Giovanni may not be able to spend Blood to summon it.
-                    Merit effects that alter a character’s physical form
-                    (permanently or temporarily) are not available while that
-                    character is not in her real body. For example, while using
-                    Possession, a character loses access to merits such as
-                    Rugged, Unnatural Adaptation, and Shape of Beast’s Wrath.
+                    A Storyteller may choose to include or prohibit any merit or flaw that she feels is inappropriate
+                    for her chronicle. Merits can be removed from a character sheet or flaws may be added to that sheet
+                    (either temporarily or permanently) as the Storyteller sees fit, so long as a character never has
+                    more than 7 XP of merits and does not receive more than 7 XP from flaws at any time. Any merit
+                    effect that requires the expenditure of Blood counts as a supernatural power. For the purpose of
+                    powers like Possession, clan-specific merits count as 1-dot in-clan powers; general merits are not
+                    considered in-clan. It is possible to lose access to part of a merit without losing access to the
+                    entire merit. For example, while using Possession, a Giovanni’s wraith Retainer will not disappear,
+                    but without the proper focus, the Giovanni may not be able to spend Blood to summon it. Merit
+                    effects that alter a character’s physical form (permanently or temporarily) are not available while
+                    that character is not in her real body. For example, while using Possession, a character loses
+                    access to merits such as Rugged, Unnatural Adaptation, and Shape of Beast’s Wrath.
                   </p>
                   <p>
-                    To purchase a merit during game, obtain your Storyteller’s
-                    permission, expend a downtime action and the necessary XP,
-                    and then add that merit to your character sheet. This
-                    purchase cannot cause the character’s total point value of
-                    merits to exceed 7. Benefi ts conveyed by a merit begin
-                    immediately upon the merit’s purchase. If you choose to
-                    replace a removed merit with a new one, you must pay for the
-                    new merit normally; a character cannot simply “swap merits.”
-                    For example, let’s assume a player has her Storyteller’s
-                    permission to remove the Calm Heart merit from her character
-                    sheet and add the Daredevil merit. The player must fi rst
-                    remove Calm Heart, receiving no refunded XP when that merit
-                    is removed. She must then spend 2 XP to place the Daredevil
-                    merit on her sheet. If you have any questions about whether
-                    a specifi c merit or fl aw is appropriate for purchase
-                    during the play of your chronicle, speak to your
-                    Storyteller.
+                    To purchase a merit during game, obtain your Storyteller’s permission, expend a downtime action and
+                    the necessary XP, and then add that merit to your character sheet. This purchase cannot cause the
+                    character’s total point value of merits to exceed 7. Benefi ts conveyed by a merit begin immediately
+                    upon the merit’s purchase. If you choose to replace a removed merit with a new one, you must pay for
+                    the new merit normally; a character cannot simply “swap merits.” For example, let’s assume a player
+                    has her Storyteller’s permission to remove the Calm Heart merit from her character sheet and add the
+                    Daredevil merit. The player must fi rst remove Calm Heart, receiving no refunded XP when that merit
+                    is removed. She must then spend 2 XP to place the Daredevil merit on her sheet. If you have any
+                    questions about whether a specifi c merit or fl aw is appropriate for purchase during the play of
+                    your chronicle, speak to your Storyteller.
                   </p>{' '}
                 </p>
               ) : (
@@ -496,10 +413,7 @@ export function ClanPage(props) {
               </ol>
             </nav>
 
-            <div
-              className="collapse navbar-collapse navbarBottom"
-              id="navbarResponsive"
-            >
+            <div className="collapse navbar-collapse navbarBottom" id="navbarResponsive">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
                   <a className="nav-link" href="/vampire/clan/">
@@ -550,21 +464,9 @@ export function ClanPage(props) {
                   style={{ width: '70%', paddingBottom: 20 }}
                   showSearch
                   placeholder="Filter"
-                  // optionFilterProp="children"
-                  // filterOption={(input, option) =>
-                  //   option.children
-                  //     .toLowerCase()
-                  //     .indexOf(input.toLowerCase()) >= 0
-                  // }
-                  // filterSort={(optionA, optionB) =>
-                  //   optionA.children
-                  //     .toLowerCase()
-                  //     .localeCompare(optionB.children.toLowerCase())
-                  // }
                   onSelect={handleFilterType}
                   className="meritFilter"
-                  value={disc}
-                >
+                  value={disc}>
                   <Select.Option value="General">General</Select.Option>
                   <Select.Option value="Anarch">Anarch</Select.Option>
                   <Select.Option value="Camarilla">Camarilla</Select.Option>
@@ -572,9 +474,7 @@ export function ClanPage(props) {
                   <Select.Option value="Morality">Morality</Select.Option>
                   {map(sortedListOfClanAndBloodLine, item => (
                     <Option value={renderClanValue(item)}>
-                      {get(item, 'clan')
-                        ? `${get(item, 'clan')}${` - `}`
-                        : null}
+                      {get(item, 'clan') ? `${get(item, 'clan')}${` - `}` : null}
                       {renderClanName(get(item, 'item', item))}
                     </Option>
                   ))}
@@ -584,27 +484,19 @@ export function ClanPage(props) {
                     setDisc('filter by Clan');
                     let filterClanItems = [];
                     if (book && book !== 'filter by source book') {
-                      filterClanItems = filter(
-                        clanItems,
-                        o =>
-                          get(o, 'sourceBook_html.fields.bookTitle') === book,
-                      );
+                      filterClanItems = filter(clanItems, o => get(o, 'sourceBook_html.fields.bookTitle') === book);
                     }
                     if (costName && costName !== 'filter by Cost') {
                       filterClanItems = filter(
                         isEmpty(filterClanItems) ? clanItems : filterClanItems,
-                        o => get(o, 'meritCost') === costName,
+                        o => get(o, 'meritCost') === costName
                       );
                     }
                     setSelectedClanItemsList(filterClanItems);
-                    if (
-                      costName === 'filter by Cost' &&
-                      book === 'filter by source book'
-                    ) {
+                    if (costName === 'filter by Cost' && book === 'filter by source book') {
                       setSelectedClanItemsList(clanItems);
                     }
-                  }}
-                >
+                  }}>
                   Reset
                 </Button>
               </Row>
@@ -614,20 +506,13 @@ export function ClanPage(props) {
                   showSearch
                   placeholder="Filter by cost"
                   optionFilterProp="children"
-                  filterOption={(input, option) =>
-                    option.children
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  }
+                  filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                   filterSort={(optionA, optionB) =>
-                    optionA.children
-                      .toLowerCase()
-                      .localeCompare(optionB.children.toLowerCase())
+                    optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
                   }
                   onSelect={handleFilterCostType}
                   className="meritFilter"
-                  value={costName}
-                >
+                  value={costName}>
                   {map(uniq(uniqCost), item => (
                     <Select.Option value={item}>{item}</Select.Option>
                   ))}
@@ -637,29 +522,20 @@ export function ClanPage(props) {
                     setCost('filter by Cost');
                     let filterClanItems = [];
                     if (disc && disc !== 'filter by Clan') {
-                      filterClanItems = handleClanFilter(
-                        disc,
-                        clanItems,
-                        clansDataWithMerits,
-                      );
+                      filterClanItems = handleClanFilter(disc, clanItems, clansDataWithMerits);
                       setSelectedClanItemsList(filterClanItems);
                     }
                     if (book && book !== 'filter by source book') {
                       filterClanItems = filter(
                         isEmpty(filterClanItems) ? clanItems : filterClanItems,
-                        o =>
-                          get(o, 'sourceBook_html.fields.bookTitle') === book,
+                        o => get(o, 'sourceBook_html.fields.bookTitle') === book
                       );
                       setSelectedClanItemsList(filterClanItems);
                     }
-                    if (
-                      disc === 'filter by Clan' &&
-                      book === 'filter by source book'
-                    ) {
+                    if (disc === 'filter by Clan' && book === 'filter by source book') {
                       setSelectedClanItemsList(clanItems);
                     }
-                  }}
-                >
+                  }}>
                   Reset
                 </Button>
               </Row>
@@ -668,68 +544,44 @@ export function ClanPage(props) {
                   style={{ width: '70%', marginBottom: 10, color: 'black' }}
                   placeholder="filter by source book"
                   onChange={handleChangeFilter}
-                  value={book}
-                >
-                  <Option value="MET - VTM - Core Book">
-                    MET - VTM - Core Book
-                  </Option>
-                  <Option value="MET - VTM - V2 Issue 1">
-                    MET - VTM - V2 Issue 1
-                  </Option>
-                  <Option value="MET - VTM - V2 (2021)">
-                    MET - VTM - V2 (2021)
-                  </Option>
+                  value={book}>
+                  <Option value="MET - VTM - Core Book">MET - VTM - Core Book</Option>
+                  <Option value="MET - VTM - V2 Issue 1">MET - VTM - V2 Issue 1</Option>
+                  <Option value="MET - VTM - V2 (2021)">MET - VTM - V2 (2021)</Option>
                 </Select>
                 <Button
                   onClick={() => {
                     setBook('filter by source book');
                     let filterClanItems = [];
                     if (disc && disc !== 'filter by Clan') {
-                      filterClanItems = handleClanFilter(
-                        disc,
-                        clanItems,
-                        clansDataWithMerits,
-                      );
+                      filterClanItems = handleClanFilter(disc, clanItems, clansDataWithMerits);
                       setSelectedClanItemsList(filterClanItems);
                     }
                     if (costName && costName !== 'filter by Cost') {
                       filterClanItems = filter(
-                        isEmpty(filterClanItems)
-                          ? clanItemsList
-                          : filterClanItems,
-                        o => get(o, 'meritCost') === costName,
+                        isEmpty(filterClanItems) ? clanItemsList : filterClanItems,
+                        o => get(o, 'meritCost') === costName
                       );
                       setSelectedClanItemsList(filterClanItems);
                     }
-                    if (
-                      disc === 'filter by Clan' &&
-                      costName === 'filter by Cost'
-                    ) {
+                    if (disc === 'filter by Clan' && costName === 'filter by Cost') {
                       setSelectedClanItemsList(clanItems);
                     }
-                  }}
-                >
+                  }}>
                   Reset
                 </Button>
               </Row>
               <h3>MERITS</h3>
               <ul className="nav flex-column nav-clans">
                 {map(clanItemsList, (items, index) => (
-                  <li
-                    className="nav-item"
-                    onClick={handleNavItemsClick}
-                    value={items.merit}
-                    key={index}
-                  >
+                  <li className="nav-item" onClick={handleNavItemsClick} value={items.merit} key={index}>
                     <Link
-                      to={`/vampire/Merits/${items.merit}`}
-                      className="nav-link"
+                      href={`/vampire/Merits/${items.merit}`}
                       value={items.merit}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}
-                    >
-                      {items.merit}
+                      }}>
+                      <span className="nav-link">{items.merit}</span>
                     </Link>
                   </li>
                 ))}
@@ -751,7 +603,6 @@ ClanPage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   clanPage: makeSelectClanPage(),
   homePage: makeSelectHomePage(),
-  app: makeSelectApp(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -762,12 +613,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(ClanPage);
+export default compose(withConnect, memo)(ClanPage);

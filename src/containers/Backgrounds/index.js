@@ -11,7 +11,7 @@
 
 import React, { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
@@ -25,15 +25,12 @@ import { useInjectSaga } from 'utils/inject-saga';
 import homePageReducer from 'containers/HomePage/reducer';
 import homePageSaga from 'containers/HomePage/saga';
 import makeSelectHomePage from 'containers/HomePage/selectors';
-import { makeSelectApp } from 'containers/App/selectors';
 
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import makeSelectClanPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-
-import './style.css';
 
 const { Paragraph } = Typography;
 export function ClanPage(props) {
@@ -48,30 +45,13 @@ export function ClanPage(props) {
     app: {
       backgrounds: { data: clanItems },
     },
-    match,
   } = props;
 
   const filterClans = clanItems;
 
-  console.log(map(clanItems, item => {
-    return {
-      url: `/vampire/Backgrounds/${item.title}`,
-      title: item.title,
-      description: item.description[0]
-    }
-  }))
-
   useEffect(() => {
-    const {
-      match: {
-        params: { id },
-      },
-    } = props;
-    const findClanData = find(clanItems, { title: id });
-    setSelectedClan(findClanData);
-
-  }, [match]);
-
+    setSelectedClan(props.pageData);
+  }, [props]);
 
   function handleNavItemsClick(e) {
     if (e.target) {
@@ -113,20 +93,14 @@ export function ClanPage(props) {
       <div className="container main-content">
         <div className="row">
           <div className="col-md-8 order-md-12">
-            <div
-              className={`header-single ${getClassHeaderName(
-                get(selectedClan, 'title'),
-              )}`}
-              style={{ fontSize: 18 }}
-            >
+            <div className={`header-single ${getClassHeaderName(get(selectedClan, 'title'))}`} style={{ fontSize: 18 }}>
               <h1>{get(selectedClan, 'title', '')}</h1>
               {get(selectedClan, 'title', '') ? (
                 <Paragraph
                   copyable={{
                     text: `${window.location.href}`,
                   }}
-                  style={{ marginLeft: 10, color: '#fff' }}
-                >
+                  style={{ marginLeft: 10, color: '#fff' }}>
                   {' '}
                   <i>Share Link</i>
                 </Paragraph>
@@ -139,9 +113,7 @@ export function ClanPage(props) {
                   <div
                     /* eslint-disable-next-line react/no-danger */
                     dangerouslySetInnerHTML={{
-                      __html: documentToHtmlString(
-                        selectedClan.description_html,
-                      ),
+                      __html: documentToHtmlString(selectedClan.description_html),
                     }}
                   />
                 </div>
@@ -210,13 +182,11 @@ export function ClanPage(props) {
 
               {isEmpty(selectedClan) ? (
                 <div>
-                  The following backgrounds are available to your character. In
-                  general, having multiple dots in a background allows for more
-                  effective or more frequent use of that background’s benefit.
-                  Some backgrounds change your character during character
-                  creation, while others affect the character only after she
-                  enters the game. Read each background carefully to determine
-                  which are appropriate for your character’s story.
+                  The following backgrounds are available to your character. In general, having multiple dots in a
+                  background allows for more effective or more frequent use of that background’s benefit. Some
+                  backgrounds change your character during character creation, while others affect the character only
+                  after she enters the game. Read each background carefully to determine which are appropriate for your
+                  character’s story.
                 </div>
               ) : (
                 <div />
@@ -247,10 +217,7 @@ export function ClanPage(props) {
               </ol>
             </nav>
 
-            <div
-              className="collapse navbar-collapse navbarBottom"
-              id="navbarResponsive"
-            >
+            <div className="collapse navbar-collapse navbarBottom" id="navbarResponsive">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
                   <a className="nav-link" href="/vampire/clan/">
@@ -299,21 +266,14 @@ export function ClanPage(props) {
               <h3>BACKGROUNDS</h3>
               <ul className="nav flex-column nav-clans">
                 {map(filterClans, (items, index) => (
-                  <li
-                    className="nav-item"
-                    onClick={handleNavItemsClick}
-                    value={items.title}
-                    key={index}
-                  >
+                  <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
                     <Link
-                      to={`/vampire/Backgrounds/${items.title}`}
-                      className={`nav-link ${getClassName(items.title)}`}
+                      href={`/vampire/Backgrounds/${items.title}`}
                       value={items.title}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}
-                    >
-                      {items.title}
+                      }}>
+                      <span className={`nav-link ${getClassName(items.title)}`}>{items.title}</span>
                     </Link>
                   </li>
                 ))}
@@ -335,7 +295,6 @@ ClanPage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   clanPage: makeSelectClanPage(),
   homePage: makeSelectHomePage(),
-  app: makeSelectApp(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -346,12 +305,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(ClanPage);
+export default compose(withConnect, memo)(ClanPage);

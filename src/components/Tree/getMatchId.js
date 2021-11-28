@@ -15,36 +15,21 @@ const sabbat1 = [
 ];
 
 const menu1 = ['Character Creation Quick Start Guide'];
-const menu2 = [
-  'Combat Maneuvers',
-  'Aerial Combat Maneuvers',
-  'Feral Combat Maneuvers',
-];
-const menu3 = [
-  'Dramatic Systems',
-  'Blood Bond',
-  'Diablerie',
-  'Tracking',
-  'Willpower',
-];
+const menu2 = ['Combat Maneuvers', 'Aerial Combat Maneuvers', 'Feral Combat Maneuvers'];
+const menu3 = ['Dramatic Systems', 'Blood Bond', 'Diablerie', 'Tracking', 'Willpower'];
 
 const menu4 = ['Ghoul Rules', 'Animal Retainers'];
 
-const menu5 = [
-  'Influences- General',
-  'Influence- Elite and Underworld Actions',
-];
+const menu5 = ['Influences- General', 'Influence- Elite and Underworld Actions'];
 
 const menu6 = [
   'Optional Rules',
   'Advanced Feeding (Optional Rules)',
   'Blood Resonance (Optional Rules)',
-  'Feeding Territories (Optional Rules)'
+  'Feeding Territories (Optional Rules)',
 ];
 
-const menu7 = [
-  'Spending XP',
-];
+const menu7 = ['Spending XP'];
 
 const menu8 = [
   'Stock Locations',
@@ -54,12 +39,7 @@ const menu8 = [
   'Stock Locations- Controlling them',
 ];
 
-const menu9 = [
-  'Stock NPC Generation',
-  'Hunters: Arcanum',
-  'Hunters: Project Twilight',
-  'Hunters: Those of Faith',
-];
+const menu9 = ['Stock NPC Generation', 'Hunters: Arcanum', 'Hunters: Project Twilight', 'Hunters: Those of Faith'];
 
 const menu10 = [
   'Storytelling',

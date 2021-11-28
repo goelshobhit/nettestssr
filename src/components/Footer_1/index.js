@@ -7,8 +7,9 @@
  */
 
 import React, { memo } from 'react';
+import Image from 'next/image';
 // import ByNightStudios from '../../images/ByNightStudios.svg';
-// import FooterImage1 from '../../images/footerImage.png';
+import FooterImage1 from '../../images/footerImage.png';
 
 function Footer_1() {
   return (
@@ -18,7 +19,7 @@ function Footer_1() {
           <div className="row">
             <div className="col-lg-4 col-md-12 widgetLogos text-center">
               <a className="navbar-brand" href="/">
-                {/* <img src={FooterImage1} alt="nightStudio" /> */}
+                <Image src={FooterImage1} alt="nightStudio" />
               </a>
               {/* <a className="navbar-brand brand-section" href="/">
                 <img src={VampireLogo} alt="" />

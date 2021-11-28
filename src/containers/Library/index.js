@@ -25,7 +25,6 @@ import Tree from 'components/Tree';
 import homePageReducer from 'containers/HomePage/reducer';
 import homePageSaga from 'containers/HomePage/saga';
 import makeSelectHomePage from 'containers/HomePage/selectors';
-import { makeSelectApp } from 'containers/App/selectors';
 
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
@@ -55,7 +54,7 @@ export function ClanPage(props) {
   } = props;
 
   const hasSubMenu = (item1, item2) => {
-    const parentClans = map(item2, data2 => data2.directLibraryParent_html.fields.title);
+    const parentClans = map(item2, data2 => data2 && data2.directLibraryParent_html.fields.title);
     const mappedItems = map(item1, data => ({
       ...data,
       hasSubMenu: includes(parentClans, data.title),
@@ -340,7 +339,6 @@ ClanPage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   clanPage: makeSelectClanPage(),
   homePage: makeSelectHomePage(),
-  app: makeSelectApp(),
 });
 
 function mapDispatchToProps(dispatch) {

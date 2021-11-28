@@ -10,8 +10,9 @@
 
 import React, { memo } from 'react';
 import Link from 'next/link';
-// import Image from 'next/image';
+import Image from 'next/image';
 import Search from 'containers/Search';
+import LogoWOD from '../../images/newLogo.png';
 
 function Header_1() {
   return (
@@ -19,9 +20,9 @@ function Header_1() {
       <div className="container">
         <div className="row">
           <div className="col-md-3 boxLogos">
-          {/* <Link className="navbar-brand" href="/">
+           <Link className="navbar-brand" href="/">
                <Image src={LogoWOD} alt="Vercel Logo" />
-            </Link> */}
+            </Link>
           </div>
           <div className="col-md-9">
             <div className="navbar navbarUpper" id="navbarUpper">

@@ -9,6 +9,7 @@ import withReduxStore from 'utils/with-redux-store';
 import 'fontsource-metropolis';
 import '@typefaces-pack/typeface-inter';
 import '../../src/globals.css';
+import '../../src/css/icons.css';
 import 'antd/dist/antd.css';
 
 class Srr extends App {
