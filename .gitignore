@@ -12,3 +12,6 @@ npm-debug.log
 
 *~
 package-lock.json
+
+/public/sitemap.xml
+/public/robots.txt

@@ -15,7 +15,8 @@
     "lint": "npm run lint:js",
     "lint:js": "eslint src --fix",
     "prettier": "prettier --config .prettierrc \"./**/*.+(js|json|jsx)\" --write",
-    "clean:example": "rnb --c"
+    "clean:example": "rnb --c",
+    "postbuild": "next-sitemap"
   },
   "husky": {
     "hooks": {

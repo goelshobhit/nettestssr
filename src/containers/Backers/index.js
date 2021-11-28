@@ -8,7 +8,6 @@ import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { get } from 'lodash';
@@ -19,7 +18,6 @@ import { useInjectSaga } from 'utils/inject-saga';
 import makeSelectQuickStart from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
 import { defaultAction } from './actions';
 import './style.css';
 

@@ -11,7 +11,7 @@
 import React, { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -69,7 +69,7 @@ export function ClanPage(props) {
   }
 
   useEffect(() => {
-    const id = get(props, 'pageData.title',{});
+    const id = get(props, 'pageData.title', {});
     const hash = split(router.asPath, '#');
     if (hash.length > 1) {
       const hashKey = split(router.asPath, '#')[1];
