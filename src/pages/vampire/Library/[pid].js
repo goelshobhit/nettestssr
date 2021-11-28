@@ -11,8 +11,6 @@ import extractEntryDataFromResponse from '../../../utils/parsingText';
 
 import contentPages_1 from 'scripts/contentPages_0.json';
 
-
-
 export default function Home({ data, disData1 }) {
   const apps = {
     clans: {
@@ -73,7 +71,7 @@ export default function Home({ data, disData1 }) {
           />
         </Head>
         <div className="container main-content">
-          <Disciplines app={apps} pageData={pageData} />
+          {/* <Disciplines app={apps} pageData={pageData} /> */}
         </div>
       </div>
       <Footer />
@@ -104,7 +102,7 @@ export async function getStaticPaths() {
   const data = orderBy(concat(contentful_discipline_1), [item => getItems(item).toLowerCase()], ['asc']);
 
   const paths = map(data, page => ({
-    params: { pid: toString(page.title) },
+    params: { pid: toString(page.title) || 'deni' },
   }));
 
   return { paths, fallback: 'blocking' };
@@ -122,5 +120,5 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  return { props: { disData1: JSON.stringify(pageData), data: JSON.stringify(data) } };
+  return { props: { disData1: JSON.stringify(pageData) || {}, data: JSON.stringify(data) } };
 }
