@@ -189,7 +189,7 @@ export function Search() {
         const filterItem = find(get(searchResults, 'hits', []), o => getItems(o) === item);
         console.log(pathname);
         if(filterItem){
-          Router.replace({ query: filterItem.url });
+          Router.replace(filterItem.url);
         }
 
         // window.location.href = `${window.location.href}${filterItem.url}`;

@@ -115,7 +115,7 @@ function Header_1() {
                   <Search />
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/clan/">
+                  <Link activeClassName="nav-link active" href="/vampire/clan/Assamite/">
                     <span className="nav-link"> Clans</span>
                   </Link>
                 </li>

@@ -390,7 +390,7 @@ export function ClanPage(props) {
                   </a>
                 </li>
                 <li className="breadcrumb-item">
-                  <a href="/vampire/clan">Clans & Bloodlines</a>
+                  <a href="/vampire/clan/Assamite">Clans & Bloodlines</a>
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
                   {get(selectedClan, 'title', '')}
@@ -401,7 +401,7 @@ export function ClanPage(props) {
             <div className="collapse navbar-collapse navbarBottom" id="navbarResponsive">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
-                  <a className="nav-link" href="/vampire/clan/">
+                  <a className="nav-link" href="/vampire/clan/Assamite/">
                     Clans & Bloodlines
                     <span className="sr-only">(current)</span>
                   </a>

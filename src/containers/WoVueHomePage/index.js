@@ -30,7 +30,7 @@ export function WoVueHomePage() {
           <div className="col-lg-4 col-md-6 col-sm-6">
             <div className="box clans">
               <h4>Clans & Bloodlines</h4>
-              <a href="/vampire/clan/" className="btn btn-primary">
+              <a href="/vampire/clan/Assamite/" className="btn btn-primary">
                 Explore
               </a>
             </div>

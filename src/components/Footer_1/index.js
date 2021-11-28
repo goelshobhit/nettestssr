@@ -8,7 +8,7 @@
 
 import React, { memo } from 'react';
 import Image from 'next/image';
-// import ByNightStudios from '../../images/ByNightStudios.svg';
+import ByNightStudios from '../../images/ByNightStudios.svg';
 import FooterImage1 from '../../images/footerImage.png';
 
 function Footer_1() {
@@ -31,7 +31,7 @@ function Footer_1() {
               </h3>
               <ul className="navbar-nav menuFooter">
                 <li className="nav-item active">
-                  <a className="nav-link" href="/vampire/clan/">
+                  <a className="nav-link" href="/vampire/clan/Assamite/">
                     Clans & Bloodlines
                     <span className="sr-only">(current)</span>
                   </a>
@@ -94,7 +94,7 @@ function Footer_1() {
                 </li>
               </ul>
                <a className="navbar-brand brand-company" href="https://www.bynightstudios.com">
-                {/* <ByNightStudios /> */}
+                <Image src={ByNightStudios} alt="nightStudio" />
               </a>
             </div>
           </div>

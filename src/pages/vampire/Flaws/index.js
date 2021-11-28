@@ -47,7 +47,7 @@ export default function Home({ data, clanData }) {
           <link rel="icon" href="/favicon.ico" />
           <meta
             property="og:image"
-            content="https://cdn11.bigcommerce.com/s-d692ob2khy/images/stencil/500w/bynightstudios_logo_vampire_skull_white_chrismas_curved_v3_1637178153__05103.original.png"
+            content="https://images.ctfassets.net/yicuw1hpxsdg/VS9IcigsbONBdUC80lRBG/4626001973d10635be7222e2a014600e/logo.webp?h=250"
           />
           <meta property="og:image:width" content="512px" />
           <meta property="og:image:height" content="512px" />
