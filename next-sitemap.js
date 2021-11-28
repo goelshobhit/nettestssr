@@ -13,7 +13,6 @@ module.exports = {
       changefreq: config.changefreq,
       priority: config.priority,
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
-      alternateRefs: config.alternateRefs ?? []
     };
   },
   additionalPaths: async config => [await config.transform(config, '/additional-page')],
