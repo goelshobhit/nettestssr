@@ -35,6 +35,7 @@
     "@contentful/rich-text-html-renderer": "^15.8.0",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
+    "@netlify/plugin-nextjs": "^4.1.0",
     "@typefaces-pack/typeface-inter": "^1.0.3",
     "algoliasearch": "^4.11.0",
     "antd": "^4.17.1",
