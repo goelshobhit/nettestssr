@@ -18,7 +18,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { Row, Typography, Select, Button } from 'antd';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { map, find, get, isEmpty, slice, uniq, filter, orderBy } from 'lodash';
+import { map, find, get, isEmpty, slice, uniq, filter, orderBy, toLower } from 'lodash';
 import history from 'utils/history';
 
 import { useInjectReducer } from 'utils/inject-reducer';
@@ -467,7 +467,7 @@ export function ClanPage(props) {
                 {map(clanItemsList, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
                     <Link
-                      href={`/vampire/clan/${items.title}`}
+                      href={`/vampire/clan/${toLower(items.title)}`}
                       value={items.title}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });

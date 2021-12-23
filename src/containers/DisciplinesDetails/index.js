@@ -36,6 +36,7 @@ import {
   last,
   isNull,
   toNumber,
+  toLower,
 } from 'lodash';
 
 import { find } from 'underscore';
@@ -985,7 +986,7 @@ export function ClanPage(props) {
                       style={{ marginLeft: '-40px' }}
                     >
                       <Link
-                        to={`/vampire/Disciplines/${items.listName}`}
+                        to={`/vampire/Disciplines/${toLower(items.listName)}`}
                         className={`nav-link ${getClassName(items.listName)}`}
                       >
                         {items.listName}

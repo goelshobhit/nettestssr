@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { map, get, isEmpty, find, without, uniq, filter, concat, includes } from 'lodash';
+import { map, get, isEmpty, find, without, uniq, filter, concat, includes, toLower } from 'lodash';
 import { Typography, Select, Row, Button } from 'antd';
 
 import { useInjectReducer } from 'utils/inject-reducer';
@@ -528,7 +528,7 @@ export function ClanPage(props) {
                 {map(clanItemsList, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.flaw} key={index}>
                     <Link
-                      href={`/vampire/Flaws/${items.flaw}`}
+                      href={`/vampire/Flaws/${toLower(items.flaw)}`}
                       value={items.flaw}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { map, get, isEmpty, find, split, without, uniq, filter, includes, concat, trim, remove } from 'lodash';
+import { map, get, isEmpty, find, split, without, uniq, filter, includes, concat, trim, remove, toLower } from 'lodash';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import { useInjectReducer } from 'utils/inject-reducer';
@@ -370,7 +370,7 @@ export function ClanPage(props) {
                 {map(filterClans, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.technique} key={index}>
                     <Link
-                      href={`/vampire/Techniques/${items.technique}`}
+                      href={`/vampire/Techniques/${toLower(items.technique)}`}
                       value={items.technique}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });

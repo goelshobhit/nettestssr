@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-import { map, find, get, orderBy, toString, concat } from 'lodash';
+import { map, find, get, orderBy, toString, concat, toLower } from 'lodash';
 
 import extractEntryDataFromResponse from '../../../utils/parsingText';
 import Header from 'components/Header_1';
@@ -121,7 +121,7 @@ export async function getStaticPaths() {
   );
 
   const paths = map(data, page => ({
-    params: { pid: toString(page.merit) },
+    params: { pid: toLower(toString(page.merit)) },
   }));
 
   return { paths, fallback: 'blocking' };
@@ -149,7 +149,7 @@ export async function getStaticProps({ params }) {
     ['asc']
   );
 
-  const pageData = find(data, item => item.merit === params.pid);
+  const pageData = find(data, item => toLower(item.merit) === toLower(params.pid));
 
   return { props: { disData: JSON.stringify(pageData), data: JSON.stringify(data), clanData: clanData } };
 }

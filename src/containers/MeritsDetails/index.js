@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { map, get, isEmpty, find, trim, without, uniq, filter, concat, includes, split, isEqual, sortBy } from 'lodash';
+import { map, get, isEmpty, find, trim, without, uniq, filter, concat, includes, split, isEqual, sortBy, toLower } from 'lodash';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import { useInjectReducer } from 'utils/inject-reducer';
@@ -576,7 +576,7 @@ export function ClanPage(props) {
                 {map(clanItemsList, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.merit} key={index}>
                     <Link
-                      href={`/vampire/Merits/${items.merit}`}
+                      href={`/vampire/Merits/${toLower(items.merit)}`}
                       value={items.merit}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });

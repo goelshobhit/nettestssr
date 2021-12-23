@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { get, isEmpty, map, orderBy, toLower, uniq, filter, includes } from 'lodash';
+import { get, isEmpty, map, orderBy, toLower, uniq, filter, includes, toLower } from 'lodash';
 import { Helmet } from 'react-helmet';
 import { Row, Select, Button } from 'antd';
 import { makeSelectApp } from 'containers/App/selectors';
@@ -211,7 +211,7 @@ export function Disciplines({ app }) {
                         </div>
                         <h3>SUMMARY</h3>
                         <p>{map(item.description, dataItem => dataItem)}</p>
-                        <Link to={`/vampire/Techniques/${item.technique}`}>
+                        <Link to={`/vampire/Techniques/${toLower(item.technique)}`}>
                           <a href="" className="btn btn-primary">
                             Details
                           </a>

@@ -19,7 +19,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { Row, Typography, Select, Button } from 'antd';
 
-import { map, find, get, isEmpty, slice, uniq, uniqBy, filter, orderBy, size, trim } from 'lodash';
+import { map, find, get, isEmpty, slice, uniq, uniqBy, filter, orderBy, size, trim, toLower } from 'lodash';
 
 import { useInjectReducer } from 'utils/inject-reducer';
 import { useInjectSaga } from 'utils/inject-saga';
@@ -453,7 +453,7 @@ export function ClanPage(props) {
                 {map(clanItemsList, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.name} key={index}>
                     <Link
-                      href={`/vampire/YearBook/${items.name}`}
+                      href={`/vampire/YearBook/${toLower(items.name)}`}
                       value={items.name}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });

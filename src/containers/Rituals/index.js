@@ -15,7 +15,7 @@ import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { map, get, isEmpty, find, filter, uniq, without, replace, split } from 'lodash';
+import { map, get, isEmpty, find, filter, uniq, without, replace, split, toLower } from 'lodash';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import { useInjectReducer } from 'utils/inject-reducer';
@@ -496,7 +496,7 @@ export function ClanPage(props) {
                     {map(itemData.data, (items, index) => (
                       <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
                         <Link
-                          href={`/vampire/Rituals/${items.title}`}
+                          href={`/vampire/Rituals/${toLower(items.title)}`}
                           value={items.title}
                           onClick={() => {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
