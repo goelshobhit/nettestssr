@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-import { map, find, get, orderBy, toString } from 'lodash';
+import { map, find, get, orderBy, toString, toLower } from 'lodash';
 
 import extractEntryDataFromResponse from '../../../utils/parsingText';
 import clanMock from '../../../scripts/clans.json';
@@ -90,7 +90,7 @@ export async function getStaticPaths() {
   const data = orderBy(clanAppData, [item => getItems(item).toLowerCase()], ['asc']);
 
   const paths = map(data, page => ({
-    params: { pid: toString(page.title) },
+    params: { pid: toLower(toString(page.title)) },
   }));
 
   return { paths, fallback: 'blocking' };
@@ -100,7 +100,7 @@ export async function getStaticProps({ params }) {
   const clanAppData = extractEntryDataFromResponse(clanMock);
   const data = orderBy(clanAppData, [item => getItems(item).toLowerCase()], ['asc']);
 
-  const pageData = find(data, item => item.title === params.pid);
+  const pageData = find(data, item => toLower(item.title) === toLower(params.pid));
 
   return { props: { pageData: pageData, data: data } };
 }
