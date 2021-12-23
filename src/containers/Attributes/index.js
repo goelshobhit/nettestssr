@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { map, get, isEmpty, find, trim } from 'lodash';
+import { map, get, isEmpty, find, trim, toLower } from 'lodash';
 import { Typography } from 'antd';
 
 import { useInjectReducer } from 'utils/inject-reducer';
