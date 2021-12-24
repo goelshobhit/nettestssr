@@ -20,8 +20,8 @@ function Header_1() {
       <div className="container">
         <div className="row">
           <div className="col-md-3 boxLogos">
-           <Link className="navbar-brand" href="/">
-               <Image src={LogoWOD} alt="Vercel Logo" />
+            <Link className="navbar-brand" href="/">
+              <Image src={LogoWOD} alt="Vercel Logo" />
             </Link>
           </div>
           <div className="col-md-9">
@@ -150,7 +150,9 @@ function Header_1() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/library/character%20creation%20quick%20start%20guide">
+                  <Link
+                    activeClassName="nav-link active"
+                    href="/vampire/library/character%20creation%20quick%20start%20guide">
                     <span className="nav-link"> Library</span>
                   </Link>
                 </li>
