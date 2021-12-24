@@ -38,7 +38,7 @@ export function WoVueHomePage() {
           <div className="col">
             <div className="box disciplines">
               <h4>Disciplines</h4>
-              <a href="/vampire/disciplines/abyss%20mysticism" className="btn btn-primary">
+              <a href="/vampire/Disciplines/abyss%20mysticism" className="btn btn-primary">
                 Explore
               </a>
             </div>
