@@ -128,7 +128,6 @@ export const getServerSideProps = async ctx => {
 
   const ybData = orderBy(concat(contentful_yb_1), 'name', ['asc']);
 
-
   const contentful_at_1 = extractEntryDataFromResponse(at_1);
   const atData = orderBy(concat(contentful_at_1), [item => getItems(item).toLowerCase()], ['asc']);
 
@@ -191,6 +190,21 @@ export const getServerSideProps = async ctx => {
     lastmod: new Date().toISOString(),
   }));
 
+  const sponsorsFields = [
+    {
+      loc: `https://vamp.bynightstudios.com/QuickStart`,
+      lastmod: new Date().toISOString(),
+    },
+    {
+      loc: `https://vamp.bynightstudios.com/Backers`,
+      lastmod: new Date().toISOString(),
+    },
+    {
+      loc: `https://vamp.bynightstudios.com/SupportUs`,
+      lastmod: new Date().toISOString(),
+    },
+  ];
+
   return getServerSideSitemap(
     ctx,
     concat(
@@ -204,7 +218,8 @@ export const getServerSideProps = async ctx => {
       libfields,
       ybfields,
       atfields,
-      bgfields
+      bgfields,
+      sponsorsFields
     )
   );
 };
