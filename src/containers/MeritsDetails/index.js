@@ -576,7 +576,7 @@ export function ClanPage(props) {
                 {map(clanItemsList, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.merit} key={index}>
                     <Link
-                      href={`/vampire/merits/${toLower(items.merit)}`}
+                      href={`/vampire/Merits/${toLower(items.merit)}`}
                       value={items.merit}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });

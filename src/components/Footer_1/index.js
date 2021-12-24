@@ -37,27 +37,27 @@ function Footer_1() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/disciplines/">
+                  <a className="nav-link" href="/vampire/Disciplines/">
                     Disciplines
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/rituals">
+                  <a className="nav-link" href="/vampire/Rituals">
                     Rituals
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/techniques">
+                  <a className="nav-link" href="/vampire/Techniques">
                     Techniques
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/skills">
+                  <a className="nav-link" href="/vampire/Skills">
                     Skills
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/merits">
+                  <a className="nav-link" href="/vampire/Merits">
                     Merits
                   </a>
                 </li>
@@ -67,12 +67,12 @@ function Footer_1() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/attributes">
+                  <a className="nav-link" href="/vampire/Attributes">
                     Attributes
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/backgrounds">
+                  <a className="nav-link" href="/vampire/Backgrounds">
                     Backgrounds
                   </a>
                 </li>

@@ -46,7 +46,7 @@ export function WoVueHomePage() {
           <div className="col">
             <div className="box techniques">
               <h4>Techniques</h4>
-              <a href="/vampire/techniques/abrupt%20internment" className="btn btn-primary">
+              <a href="/vampire/Techniques/abrupt%20internment" className="btn btn-primary">
                 Explore
               </a>
             </div>
@@ -54,7 +54,7 @@ export function WoVueHomePage() {
           <div className="col">
             <div className="box skills">
               <h4>Skills</h4>
-              <a href="/vampire/skills/academics" className="btn btn-primary">
+              <a href="/vampire/Skills/academics" className="btn btn-primary">
                 Explore
               </a>
             </div>
@@ -72,7 +72,7 @@ export function WoVueHomePage() {
           <div className="col-md-6">
             <div className="box merits">
               <h4>MERITS</h4>
-              <a href="/vampire/merits/absent%20sway" className="btn btn-primary">
+              <a href="/vampire/Merits/absent%20sway" className="btn btn-primary">
                 Explore
               </a>
             </div>
@@ -88,7 +88,7 @@ export function WoVueHomePage() {
           <div className="col-md-6">
             <div className="box attributes">
               <h4>Attributes</h4>
-              <a href="/vampire/attributes/mental%20attributes" className="btn btn-primary">
+              <a href="/vampire/Attributes/mental%20attributes" className="btn btn-primary">
                 Explore
               </a>
             </div>
@@ -96,7 +96,7 @@ export function WoVueHomePage() {
           <div className="col-md-6">
             <div className="box bgs">
               <h4>Backgrounds</h4>
-              <a href="/vampire/backgrounds/allies" className="btn btn-primary">
+              <a href="/vampire/Backgrounds/allies" className="btn btn-primary">
                 Explore
               </a>
             </div>
@@ -105,7 +105,7 @@ export function WoVueHomePage() {
           <div className="col-md-6">
             <div className="box rituals">
               <h4>RITUALS</h4>
-              <a href="/vampire/rituals/abyssal%20ichor" className="btn btn-primary">
+              <a href="/vampire/Rituals/abyssal%20ichor" className="btn btn-primary">
                 Explore
               </a>
             </div>

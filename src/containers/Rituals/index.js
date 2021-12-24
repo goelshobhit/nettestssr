@@ -496,7 +496,7 @@ export function ClanPage(props) {
                     {map(itemData.data, (items, index) => (
                       <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
                         <Link
-                          href={`/vampire/rituals/${toLower(items.title)}`}
+                          href={`/vampire/Rituals/${toLower(items.title)}`}
                           value={items.title}
                           onClick={() => {
                             window.scrollTo({ top: 0, behavior: 'smooth' });

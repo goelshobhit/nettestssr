@@ -232,7 +232,7 @@ export function ClanPage(props) {
                 {map(filterClans, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
                     <Link
-                      href={`/vampire/skills/${toLower(items.title)}`}
+                      href={`/vampire/Skills/${toLower(items.title)}`}
                       value={items.title}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });

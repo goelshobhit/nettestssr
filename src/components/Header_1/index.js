@@ -120,27 +120,27 @@ function Header_1() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/disciplines/abyss%20mysticism">
+                  <Link activeClassName="nav-link active" href="/vampire/Disciplines/abyss%20mysticism">
                     <span className="nav-link"> Disciplines</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/rituals/abyssal%20ichor">
+                  <Link activeClassName="nav-link active" href="/vampire/Rituals/abyssal%20ichor">
                     <span className="nav-link">Rituals</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/techniques/abrupt%20internment">
+                  <Link activeClassName="nav-link active" href="/vampire/Techniques/abrupt%20internment">
                     <span className="nav-link">Techniques</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/skills/academics">
+                  <Link activeClassName="nav-link active" href="/vampire/Skills/academics">
                     <span className="nav-link">Skills</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/merits/absent%20sway">
+                  <Link activeClassName="nav-link active" href="/vampire/Merits/absent%20sway">
                     <span className="nav-link">Merits</span>
                   </Link>
                 </li>
@@ -157,7 +157,7 @@ function Header_1() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/yearbook/anna%20dogherty">
+                  <Link activeClassName="nav-link active" href="/vampire/YearBook/anna%20dogherty">
                     <span className="nav-link">Yearbook</span>
                   </Link>
                 </li>
