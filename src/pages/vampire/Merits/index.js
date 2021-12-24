@@ -16,9 +16,31 @@ import merits_3 from 'scripts/merits_200.json';
 import merits_4 from 'scripts/merits_300.json';
 import merits_5 from 'scripts/merits_400.json';
 
-export default function Home({ data, clanData }) {
+export default function Home() {
+
+  const contentful_discipline_1 = extractEntryDataFromResponse(merits_1);
+  const contentful_discipline_2 = extractEntryDataFromResponse(merits_2);
+  const contentful_discipline_3 = extractEntryDataFromResponse(merits_3);
+  const contentful_discipline_4 = extractEntryDataFromResponse(merits_4);
+  const contentful_discipline_5 = extractEntryDataFromResponse(merits_5);
+
+  const clanAppData = extractEntryDataFromResponse(clanMock);
+  const clanData = orderBy(clanAppData, [item => getItems(item).toLowerCase()], ['asc']);
+
+  const data = orderBy(
+    concat(
+      contentful_discipline_1,
+      contentful_discipline_2,
+      contentful_discipline_3,
+      contentful_discipline_4,
+      contentful_discipline_5
+    ),
+    [item => getItems(item).toLowerCase()],
+    ['asc']
+  );
+
   const apps = {
-    merits: { data: JSON.parse(data) },
+    merits: { data: data },
     clans: { data: clanData },
   };
 
@@ -95,31 +117,4 @@ function getItems(item) {
     return item.technique;
   }
   return item.attribute;
-}
-
-export async function getStaticProps() {
-  const contentful_discipline_1 = extractEntryDataFromResponse(merits_1);
-  const contentful_discipline_2 = extractEntryDataFromResponse(merits_2);
-  const contentful_discipline_3 = extractEntryDataFromResponse(merits_3);
-  const contentful_discipline_4 = extractEntryDataFromResponse(merits_4);
-  const contentful_discipline_5 = extractEntryDataFromResponse(merits_5);
-
-  const clanAppData = extractEntryDataFromResponse(clanMock);
-  const clanData = orderBy(clanAppData, [item => getItems(item).toLowerCase()], ['asc']);
-
-  const data = orderBy(
-    concat(
-      contentful_discipline_1,
-      contentful_discipline_2,
-      contentful_discipline_3,
-      contentful_discipline_4,
-      contentful_discipline_5
-    ),
-    [item => getItems(item).toLowerCase()],
-    ['asc']
-  );
-
-  return {
-    props: { data: JSON.stringify(data), clanData: clanData },
-  };
 }

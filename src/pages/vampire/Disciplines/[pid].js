@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-
+import { useRouter } from 'next/router';
 import { map, find, get, orderBy, toString, concat, toLower } from 'lodash';
 
 import extractEntryDataFromResponse from '../../../utils/parsingText';
@@ -17,20 +17,45 @@ import discipline_5 from 'scripts/discipline_400.json';
 
 import styles from '../../../styles/Home.module.css';
 
-const Page = ({ disData, data }) => {
+const Page = () => {
+  const router = useRouter();
+  const contentful_discipline_1 = extractEntryDataFromResponse(discipline_1);
+  const contentful_discipline_2 = extractEntryDataFromResponse(discipline_2);
+  const contentful_discipline_3 = extractEntryDataFromResponse(discipline_3);
+  const contentful_discipline_4 = extractEntryDataFromResponse(discipline_4);
+  const contentful_discipline_5 = extractEntryDataFromResponse(discipline_5);
+
+  const data = orderBy(
+    concat(
+      contentful_discipline_1,
+      contentful_discipline_2,
+      contentful_discipline_3,
+      contentful_discipline_4,
+      contentful_discipline_5
+    ),
+    [item => getItems(item).toLowerCase()],
+    ['asc']
+  );
+
+  const pageData = find(data, item => toLower(item.title) === toLower(router.query.pid));
   const apps = {
     clans: {
-      data: JSON.parse(data),
+      data: data,
     },
   };
-
-  const pageData = JSON.parse(disData);
 
   return (
     <div>
       <Head>
         <title>{pageData.title} | Vamp By Night Studio </title>
-        <meta name="description" content={get(pageData, 'summary[0]','Disciplines are supernatural powers granted by the Embrace. Vampires cultivate these powers and bring them to bear against foes and prey. Fueled by blood and will disciplines provide an incomparable, mystical edge and are the hallmarks of a vampire’s clan or bloodline.' )} />
+        <meta
+          name="description"
+          content={get(
+            pageData,
+            'summary[0]',
+            'Disciplines are supernatural powers granted by the Embrace. Vampires cultivate these powers and bring them to bear against foes and prey. Fueled by blood and will disciplines provide an incomparable, mystical edge and are the hallmarks of a vampire’s clan or bloodline.'
+          )}
+        />
         <link rel="icon" href="/favicon.ico" />
         <meta
           property="og:image"
@@ -43,31 +68,31 @@ const Page = ({ disData, data }) => {
         <meta property="og:image:width" content="512px" />
         <meta property="og:image:height" content="512px" />
         <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                '@context': 'http://schema.org',
-                '@type': 'Organisation',
-                address: {
-                  '@type': 'PostalAddress',
-                  addressLocality: 'United States',
-                  addressRegion: 'New Orleans',
-                  postalCode: '70116',
-                  streetAddress: '1228 Royal St, New Orleans, LA 70116, United States',
-                },
-                email: 'mailto:support@bynightstudios.com',
-                jobTitle: 'Organisation Product',
-                name: 'Vamp BYNightStudio',
-                url: 'https://bynightstudios.com/',
-                sameAs: ['https://bit.ly/3D1e7vA'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.7', bestRating: '5', ratingCount: '54' },
-                logo:
-                  'https://images.ctfassets.net/yicuw1hpxsdg/VS9IcigsbONBdUC80lRBG/4626001973d10635be7222e2a014600e/logo.webp?h=250',
-                image:
-                  'https://images.ctfassets.net/yicuw1hpxsdg/VS9IcigsbONBdUC80lRBG/4626001973d10635be7222e2a014600e/logo.webp?h=250',
-              }),
-            }}
-          />
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'http://schema.org',
+              '@type': 'Organisation',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'United States',
+                addressRegion: 'New Orleans',
+                postalCode: '70116',
+                streetAddress: '1228 Royal St, New Orleans, LA 70116, United States',
+              },
+              email: 'mailto:support@bynightstudios.com',
+              jobTitle: 'Organisation Product',
+              name: 'Vamp BYNightStudio',
+              url: 'https://bynightstudios.com/',
+              sameAs: ['https://bit.ly/3D1e7vA'],
+              aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.7', bestRating: '5', ratingCount: '54' },
+              logo:
+                'https://images.ctfassets.net/yicuw1hpxsdg/VS9IcigsbONBdUC80lRBG/4626001973d10635be7222e2a014600e/logo.webp?h=250',
+              image:
+                'https://images.ctfassets.net/yicuw1hpxsdg/VS9IcigsbONBdUC80lRBG/4626001973d10635be7222e2a014600e/logo.webp?h=250',
+            }),
+          }}
+        />
       </Head>
       <Header />
       <div className={styles.container}>
@@ -93,57 +118,6 @@ function getItems(item) {
     return item.technique;
   }
   return item.attribute;
-}
-
-export async function getStaticPaths() {
-
-  const contentful_discipline_1 = extractEntryDataFromResponse(discipline_1);
-  const contentful_discipline_2 = extractEntryDataFromResponse(discipline_2);
-  const contentful_discipline_3 = extractEntryDataFromResponse(discipline_3);
-  const contentful_discipline_4 = extractEntryDataFromResponse(discipline_4);
-  const contentful_discipline_5 = extractEntryDataFromResponse(discipline_5);
-
-  const data = orderBy(
-    concat(
-      contentful_discipline_1,
-      contentful_discipline_2,
-      contentful_discipline_3,
-      contentful_discipline_4,
-      contentful_discipline_5
-    ),
-    [item => getItems(item).toLowerCase()],
-    ['asc']
-  );
-
-  const paths = map(data, page => ({
-    params: { pid: toLower(toString(page.title)) },
-  }));
-
-  return { paths, fallback: 'blocking' };
-}
-
-export async function getStaticProps({ params }) {
-  const contentful_discipline_1 = extractEntryDataFromResponse(discipline_1);
-  const contentful_discipline_2 = extractEntryDataFromResponse(discipline_2);
-  const contentful_discipline_3 = extractEntryDataFromResponse(discipline_3);
-  const contentful_discipline_4 = extractEntryDataFromResponse(discipline_4);
-  const contentful_discipline_5 = extractEntryDataFromResponse(discipline_5);
-
-  const data = orderBy(
-    concat(
-      contentful_discipline_1,
-      contentful_discipline_2,
-      contentful_discipline_3,
-      contentful_discipline_4,
-      contentful_discipline_5
-    ),
-    [item => getItems(item).toLowerCase()],
-    ['asc']
-  );
-
-  const pageData = find(data, item => toLower(item.title) === toLower(params.pid));
-
-  return { props: { disData: JSON.stringify(pageData), data: JSON.stringify(data) } };
 }
 
 export default Page;

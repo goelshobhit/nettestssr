@@ -162,10 +162,6 @@ export function ClanPage(props) {
   }
   return (
     <div className="clan-page">
-      <Helmet>
-        <title>World of Darkness - MET - Techniques -{get(selectedClan, 'technique', '')}</title>
-        <meta name="description" content="Description of Merits" />
-      </Helmet>
       <div className="container main-content">
         <div className="row">
           <div className="col-md-8 order-md-12">
@@ -370,7 +366,7 @@ export function ClanPage(props) {
                 {map(filterClans, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.technique} key={index}>
                     <Link
-                      href={`/vampire/Techniques/${toLower(items.technique)}`}
+                      href={`/vampire/techniques/${toLower(items.technique)}`}
                       value={items.technique}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });

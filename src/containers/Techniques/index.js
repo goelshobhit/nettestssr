@@ -108,10 +108,6 @@ export function Disciplines({ app }) {
 
   return (
     <div>
-      <Helmet>
-        <title>World of Darkness - MET - Techniques</title>
-        <meta name="description" content="Description of Merits" />
-      </Helmet>
       <div className="container main-content">
         <div className="row">
           <div className="col-md-12">

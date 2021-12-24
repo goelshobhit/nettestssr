@@ -11,10 +11,14 @@ import extractEntryDataFromResponse from '../../../utils/parsingText';
 
 import discipline_1 from 'scripts/skills.json';
 
-export default function Home({ data }) {
+export default function Home() {
+  const contentful_discipline_1 = extractEntryDataFromResponse(discipline_1);
+
+  const data = orderBy(concat(contentful_discipline_1), [item => getItems(item).toLowerCase()], ['asc']);
+
   const apps = {
     clans: {
-      data: JSON.parse(data),
+      data: data,
     },
   };
 
@@ -94,13 +98,3 @@ function getItems(item) {
   return item.attribute;
 }
 
-export async function getStaticProps() {
-  const contentful_discipline_1 = extractEntryDataFromResponse(discipline_1);
-
-  const data = orderBy(concat(contentful_discipline_1), [item => getItems(item).toLowerCase()], ['asc']);
-
-  return {
-    props: { data: JSON.stringify(data) },
-    revalidate: 10, // will be passed to the page component as props
-  };
-}
