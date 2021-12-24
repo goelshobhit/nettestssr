@@ -145,12 +145,12 @@ function Header_1() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/flaws">
+                  <Link activeClassName="nav-link active" href="/vampire/flaws/accused%20of%20heresy">
                     <span className="nav-link">Flaws</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/library">
+                  <Link activeClassName="nav-link active" href="/vampire/library/character%20creation%20quick%20start%20guide">
                     <span className="nav-link"> Library</span>
                   </Link>
                 </li>

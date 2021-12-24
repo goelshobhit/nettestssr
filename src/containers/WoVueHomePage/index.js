@@ -80,7 +80,7 @@ export function WoVueHomePage() {
           <div className="col-md-6">
             <div className="box flaws">
               <h4>Flaws</h4>
-              <a href="/vampire/Flaws" className="btn btn-primary">
+              <a href="/vampire/flaws/accused%20of%20heresy" className="btn btn-primary">
                 Explore
               </a>
             </div>

@@ -50,7 +50,7 @@ function renderMenu(libMenu, subItemsList, subItemsList1, openMenu, setOpenMenu)
             expandIcon={item.hasSubMenu ? <i className="ant-menu-submenu-arrow" /> : <span />}
             title={
               <Link
-                to={`/vampire/Library/${item.title}`}
+                to={`/vampire/library/${item.title}`}
                 value={item.title}
                 onClick={() => {
                   window.scrollTo({ top: 0, behavior: 'smooth' });

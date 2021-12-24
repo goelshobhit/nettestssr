@@ -15,7 +15,7 @@ import React, { memo, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { map, get, isEmpty, find, filter, groupBy, sortBy, concat, includes } from 'lodash';
+import { map, get, isEmpty, find, filter, groupBy, sortBy, concat, includes, toLower } from 'lodash';
 import { Typography, Menu } from 'antd';
 
 import { useInjectReducer } from 'utils/inject-reducer';

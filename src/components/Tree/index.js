@@ -13,6 +13,7 @@ import React, { memo, useEffect } from 'react';
 import Link from 'next/link';
 import Router from 'next/router'
 import { useRouter } from 'next/router'
+import { toLower  } from 'lodash';
 import last from 'lodash/last';
 import split from 'lodash/split';
 import map from 'lodash/map';
@@ -21,7 +22,7 @@ import getMatchId from './getMatchId';
 
 const renderLink = (item, paddingLeft) => (
   <Link
-    href={`/vampire/Library/${item}`}
+    href={`/vampire/library/${toLower(item)}`}
     value={item}
     onClick={() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -58,7 +59,7 @@ function TreeData({ openMenu, setOpenMenu }) {
       ele.parentElement.querySelector('.nested').classList.toggle('active');
       ele.classList.toggle('caret-down');
     }
-    Router.push({pathname:`/vampire/Library/${item}`, query: {}});
+    Router.push({pathname:`/vampire/library/${toLower(item)}`, query: {}});
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
