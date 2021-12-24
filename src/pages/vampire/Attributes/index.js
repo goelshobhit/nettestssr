@@ -11,10 +11,30 @@ import extractEntryDataFromResponse from '../../../utils/parsingText';
 
 import discipline_1 from 'scripts/attributes.json';
 
-export default function Home({ data }) {
+function getItems(item) {
+  if (item.title) {
+    return item.title;
+  }
+  if (item.merit) {
+    return item.merit;
+  }
+  if (item.flaw) {
+    return item.flaw;
+  }
+
+  if (item.technique) {
+    return item.technique;
+  }
+  return item.attribute;
+}
+
+export default function Home() {
+  const contentful_discipline_1 = extractEntryDataFromResponse(discipline_1);
+  const data = orderBy(concat(contentful_discipline_1), [item => getItems(item).toLowerCase()], ['asc']);
+
   const apps = {
     attributes: {
-      data: JSON.parse(data),
+      data: data,
     },
   };
 
@@ -70,32 +90,4 @@ export default function Home({ data }) {
       <Footer />
     </div>
   );
-}
-
-function getItems(item) {
-  if (item.title) {
-    return item.title;
-  }
-  if (item.merit) {
-    return item.merit;
-  }
-  if (item.flaw) {
-    return item.flaw;
-  }
-
-  if (item.technique) {
-    return item.technique;
-  }
-  return item.attribute;
-}
-
-export async function getStaticProps() {
-  const contentful_discipline_1 = extractEntryDataFromResponse(discipline_1);
-
-  const data = orderBy(concat(contentful_discipline_1), [item => getItems(item).toLowerCase()], ['asc']);
-
-  return {
-    props: { data: JSON.stringify(data) },
-    revalidate: 10, // will be passed to the page component as props
-  };
 }

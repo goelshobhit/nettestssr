@@ -13,10 +13,20 @@ import discipline_1 from 'scripts/rituals_0.json';
 import discipline_2 from 'scripts/rituals_100.json';
 import discipline_3 from 'scripts/rituals_200.json';
 
-export default function Home({ data }) {
+export default function Home() {
+  const contentful_discipline_1 = extractEntryDataFromResponse(discipline_1);
+  const contentful_discipline_2 = extractEntryDataFromResponse(discipline_2);
+  const contentful_discipline_3 = extractEntryDataFromResponse(discipline_3);
+
+  const data = orderBy(
+    concat(contentful_discipline_1, contentful_discipline_2, contentful_discipline_3),
+    [item => getItems(item).toLowerCase()],
+    ['asc']
+  );
+
   const apps = {
     clans: {
-      data: JSON.parse(data),
+      data: data,
     },
   };
 
@@ -97,21 +107,4 @@ function getItems(item) {
     return item.technique;
   }
   return item.attribute;
-}
-
-export async function getStaticProps() {
-  const contentful_discipline_1 = extractEntryDataFromResponse(discipline_1);
-  const contentful_discipline_2 = extractEntryDataFromResponse(discipline_2);
-  const contentful_discipline_3 = extractEntryDataFromResponse(discipline_3);
-
-  const data = orderBy(
-    concat(contentful_discipline_1, contentful_discipline_2, contentful_discipline_3),
-    [item => getItems(item).toLowerCase()],
-    ['asc']
-  );
-
-  return {
-    props: { data: JSON.stringify(data) },
-    revalidate: 10, // will be passed to the page component as props
-  };
 }

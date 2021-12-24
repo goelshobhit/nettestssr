@@ -1,10 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
-
-import { map, find, get, orderBy, toString, concat, toLower } from 'lodash';
+import { useRouter } from 'next/router';
+import { find, get, orderBy, concat, toLower } from 'lodash';
 
 import extractEntryDataFromResponse from '../../../utils/parsingText';
-import clanMock from '../../../scripts/clans.json';
 import Header from 'components/Header_1';
 import Footer from 'components/Footer_1';
 import ClanPage from 'containers/Skills';
@@ -13,14 +12,19 @@ import discipline_1 from 'scripts/skills.json';
 
 import styles from '../../../styles/Home.module.css';
 
-const Page = ({ disData, data }) => {
+const Page = () => {
+  const router = useRouter();
+  const contentful_discipline_1 = extractEntryDataFromResponse(discipline_1);
+
+  const data = orderBy(concat(contentful_discipline_1), [item => getItems(item).toLowerCase()], ['asc']);
+
+  const pageData = find(data, item => toLower(item.title) === toLower(router.query.pid));
+
   const apps = {
     clans: {
-      data: JSON.parse(data),
+      data: data,
     },
   };
-
-  const pageData = JSON.parse(disData);
 
   return (
     <div>
@@ -89,28 +93,6 @@ function getItems(item) {
     return item.technique;
   }
   return item.attribute;
-}
-
-export async function getStaticPaths() {
-  const contentful_discipline_1 = extractEntryDataFromResponse(discipline_1);
-
-  const data = orderBy(concat(contentful_discipline_1), [item => getItems(item).toLowerCase()], ['asc']);
-
-  const paths = map(data, page => ({
-    params: { pid: toLower(toString(page.title)) },
-  }));
-
-  return { paths, fallback: 'blocking' };
-}
-
-export async function getStaticProps({ params }) {
-  const contentful_discipline_1 = extractEntryDataFromResponse(discipline_1);
-
-  const data = orderBy(concat(contentful_discipline_1), [item => getItems(item).toLowerCase()], ['asc']);
-
-  const pageData = find(data, item => toLower(item.title) === toLower(params.pid));
-
-  return { props: { disData: JSON.stringify(pageData), data: JSON.stringify(data) } };
 }
 
 export default Page;

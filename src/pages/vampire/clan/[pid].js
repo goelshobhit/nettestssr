@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
-
-import { map, find, get, orderBy, toString, toLower } from 'lodash';
+import { useRouter } from 'next/router';
+import { find, get, orderBy, toLower } from 'lodash';
 
 import extractEntryDataFromResponse from '../../../utils/parsingText';
 import clanMock from '../../../scripts/clans.json';
@@ -10,7 +10,12 @@ import Footer from 'components/Footer_1';
 import ClanPage from 'containers/ClanPage';
 import styles from '../../../styles/Home.module.css';
 
-const Page = ({ pageData, data }) => {
+const Page = () => {
+  const router = useRouter();
+  const clanAppData = extractEntryDataFromResponse(clanMock);
+  const data = orderBy(clanAppData, [item => getItems(item).toLowerCase()], ['asc']);
+  const pageData = find(data, item => toLower(item.title) === toLower(router.query.pid));
+
   const apps = {
     clans: {
       data: data,
@@ -19,8 +24,8 @@ const Page = ({ pageData, data }) => {
   return (
     <div>
       <Head>
-        <title>{pageData.title} | Vamp By Night Studio </title>
-        <meta name="description" content={pageData.description[0]} />
+        <title>{get(pageData, 'title', 'Vamp: By Night Studio')} | Vamp By Night Studio </title>
+        <meta name="description" content={get(pageData, 'description[0]', 'Vamp: By Night Studio')} />
         <link rel="icon" href="/favicon.ico" />
         <meta
           property="og:image"
@@ -33,31 +38,31 @@ const Page = ({ pageData, data }) => {
         <meta property="og:image:width" content="512px" />
         <meta property="og:image:height" content="512px" />
         <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                '@context': 'http://schema.org',
-                '@type': 'Organisation',
-                address: {
-                  '@type': 'PostalAddress',
-                  addressLocality: 'United States',
-                  addressRegion: 'New Orleans',
-                  postalCode: '70116',
-                  streetAddress: '1228 Royal St, New Orleans, LA 70116, United States',
-                },
-                email: 'mailto:support@bynightstudios.com',
-                jobTitle: 'Organisation Product',
-                name: 'Vamp BYNightStudio',
-                url: 'https://bynightstudios.com/',
-                sameAs: ['https://bit.ly/3D1e7vA'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.7', bestRating: '5', ratingCount: '54' },
-                logo:
-                  'https://images.ctfassets.net/yicuw1hpxsdg/VS9IcigsbONBdUC80lRBG/4626001973d10635be7222e2a014600e/logo.webp?h=250',
-                image:
-                  'https://images.ctfassets.net/yicuw1hpxsdg/VS9IcigsbONBdUC80lRBG/4626001973d10635be7222e2a014600e/logo.webp?h=250',
-              }),
-            }}
-          />
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'http://schema.org',
+              '@type': 'Organisation',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'United States',
+                addressRegion: 'New Orleans',
+                postalCode: '70116',
+                streetAddress: '1228 Royal St, New Orleans, LA 70116, United States',
+              },
+              email: 'mailto:support@bynightstudios.com',
+              jobTitle: 'Organisation Product',
+              name: 'Vamp BYNightStudio',
+              url: 'https://bynightstudios.com/',
+              sameAs: ['https://bit.ly/3D1e7vA'],
+              aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.7', bestRating: '5', ratingCount: '54' },
+              logo:
+                'https://images.ctfassets.net/yicuw1hpxsdg/VS9IcigsbONBdUC80lRBG/4626001973d10635be7222e2a014600e/logo.webp?h=250',
+              image:
+                'https://images.ctfassets.net/yicuw1hpxsdg/VS9IcigsbONBdUC80lRBG/4626001973d10635be7222e2a014600e/logo.webp?h=250',
+            }),
+          }}
+        />
       </Head>
       <Header />
       <div className={styles.container}>
@@ -83,26 +88,6 @@ function getItems(item) {
     return item.technique;
   }
   return item.attribute;
-}
-
-export async function getStaticPaths() {
-  const clanAppData = extractEntryDataFromResponse(clanMock);
-  const data = orderBy(clanAppData, [item => getItems(item).toLowerCase()], ['asc']);
-
-  const paths = map(data, page => ({
-    params: { pid: toLower(toString(page.title)) },
-  }));
-
-  return { paths, fallback: 'blocking' };
-}
-
-export async function getStaticProps({ params }) {
-  const clanAppData = extractEntryDataFromResponse(clanMock);
-  const data = orderBy(clanAppData, [item => getItems(item).toLowerCase()], ['asc']);
-
-  const pageData = find(data, item => toLower(item.title) === toLower(params.pid));
-
-  return { props: { pageData: pageData, data: data } };
 }
 
 export default Page;

@@ -10,10 +10,30 @@ import { orderBy } from 'lodash';
 import extractEntryDataFromResponse from '../../../utils/parsingText';
 import clanMock from 'scripts/clans.json';
 
-export default function Home({ data }) {
+function getItems(item) {
+  if (item.title) {
+    return item.title;
+  }
+  if (item.merit) {
+    return item.merit;
+  }
+  if (item.flaw) {
+    return item.flaw;
+  }
+
+  if (item.technique) {
+    return item.technique;
+  }
+  return item.attribute;
+}
+
+export default function Home() {
+  const clanAppData = extractEntryDataFromResponse(clanMock);
+  const data = orderBy(clanAppData, [item => getItems(item).toLowerCase()], ['asc']);
+
   const apps = {
     clans: {
-      data: JSON.parse(data),
+      data: data,
     },
   };
   return (
@@ -84,37 +104,4 @@ export default function Home({ data }) {
       <Footer />
     </div>
   );
-}
-
-function getItems(item) {
-  if (item.title) {
-    return item.title;
-  }
-  if (item.merit) {
-    return item.merit;
-  }
-  if (item.flaw) {
-    return item.flaw;
-  }
-
-  if (item.technique) {
-    return item.technique;
-  }
-  return item.attribute;
-}
-
-export async function getStaticProps() {
-  const clanAppData = extractEntryDataFromResponse(clanMock);
-  const data = orderBy(clanAppData, [item => getItems(item).toLowerCase()], ['asc']);
-
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: { data: JSON.stringify(data) },
-    revalidate: 10, // will be passed to the page component as props
-  };
 }

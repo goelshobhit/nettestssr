@@ -36,6 +36,7 @@ import {
   isNull,
   toNumber,
   find,
+  toLower,
 } from 'lodash';
 
 import { useInjectSaga } from 'utils/inject-saga';
@@ -818,7 +819,7 @@ export function ClanPage(props) {
                       {map(get(items, 'data'), (items1, index1) => (
                         <li className="nav-item" onClick={handleNavItemsClick} value={items1.title} key={index1}>
                           <Link
-                            href={`/vampire/Disciplines/${items1.power}`}
+                            href={`/vampire/disciplines/${toLower(items1.power)}`}
                             value={items1.power}
                             onClick={() => {
                               setPowenClanIndex(-1);

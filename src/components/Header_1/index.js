@@ -115,47 +115,47 @@ function Header_1() {
                   <Search />
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/clan/Assamite/">
+                  <Link activeClassName="nav-link active" href="/vampire/clan/">
                     <span className="nav-link"> Clans</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/Disciplines/">
+                  <Link activeClassName="nav-link active" href="/vampire/disciplines/">
                     <span className="nav-link"> Disciplines</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/Rituals">
+                  <Link activeClassName="nav-link active" href="/vampire/rituals">
                     <span className="nav-link">Rituals</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/Techniques/">
+                  <Link activeClassName="nav-link active" href="/vampire/techniques/">
                     <span className="nav-link">Techniques</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/Skills">
+                  <Link activeClassName="nav-link active" href="/vampire/skills">
                     <span className="nav-link">Skills</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/Merits">
+                  <Link activeClassName="nav-link active" href="/vampire/merits">
                     <span className="nav-link">Merits</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/Flaws">
+                  <Link activeClassName="nav-link active" href="/vampire/flaws">
                     <span className="nav-link">Flaws</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/Library">
+                  <Link activeClassName="nav-link active" href="/vampire/library">
                     <span className="nav-link"> Library</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/YearBook">
+                  <Link activeClassName="nav-link active" href="/vampire/yearbook">
                     <span className="nav-link">Yearbook</span>
                   </Link>
                 </li>

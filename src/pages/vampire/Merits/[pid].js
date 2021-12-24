@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-
+import { useRouter } from 'next/router';
 import { map, find, get, orderBy, toString, concat, toLower } from 'lodash';
 
 import extractEntryDataFromResponse from '../../../utils/parsingText';
@@ -17,13 +17,35 @@ import clanMock from 'scripts/clans.json';
 
 import styles from '../../../styles/Home.module.css';
 
-const Page = ({ disData, data, clanData }) => {
+const Page = () => {
+  const router = useRouter();
+  const contentful_discipline_1 = extractEntryDataFromResponse(merits_1);
+  const contentful_discipline_2 = extractEntryDataFromResponse(merits_2);
+  const contentful_discipline_3 = extractEntryDataFromResponse(merits_3);
+  const contentful_discipline_4 = extractEntryDataFromResponse(merits_4);
+  const contentful_discipline_5 = extractEntryDataFromResponse(merits_5);
+
+  const clanAppData = extractEntryDataFromResponse(clanMock);
+  const clanData = orderBy(clanAppData, [item => getItems(item).toLowerCase()], ['asc']);
+
+  const data = orderBy(
+    concat(
+      contentful_discipline_1,
+      contentful_discipline_2,
+      contentful_discipline_3,
+      contentful_discipline_4,
+      contentful_discipline_5
+    ),
+    [item => getItems(item).toLowerCase()],
+    ['asc']
+  );
+
+  const pageData = find(data, item => toLower(item.merit) === toLower(router.query.pid));
+
   const apps = {
-    merits: { data: JSON.parse(data) },
+    merits: { data: data },
     clans: { data: clanData },
   };
-
-  const pageData = JSON.parse(disData);
 
   return (
     <div>
@@ -99,59 +121,6 @@ function getItems(item) {
     return item.technique;
   }
   return item.attribute;
-}
-
-export async function getStaticPaths() {
-  const contentful_discipline_1 = extractEntryDataFromResponse(merits_1);
-  const contentful_discipline_2 = extractEntryDataFromResponse(merits_2);
-  const contentful_discipline_3 = extractEntryDataFromResponse(merits_3);
-  const contentful_discipline_4 = extractEntryDataFromResponse(merits_4);
-  const contentful_discipline_5 = extractEntryDataFromResponse(merits_5);
-
-  const data = orderBy(
-    concat(
-      contentful_discipline_1,
-      contentful_discipline_2,
-      contentful_discipline_3,
-      contentful_discipline_4,
-      contentful_discipline_5
-    ),
-    [item => getItems(item).toLowerCase()],
-    ['asc']
-  );
-
-  const paths = map(data, page => ({
-    params: { pid: toLower(toString(page.merit)) },
-  }));
-
-  return { paths, fallback: 'blocking' };
-}
-
-export async function getStaticProps({ params }) {
-  const contentful_discipline_1 = extractEntryDataFromResponse(merits_1);
-  const contentful_discipline_2 = extractEntryDataFromResponse(merits_2);
-  const contentful_discipline_3 = extractEntryDataFromResponse(merits_3);
-  const contentful_discipline_4 = extractEntryDataFromResponse(merits_4);
-  const contentful_discipline_5 = extractEntryDataFromResponse(merits_5);
-
-  const clanAppData = extractEntryDataFromResponse(clanMock);
-  const clanData = orderBy(clanAppData, [item => getItems(item).toLowerCase()], ['asc']);
-
-  const data = orderBy(
-    concat(
-      contentful_discipline_1,
-      contentful_discipline_2,
-      contentful_discipline_3,
-      contentful_discipline_4,
-      contentful_discipline_5
-    ),
-    [item => getItems(item).toLowerCase()],
-    ['asc']
-  );
-
-  const pageData = find(data, item => toLower(item.merit) === toLower(params.pid));
-
-  return { props: { disData: JSON.stringify(pageData), data: JSON.stringify(data), clanData: clanData } };
 }
 
 export default Page;
