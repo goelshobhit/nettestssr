@@ -230,7 +230,7 @@ export function ClanPage(props) {
                     Disciplines
                   </a>
                 </li>
-                <li className="nav-item"></li>
+                <li className="nav-item">
                   <a className="nav-link" href="/vampire/techniques">
                     Techniques
                   </a>
