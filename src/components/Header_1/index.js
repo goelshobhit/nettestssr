@@ -115,32 +115,32 @@ function Header_1() {
                   <Search />
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/clan/">
+                  <Link activeClassName="nav-link active" href="/vampire/clan/assamite/">
                     <span className="nav-link"> Clans</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/disciplines/">
+                  <Link activeClassName="nav-link active" href="/vampire/disciplines/abyss%20mysticism">
                     <span className="nav-link"> Disciplines</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/rituals">
+                  <Link activeClassName="nav-link active" href="/vampire/rituals/abyssal%20ichor">
                     <span className="nav-link">Rituals</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/techniques/">
+                  <Link activeClassName="nav-link active" href="/vampire/techniques/abrupt%20internment">
                     <span className="nav-link">Techniques</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/skills">
+                  <Link activeClassName="nav-link active" href="/vampire/skills/academics">
                     <span className="nav-link">Skills</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/merits">
+                  <Link activeClassName="nav-link active" href="/vampire/merits/absent%20sway">
                     <span className="nav-link">Merits</span>
                   </Link>
                 </li>
@@ -155,7 +155,7 @@ function Header_1() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link activeClassName="nav-link active" href="/vampire/yearbook">
+                  <Link activeClassName="nav-link active" href="/vampire/yearbook/anna%20dogherty">
                     <span className="nav-link">Yearbook</span>
                   </Link>
                 </li>
