@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'next/head';
 import Backers from 'containers/Backers';
@@ -12,6 +12,9 @@ import Header from 'components/Header_1';
 import Footer from 'components/Footer_1';
 
 export default function QuickStart() {
+  useEffect(() => {
+    window.location.reload();
+  }, []);
   return (
     <div>
       <Helmet>

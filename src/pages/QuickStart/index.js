@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 
 import QuickStart from 'containers/QuickStart';
@@ -12,6 +12,9 @@ import Header from 'components/Header_1';
 import Footer from 'components/Footer_1';
 
 export default function Home() {
+  useEffect(() => {
+    window.location.reload();
+  }, []);
   return (
     <div>
       <Head>

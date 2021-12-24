@@ -422,37 +422,37 @@ export function ClanPage(props) {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Disciplines">
+                  <a className="nav-link" href="/vampire/disciplines">
                     Disciplines
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Techniques">
+                <li className="nav-item"></li>
+                  <a className="nav-link" href="/vampire/techniques">
                     Techniques
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Skills">
+                  <a className="nav-link" href="/vampire/skills">
                     Skills
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Merits">
+                  <a className="nav-link" href="/vampire/merits">
                     Merits
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Flaws">
+                  <a className="nav-link" href="/vampire/flaws">
                     Flaws
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Attributes">
+                  <a className="nav-link" href="/vampire/attributes">
                     Attributes
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Backgrounds">
+                  <a className="nav-link" href="/vampire/backgrounds">
                     Backgrounds
                   </a>
                 </li>

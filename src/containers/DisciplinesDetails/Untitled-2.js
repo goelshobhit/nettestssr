@@ -863,54 +863,51 @@
                </ol>
              </nav>
 
-             <div
-               className="collapse navbar-collapse navbarBottom"
-               id="navbarResponsive"
-             >
-               <ul className="navbar-nav ml-auto">
-                 <li className="nav-item active">
-                   <a className="nav-link" href="/vampire/clan/">
-                     Clans & Bloodlines
-                     <span className="sr-only">(current)</span>
-                   </a>
-                 </li>
-                 <li className="nav-item">
-                   <a className="nav-link" href="/vampire/Disciplines">
-                     Disciplines
-                   </a>
-                 </li>
-                 <li className="nav-item">
-                   <a className="nav-link" href="/vampire/Techniques">
-                     Techniques
-                   </a>
-                 </li>
-                 <li className="nav-item">
-                   <a className="nav-link" href="/vampire/Skills">
-                     Skills
-                   </a>
-                 </li>
-                 <li className="nav-item">
-                   <a className="nav-link" href="/vampire/Merits">
-                     Merits
-                   </a>
-                 </li>
-                 <li className="nav-item">
-                   <a className="nav-link" href="/vampire/Flaws">
-                     Flaws
-                   </a>
-                 </li>
-                 <li className="nav-item">
-                   <a className="nav-link" href="/vampire/Attributes">
-                     Attributes
-                   </a>
-                 </li>
-                 <li className="nav-item">
-                   <a className="nav-link" href="/vampire/Backgrounds">
-                     Backgrounds
-                   </a>
-                 </li>
-               </ul>
-             </div>
+             <div className="collapse navbar-collapse navbarBottom" id="navbarResponsive">
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item active">
+                  <a className="nav-link" href="/vampire/clan/">
+                    Clans & Bloodlines
+                    <span className="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/vampire/disciplines">
+                    Disciplines
+                  </a>
+                </li>
+                <li className="nav-item"></li>
+                  <a className="nav-link" href="/vampire/techniques">
+                    Techniques
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/vampire/skills">
+                    Skills
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/vampire/merits">
+                    Merits
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/vampire/flaws">
+                    Flaws
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/vampire/attributes">
+                    Attributes
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/vampire/backgrounds">
+                    Backgrounds
+                  </a>
+                </li>
+              </ul>
+            </div>
              <div className="boxWhite">
                <Row type="flex">
                  <Select

@@ -31,48 +31,48 @@ function Footer_1() {
               </h3>
               <ul className="navbar-nav menuFooter">
                 <li className="nav-item active">
-                  <a className="nav-link" href="/vampire/clan/Assamite/">
+                  <a className="nav-link" href="/vampire/clan/assamite/">
                     Clans & Bloodlines
                     <span className="sr-only">(current)</span>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Disciplines/">
+                  <a className="nav-link" href="/vampire/disciplines/">
                     Disciplines
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Rituals">
+                  <a className="nav-link" href="/vampire/rituals">
                     Rituals
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Techniques">
+                  <a className="nav-link" href="/vampire/techniques">
                     Techniques
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Skills">
+                  <a className="nav-link" href="/vampire/skills">
                     Skills
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Merits">
+                  <a className="nav-link" href="/vampire/merits">
                     Merits
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Flaws">
+                  <a className="nav-link" href="/vampire/flaws">
                     Flaws
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Attributes">
+                  <a className="nav-link" href="/vampire/attributes">
                     Attributes
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/vampire/Backgrounds">
+                  <a className="nav-link" href="/vampire/backgrounds">
                     Backgrounds
                   </a>
                 </li>

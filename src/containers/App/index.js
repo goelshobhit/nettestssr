@@ -78,35 +78,35 @@ export function App({ app, onRequestData, onRequestDisciplineData }) {
         <Route exact path="/" component={WoVueHomePage} />
         <Route
           exact
-          path="/vampire/Disciplines/"
+          path="/vampire/disciplines/"
           component={DisciplinesDetails}
         />
         <Route
           exact
-          path="/vampire/Disciplines/:id"
+          path="/vampire/disciplines/:id"
           component={DisciplinesDetails}
         />
-        <Route exact path="/vampire/Flaws" component={FlawsDetails} />
-        <Route exact path="/vampire/Flaws/:id" component={FlawsDetails} />
-        <Route exact path="/vampire/Merits" component={MeritsDetails} />
-        <Route exact path="/vampire/Rituals" component={Rituals} />
-        <Route exact path="/vampire/Rituals/:id" component={Rituals} />
-        <Route exact path="/vampire/Merits/:id" component={MeritsDetails} />
-        <Route exact path="/vampire/Attributes/:id" component={Attribute} />
-        <Route exact path="/vampire/Attributes" component={Attribute} />
-        <Route exact path="/vampire/Backgrounds/:id" component={Backgrounds} />
-        <Route exact path="/vampire/Backgrounds" component={Backgrounds} />
+        <Route exact path="/vampire/flaws" component={FlawsDetails} />
+        <Route exact path="/vampire/flaws/:id" component={FlawsDetails} />
+        <Route exact path="/vampire/merits" component={MeritsDetails} />
+        <Route exact path="/vampire/rituals" component={Rituals} />
+        <Route exact path="/vampire/rituals/:id" component={Rituals} />
+        <Route exact path="/vampire/merits/:id" component={MeritsDetails} />
+        <Route exact path="/vampire/attributes/:id" component={Attribute} />
+        <Route exact path="/vampire/attributes" component={Attribute} />
+        <Route exact path="/vampire/backgrounds/:id" component={Backgrounds} />
+        <Route exact path="/vampire/backgrounds" component={Backgrounds} />
 
-        <Route exact path="/vampire/Library/:id" component={Library} />
-        <Route exact path="/vampire/Library" component={Library} />
-        <Route exact path="/vampire/YearBook/:id" component={YearBook} />
-        <Route exact path="/vampire/YearBook" component={YearBook} />
-        <Route exact path="/vampire/Skills" component={Skills} />
-        <Route exact path="/vampire/Skills/:id" component={Skills} />
-        <Route exact path="/vampire/Techniques" component={TechniquesDetails} />
+        <Route exact path="/vampire/library/:id" component={Library} />
+        <Route exact path="/vampire/library" component={Library} />
+        <Route exact path="/vampire/yearBook/:id" component={YearBook} />
+        <Route exact path="/vampire/yearBook" component={YearBook} />
+        <Route exact path="/vampire/skills" component={Skills} />
+        <Route exact path="/vampire/skills/:id" component={Skills} />
+        <Route exact path="/vampire/techniques" component={TechniquesDetails} />
         <Route
           exact
-          path="/vampire/Techniques/:id"
+          path="/vampire/techniques/:id"
           component={TechniquesDetails}
         />
         <Route exact path="/vampire/clan/:id" component={ClanPage} />
