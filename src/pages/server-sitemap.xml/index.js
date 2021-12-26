@@ -141,7 +141,7 @@ export const getServerSideProps = async ctx => {
   }));
 
   const discipleFields = disciplineData.map(capsule => ({
-    loc: `https://vamp.bynightstudios.com/vampire/disciplines/${capsule.power}`,
+    loc: `https://vamp.bynightstudios.com/vampire/Disciplines/${capsule.power}`,
     lastmod: new Date().toISOString(),
   }));
 
