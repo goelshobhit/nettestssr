@@ -15,7 +15,20 @@ module.exports = {
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
     };
   },
-  additionalPaths: async config => [await config.transform(config, '/additional-page')],
+  additionalPaths: () => [
+    `${siteUrl}/server-sitemap.xml`,
+    `${siteUrl}/server-sitemap-1.xml`,
+    `${siteUrl}/server-sitemap-2.xml`,
+    `${siteUrl}/server-sitemap-3.xml`,
+    `${siteUrl}/server-sitemap-4.xml`,
+    `${siteUrl}/server-sitemap-5.xml`,
+    `${siteUrl}/server-sitemap-6.xml`,
+    `${siteUrl}/server-sitemap-7.xml`,
+    `${siteUrl}/server-sitemap-8.xml`,
+    `${siteUrl}/server-sitemap-9.xml`,
+    `${siteUrl}/server-sitemap-10.xml`,
+    `${siteUrl}/server-sitemap-11.xml`,
+  ],
   robotsTxtOptions: {
     policies: [
       {
