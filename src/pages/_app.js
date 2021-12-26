@@ -32,16 +32,18 @@ const App = ({ Component, pageProps, reduxStore }) => {
       <React.StrictMode>
         <Head>
           <title>Vamp By Night Studio</title>
-          {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <Script
-            strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-          />
-          <Script
-            id="gtag-init"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
+        </Head>
+
+        {/* Global Site Tag (gtag.js) - Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -49,10 +51,10 @@ const App = ({ Component, pageProps, reduxStore }) => {
               page_path: window.location.pathname,
             });
           `,
-            }}
-          />
-          <Script id="facebook-pixel">
-            {`
+          }}
+        />
+        <Script id="facebook-pixel">
+          {`
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
         n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -64,9 +66,9 @@ const App = ({ Component, pageProps, reduxStore }) => {
         fbq('init', ${gtag.FB_PIXEL_ID});
         fbq('track', 'PageView');
       `}
-          </Script>
-          <Script id="hotjar">
-            {`
+        </Script>
+        <Script id="hotjar">
+          {`
         (function(h,o,t,j,a,r){
           h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
           h._hjSettings={hjid:2558252,hjsv:6};
@@ -76,9 +78,7 @@ const App = ({ Component, pageProps, reduxStore }) => {
           a.appendChild(r);
       })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=')
       `}
-          </Script>
-        </Head>
-
+        </Script>
         <Provider store={reduxStore}>
           <Component {...pageProps} />
         </Provider>
