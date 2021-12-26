@@ -1,6 +1,6 @@
 import React from 'react';
 import { getServerSideSitemap } from 'next-sitemap';
-import { orderBy, concat } from 'lodash';
+import { orderBy, concat, toLower } from 'lodash';
 import extractEntryDataFromResponse from 'utils/parsingText';
 
 import clanMock from 'scripts/clans.json';
@@ -21,7 +21,6 @@ import tech_3 from 'scripts/techniques_200.json';
 import skill_1 from 'scripts/skills.json';
 
 import merits_1 from 'scripts/merits_0.json';
-import merits_2 from 'scripts/merits_100.json';
 import merits_3 from 'scripts/merits_200.json';
 import merits_4 from 'scripts/merits_300.json';
 import merits_5 from 'scripts/merits_400.json';
@@ -100,13 +99,12 @@ export const getServerSideProps = async ctx => {
   const skillData = orderBy(concat(contentful_skill_1), [item => getItems(item).toLowerCase()], ['asc']);
 
   const contentful_merit_1 = extractEntryDataFromResponse(merits_1);
-  const contentful_merit_2 = extractEntryDataFromResponse(merits_2);
   const contentful_merit_3 = extractEntryDataFromResponse(merits_3);
   const contentful_merit_4 = extractEntryDataFromResponse(merits_4);
   const contentful_merit_5 = extractEntryDataFromResponse(merits_5);
 
   const meritData = orderBy(
-    concat(contentful_merit_1, contentful_merit_2, contentful_merit_3, contentful_merit_4, contentful_merit_5),
+    concat(contentful_merit_1, contentful_merit_3, contentful_merit_4, contentful_merit_5),
     [item => getItems(item).toLowerCase()],
     ['asc']
   );
@@ -136,57 +134,57 @@ export const getServerSideProps = async ctx => {
   const bgdata = orderBy(concat(contentful_bg_1), [item => getItems(item).toLowerCase()], ['asc']);
 
   const fields = clanData.map(capsule => ({
-    loc: `https://vamp.bynightstudios.com/vampire/clan/${capsule.title}`,
+    loc: `https://vamp.bynightstudios.com/vampire/clan/${toLower(capsule.title)}`,
     lastmod: new Date().toISOString(),
   }));
 
   const discipleFields = disciplineData.map(capsule => ({
-    loc: `https://vamp.bynightstudios.com/vampire/Disciplines/${capsule.power}`,
+    loc: `https://vamp.bynightstudios.com/vampire/Disciplines/${toLower(capsule.power)}`,
     lastmod: new Date().toISOString(),
   }));
 
   const ritualsfields = ritualsData.map(capsule => ({
-    loc: `https://vamp.bynightstudios.com/vampire/rituals/${capsule.title}`,
+    loc: `https://vamp.bynightstudios.com/vampire/Rituals/${toLower(capsule.title)}`,
     lastmod: new Date().toISOString(),
   }));
 
   const techfields = techData.map(capsule => ({
-    loc: `https://vamp.bynightstudios.com/vampire/techniques/${capsule.title}`,
+    loc: `https://vamp.bynightstudios.com/vampire/Techniques/${toLower(capsule.technique)}`,
     lastmod: new Date().toISOString(),
   }));
 
   const skillsfields = skillData.map(capsule => ({
-    loc: `https://vamp.bynightstudios.com/vampire/skills/${capsule.title}`,
+    loc: `https://vamp.bynightstudios.com/vampire/Skills/${toLower(capsule.title)}`,
     lastmod: new Date().toISOString(),
   }));
 
   const meritsfields = meritData.map(capsule => ({
-    loc: `https://vamp.bynightstudios.com/vampire/merits/${capsule.merit}`,
+    loc: `https://vamp.bynightstudios.com/vampire/Merits/${toLower(capsule.merit)}`,
     lastmod: new Date().toISOString(),
   }));
 
   const flawfields = flawData.map(capsule => ({
-    loc: `https://vamp.bynightstudios.com/vampire/flaws/${capsule.flaw}`,
+    loc: `https://vamp.bynightstudios.com/vampire/flaws/${toLower(capsule.flaw)}`,
     lastmod: new Date().toISOString(),
   }));
 
   const libfields = libData.map(capsule => ({
-    loc: `https://vamp.bynightstudios.com/vampire/library/${capsule.title}`,
+    loc: `https://vamp.bynightstudios.com/vampire/library/${toLower(capsule.title)}`,
     lastmod: new Date().toISOString(),
   }));
 
   const ybfields = ybData.map(capsule => ({
-    loc: `https://vamp.bynightstudios.com/vampire/yearbook/${capsule.name}`,
+    loc: `https://vamp.bynightstudios.com/vampire/YearBook/${toLower(capsule.name)}`,
     lastmod: new Date().toISOString(),
   }));
 
   const atfields = atData.map(capsule => ({
-    loc: `https://vamp.bynightstudios.com/vampire/attributes/${capsule.attribute}`,
+    loc: `https://vamp.bynightstudios.com/vampire/Attributes/${toLower(capsule.attribute)}`,
     lastmod: new Date().toISOString(),
   }));
 
   const bgfields = bgdata.map(capsule => ({
-    loc: `https://vamp.bynightstudios.com/vampire/backgrounds/${capsule.title}`,
+    loc: `https://vamp.bynightstudios.com/vampire/Backgrounds/${toLower(capsule.title)}`,
     lastmod: new Date().toISOString(),
   }));
 
