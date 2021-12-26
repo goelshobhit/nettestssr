@@ -128,15 +128,15 @@ export function ClanPage(props) {
       if (findIndexOfPower !== -1) {
         const element = document.getElementById(`power-pannel`);
         const offset = 0;
-        const bodyRect = document.body.getBoundingClientRect().top;
-        const elementRect = element.getBoundingClientRect().top;
-        const elementPosition = elementRect - bodyRect;
-        const offsetPosition = elementPosition - offset;
+        // const bodyRect = document.body.getBoundingClientRect().top;
+        // const elementRect = element.getBoundingClientRect().top;
+        // const elementPosition = elementRect - bodyRect;
+        // const offsetPosition = elementPosition - offset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth',
-        });
+        // window.scrollTo({
+        //   top: offsetPosition,
+        //   behavior: 'smooth',
+        // });
       }
     }
   }, [props]);

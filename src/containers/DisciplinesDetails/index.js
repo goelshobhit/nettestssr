@@ -92,8 +92,11 @@ export function ClanPage(props) {
   }, []);
 
   const filterClans = uniqBy(
-    sortBy(filter(clanItemsList, o => o.parent), 'title'),
-    'title',
+    sortBy(
+      filter(clanItemsList, o => o.parent),
+      'title'
+    ),
+    'title'
   );
 
   useEffect(() => {
@@ -109,10 +112,7 @@ export function ClanPage(props) {
       setSelectedClan(findClanData);
     }
 
-    const powerOfClansData = filter(
-      clanItems,
-      o => o.power === trim(get(findClanData, 'title')) && !o.parent,
-    );
+    const powerOfClansData = filter(clanItems, o => o.power === trim(get(findClanData, 'title')) && !o.parent);
 
     const uniqPowerOfClans = uniqBy(powerOfClansData, 'title');
 
@@ -127,40 +127,32 @@ export function ClanPage(props) {
         }
       });
       setSelectedClan(findClanData4);
-      const powerOfClansData1 = filter(
-        clanItems,
-        o => o.power === get(findClanData4, 'title') && !o.parent,
-      );
+      const powerOfClansData1 = filter(clanItems, o => o.power === get(findClanData4, 'title') && !o.parent);
 
       const uniqPowerOfClans1 = uniqBy(powerOfClansData1, 'title');
 
       const sortedByLevel1 = orderBy(uniqPowerOfClans1, 'level', [direction]);
       setPowerOfClans(sortedByLevel1);
-      const findIndexOfPower = findIndex(
-        sortedByLevel1,
-        o => o.title === trim(id),
-      );
+      const findIndexOfPower = findIndex(sortedByLevel1, o => o.title === trim(id));
       setPowenClanIndex(findIndexOfPower);
       if (findIndexOfPower !== -1) {
         const element = document.getElementById(`power-pannel`);
         const offset = 0;
-        const bodyRect = document.body.getBoundingClientRect().top;
-        const elementRect = element.getBoundingClientRect().top;
-        const elementPosition = elementRect - bodyRect;
-        const offsetPosition = elementPosition - offset;
+        // const bodyRect = document.body.getBoundingClientRect().top;
+        // const elementRect = element.getBoundingClientRect().top;
+        // const elementPosition = elementRect - bodyRect;
+        // const offsetPosition = elementPosition - offset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth',
-        });
+        // window.scrollTo({
+        //   top: offsetPosition,
+        //   behavior: 'smooth',
+        // });
       }
     }
   }, []);
 
   useEffect(() => {
-    const element = document.getElementById(
-      `discipline-${powerClanIndex}-power`,
-    );
+    const element = document.getElementById(`discipline-${powerClanIndex}-power`);
 
     if (!isNull(element)) {
       const goToContainer = new Promise((resolve, reject) => {
@@ -182,7 +174,7 @@ export function ClanPage(props) {
           delay: 0,
           smooth: 'easeInOutQuart',
           containerId: `discipline-${powerClanIndex}-power`,
-        }),
+        })
       );
     }
   }, [powerClanIndex]);
@@ -198,10 +190,7 @@ export function ClanPage(props) {
       const value = e.target.getAttribute('value');
       const findClanData = find(filterClans, { power: value });
       setSelectedClan(findClanData);
-      const powerOfClansData = filter(
-        clanItems,
-        o => o.power === trim(get(findClanData, 'title')) && !o.parent,
-      );
+      const powerOfClansData = filter(clanItems, o => o.power === trim(get(findClanData, 'title')) && !o.parent);
 
       const uniqPowerOfClans = uniqBy(powerOfClansData, 'title');
 
@@ -263,11 +252,7 @@ export function ClanPage(props) {
   const groupByData2 = filter(filterClans, o => o.necromancy);
   const groupByData3 = filter(
     filterClans,
-    o =>
-      !o.thaumaturgy &&
-      !o.necromancy &&
-      o.title !== 'Necromancy' &&
-      o.title !== 'Thaumaturgy',
+    o => !o.thaumaturgy && !o.necromancy && o.title !== 'Necromancy' && o.title !== 'Thaumaturgy'
   );
   const filterClansByReduce = [
     { listName: '', data: groupByData3 },
@@ -283,16 +268,12 @@ export function ClanPage(props) {
             name: `${get(selectedClan, 'power', '')}`,
             content: `${get(selectedClan, 'summary[0]', '')}`,
           },
-        ]}
-      >
+        ]}>
         <title>
           {`
            World of Darkness - MET - Vampire - Disciplines`}
         </title>
-        <meta
-          name={`${get(selectedClan, 'power', '')}`}
-          content={`${get(selectedClan, 'summary[0]', '')}`}
-        />
+        <meta name={`${get(selectedClan, 'power', '')}`} content={`${get(selectedClan, 'summary[0]', '')}`} />
       </Helmet>
     );
   }
@@ -305,8 +286,7 @@ export function ClanPage(props) {
           className="btn btn-primary"
           onClick={() => {
             history.push(`/vampire/Rituals#Necromancy`);
-          }}
-        >
+          }}>
           <span style={{ color: '#fff' }}>Details</span>
         </a>
       );
@@ -318,8 +298,7 @@ export function ClanPage(props) {
           className="btn btn-primary"
           onClick={() => {
             history.push(`/vampire/Rituals#Thaumaturgy`);
-          }}
-        >
+          }}>
           <span style={{ color: '#fff' }}>Details</span>
         </a>
       );
@@ -334,27 +313,20 @@ export function ClanPage(props) {
           });
           setSelectedClan(item);
           setPowenClanIndex(-1);
-        }}
-      >
+        }}>
         <span style={{ color: '#fff' }}>Details</span>
       </a>
     );
   }
 
-  const sourceBook = map(clanItems, item =>
-    get(item, 'sourceBook_html.fields.bookTitle', ''),
-  );
+  const sourceBook = map(clanItems, item => get(item, 'sourceBook_html.fields.bookTitle', ''));
 
   const uniqSourceBook = without(uniq(sourceBook), '');
 
   function handleChangeFilter(item) {
-    const filterClanItems = filter(
-      clanItems,
-      o => get(o, 'sourceBook_html.fields.bookTitle') === item,
-    );
+    const filterClanItems = filter(clanItems, o => get(o, 'sourceBook_html.fields.bookTitle') === item);
     setSelectedClanItemsList(filterClanItems);
   }
-
 
   function renderPowerClans() {
     return (
@@ -367,16 +339,10 @@ export function ClanPage(props) {
                 <div className="disc-cols3 sort-up" style={{ color: 'black' }}>
                   <span onClick={() => handleClanPower('title')}>NAME</span>
                 </div>
-                <div
-                  className="disc-cols3 hideMobile"
-                  style={{ color: 'black' }}
-                >
+                <div className="disc-cols3 hideMobile" style={{ color: 'black' }}>
                   <span onClick={() => handleClanPower('level')}>Level</span>
                 </div>
-                <div
-                  className="disc-cols3 hideMobile"
-                  style={{ color: 'black' }}
-                >
+                <div className="disc-cols3 hideMobile" style={{ color: 'black' }}>
                   <span onClick={() => handleClanPower('cost')}>Cost</span>
                 </div>
                 <div className="indicator" />
@@ -388,8 +354,7 @@ export function ClanPage(props) {
                       <p>
                         <div
                           id={`discipline-${index}-power`}
-                          className={`item power-discipline discipline-${index}-power`}
-                        >
+                          className={`item power-discipline discipline-${index}-power`}>
                           <div className="disc-cols3">
                             <span>{item.title}</span>
                           </div>
@@ -407,52 +372,35 @@ export function ClanPage(props) {
                               } else {
                                 setPowenClanIndex(index);
                               }
-                            }}
-                          >
+                            }}>
                             <a
-                              className={`btn btn-primary ${
-                                index === powerClanIndex
-                                  ? 'collaps'
-                                  : 'collapsed'
-                              }`}
+                              className={`btn btn-primary ${index === powerClanIndex ? 'collaps' : 'collapsed'}`}
                               data-toggle="collapse"
                               href={`${item.title}`}
                               role="button"
                               aria-expanded="false"
-                              aria-controls={`${item.title}}`}
-                            >
+                              aria-controls={`${item.title}}`}>
                               <i className="fa" />
                             </a>
                           </div>
                         </div>
-                        <div
-                          className={
-                            index === powerClanIndex
-                              ? 'collapse show'
-                              : 'collapse'
-                          }
-                          id={`${item.title}`}
-                        >
+                        <div className={index === powerClanIndex ? 'collapse show' : 'collapse'} id={`${item.title}`}>
                           <div
                             className="box-summary"
                             style={{
                               backgroundColor: '#fff',
                               border: '1px solid grey',
-                            }}
-                          >
+                            }}>
                             <div>
                               <p>
                                 {get(item, 'summary[0]', [])}
                                 <Paragraph
                                   copyable={{
-                                    text: `${
-                                      window.location.origin
-                                    }/vampire/Disciplines/${encodeURIComponent(
-                                      item.title,
+                                    text: `${window.location.origin}/vampire/Disciplines/${encodeURIComponent(
+                                      item.title
                                     )}`,
                                   }}
-                                  style={{ marginLeft: 10 }}
-                                >
+                                  style={{ marginLeft: 10 }}>
                                   {' '}
                                   <i>Share Link</i>
                                 </Paragraph>
@@ -463,9 +411,7 @@ export function ClanPage(props) {
                                   <div
                                     /* eslint-disable-next-line react/no-danger */
                                     dangerouslySetInnerHTML={{
-                                      __html: documentToHtmlString(
-                                        item.quote_html,
-                                      ),
+                                      __html: documentToHtmlString(item.quote_html),
                                     }}
                                   />
                                 </blockquote>
@@ -474,11 +420,7 @@ export function ClanPage(props) {
                                 <div
                                   /* eslint-disable-next-line react/no-danger */
                                   dangerouslySetInnerHTML={{
-                                    __html: documentToHtmlString(
-                                      getSummaryHtml(
-                                        get(item, 'summary_html', ''),
-                                      ),
-                                    ),
+                                    __html: documentToHtmlString(getSummaryHtml(get(item, 'summary_html', ''))),
                                   }}
                                 />
                               </p>
@@ -489,9 +431,7 @@ export function ClanPage(props) {
                                   <div
                                     /* eslint-disable-next-line react/no-danger */
                                     dangerouslySetInnerHTML={{
-                                      __html: documentToHtmlString(
-                                        item.system_html,
-                                      ),
+                                      __html: documentToHtmlString(item.system_html),
                                     }}
                                   />
                                 </div>
@@ -502,9 +442,7 @@ export function ClanPage(props) {
                               {!isEmpty(get(item, 'exceptional')) ? (
                                 <div>
                                   <h2>Exceptional Success</h2>
-                                  <Row gutter={[8, 8]}>
-                                    {get(item, 'exceptional')}
-                                  </Row>
+                                  <Row gutter={[8, 8]}>{get(item, 'exceptional')}</Row>
                                 </div>
                               ) : (
                                 <div />
@@ -517,9 +455,7 @@ export function ClanPage(props) {
                                     <div
                                       /* eslint-disable-next-line react/no-danger */
                                       dangerouslySetInnerHTML={{
-                                        __html: documentToHtmlString(
-                                          item.exceptionalLong_html,
-                                        ),
+                                        __html: documentToHtmlString(item.exceptionalLong_html),
                                       }}
                                     />
                                   </Row>
@@ -539,8 +475,7 @@ export function ClanPage(props) {
                                         textDecorationSkipInk: 'auto',
                                         textUnderlineOffset: '3px',
                                         marginBottom: 10,
-                                      }}
-                                    >
+                                      }}>
                                       {' '}
                                       {get(item, 'foci')}
                                     </u>
@@ -549,9 +484,7 @@ export function ClanPage(props) {
                                       style={{ width: '85%' }}
                                       /* eslint-disable-next-line react/no-danger */
                                       dangerouslySetInnerHTML={{
-                                        __html: documentToHtmlString(
-                                          item.focusDescriptor_html,
-                                        ),
+                                        __html: documentToHtmlString(item.focusDescriptor_html),
                                       }}
                                     />
                                   </Row>
@@ -566,9 +499,7 @@ export function ClanPage(props) {
                                   <div
                                     /* eslint-disable-next-line react/no-danger */
                                     dangerouslySetInnerHTML={{
-                                      __html: documentToHtmlString(
-                                        item.interactions_html,
-                                      ),
+                                      __html: documentToHtmlString(item.interactions_html),
                                     }}
                                   />
                                 </div>
@@ -603,12 +534,8 @@ export function ClanPage(props) {
                                       <div>
                                         {map(get(item, 'sourceBook'), item => (
                                           <p>
-                                            <p>
-                                              {get(item, 'fields.bookTitle')}
-                                            </p>
-                                            <p>
-                                              {get(item, 'fields.system[0]')}
-                                            </p>
+                                            <p>{get(item, 'fields.bookTitle')}</p>
+                                            <p>{get(item, 'fields.system[0]')}</p>
                                           </p>
                                         ))}
                                       </div>
@@ -641,18 +568,11 @@ export function ClanPage(props) {
   return (
     <div className="clan-page">
       {renderHelment()}
-      <Element
-        name="scroll-container-second-element"
-        id="scroll-container-second-element"
-      />
+      <Element name="scroll-container-second-element" id="scroll-container-second-element" />
       <div className="container main-content">
         <div className="row">
           <div className="col-md-8 order-md-12">
-            <div
-              className={`header-single ${getClassHeaderName(
-                get(selectedClan, 'power'),
-              )}`}
-            >
+            <div className={`header-single ${getClassHeaderName(get(selectedClan, 'power'))}`}>
               <h1>
                 <div className="row" style={{ fontSize: 18 }}>
                   <h1>{get(selectedClan, 'power', '')}</h1>
@@ -661,21 +581,17 @@ export function ClanPage(props) {
                       copyable={{
                         text: `${window.location.href}`,
                       }}
-                      style={{ marginLeft: 10, color: '#fff' }}
-                    >
+                      style={{ marginLeft: 10, color: '#fff' }}>
                       {' '}
                       <i>Share Link</i>
                     </Paragraph>
                   ) : null}
                 </div>
-                {!isEqual(
-                  get(selectedClan, 'power', ''),
-                  get(selectedClan, 'title', ''),
-                ) ? (
+                {!isEqual(get(selectedClan, 'power', ''), get(selectedClan, 'title', '')) ? (
                   <i>{get(selectedClan, 'title', '')} </i>
-                  ) : (
+                ) : (
                   <div />
-                  )}
+                )}
               </h1>
               <h4>{get(selectedClan, 'nickname', '')}</h4>
             </div>
@@ -684,37 +600,26 @@ export function ClanPage(props) {
                 {isEmpty(selectedClan) ? (
                   <p>
                     <p>
-                      Disciplines are supernatural powers granted by the
-                      Embrace. Vampires cultivate these powers and bring them to
-                      bear against foes and prey. Fueled by blood and will,
-                      disciplines provide an incomparable, mystical edge and are
-                      the hallmarks of a vampire’s clan or bloodline.
+                      Disciplines are supernatural powers granted by the Embrace. Vampires cultivate these powers and
+                      bring them to bear against foes and prey. Fueled by blood and will, disciplines provide an
+                      incomparable, mystical edge and are the hallmarks of a vampire’s clan or bloodline.
                     </p>
                     <p>
-                      By using her disciplines, a vampire can exert the strength
-                      of a dozen humans; trick an enemy into submission; force
-                      her way into someone else’s mind; take the shape of a
-                      wolf, bat, or hideous monstrosity — or numerous other
-                      things. A recently Embraced vampire might have only a few
-                      such powers at her command, while an ancient may have
-                      mastered a fearsome breadth of potent feats. Elders can
-                      learn awesome powers, fueled by the potency of their
-                      blood. Neonates and Ancillae use the flexibility of their
-                      thinner blood to combine two or more disciplines and
-                      create new techniques that are a mélange of powers.
+                      By using her disciplines, a vampire can exert the strength of a dozen humans; trick an enemy into
+                      submission; force her way into someone else’s mind; take the shape of a wolf, bat, or hideous
+                      monstrosity — or numerous other things. A recently Embraced vampire might have only a few such
+                      powers at her command, while an ancient may have mastered a fearsome breadth of potent feats.
+                      Elders can learn awesome powers, fueled by the potency of their blood. Neonates and Ancillae use
+                      the flexibility of their thinner blood to combine two or more disciplines and create new
+                      techniques that are a mélange of powers.
                     </p>
                     <p>
-                      Each vampiric clan possesses innate powers of the blood:
-                      disciplines that are native to that clan. A vampire can
-                      learn those powers easily through experimentation and
-                      personal study; this process requires you to spend 1
-                      downtime action between game sessions. Learning other
-                      clans’ disciplines is more difficult; it requires having a
-                      knowledgeable teacher and drinking blood from a vampire
-                      who innately possesses those disciplines. As drinking
-                      blood causes a vampire to become partially bound to the
-                      donor, learning disciplines from another vampire requires
-                      a great deal of trust.
+                      Each vampiric clan possesses innate powers of the blood: disciplines that are native to that clan.
+                      A vampire can learn those powers easily through experimentation and personal study; this process
+                      requires you to spend 1 downtime action between game sessions. Learning other clans’ disciplines
+                      is more difficult; it requires having a knowledgeable teacher and drinking blood from a vampire
+                      who innately possesses those disciplines. As drinking blood causes a vampire to become partially
+                      bound to the donor, learning disciplines from another vampire requires a great deal of trust.
                     </p>
                   </p>
                 ) : (
@@ -736,9 +641,7 @@ export function ClanPage(props) {
                 <div
                   /* eslint-disable-next-line react/no-danger */
                   dangerouslySetInnerHTML={{
-                    __html: documentToHtmlString(
-                      getSummaryHtml(get(selectedClan, 'summary_html', '')),
-                    ),
+                    __html: documentToHtmlString(getSummaryHtml(get(selectedClan, 'summary_html', ''))),
                   }}
                 />
               </p>
@@ -773,9 +676,7 @@ export function ClanPage(props) {
                     <div
                       /* eslint-disable-next-line react/no-danger */
                       dangerouslySetInnerHTML={{
-                        __html: documentToHtmlString(
-                          selectedClan.exceptionalLong_html,
-                        ),
+                        __html: documentToHtmlString(selectedClan.exceptionalLong_html),
                       }}
                     />
                   </Row>
@@ -791,8 +692,7 @@ export function ClanPage(props) {
                     <u
                       style={{
                         marginBottom: 10,
-                      }}
-                    >
+                      }}>
                       {' '}
                       {get(selectedClan, 'foci')}
                     </u>
@@ -801,9 +701,7 @@ export function ClanPage(props) {
                       style={{ width: '85%' }}
                       /* eslint-disable-next-line react/no-danger */
                       dangerouslySetInnerHTML={{
-                        __html: documentToHtmlString(
-                          selectedClan.focusDescriptor_html,
-                        ),
+                        __html: documentToHtmlString(selectedClan.focusDescriptor_html),
                       }}
                     />
                   </Row>
@@ -818,9 +716,7 @@ export function ClanPage(props) {
                   <div
                     /* eslint-disable-next-line react/no-danger */
                     dangerouslySetInnerHTML={{
-                      __html: documentToHtmlString(
-                        selectedClan.interactions_html,
-                      ),
+                      __html: documentToHtmlString(selectedClan.interactions_html),
                     }}
                   />
                 </div>
@@ -958,8 +854,7 @@ export function ClanPage(props) {
                 <Select
                   style={{ width: '70%', marginBottom: 10, color: 'black' }}
                   placeholder="filter by source book"
-                  onChange={handleChangeFilter}
-                >
+                  onChange={handleChangeFilter}>
                   {map(uniqSourceBook, item => (
                     <Option value={item}>{item}</Option>
                   ))}
@@ -967,9 +862,7 @@ export function ClanPage(props) {
                    <Option value="MET - VTM - V2 Issue 1">MET - VTM - V2 Issue 1</Option>
                    <Option value="MET - VTM - V2 (2021)">MET - VTM - V2 (2021)</Option> */}
                 </Select>
-                <Button onClick={() => setSelectedClanItemsList(clanItems)}>
-                  Reset
-                </Button>
+                <Button onClick={() => setSelectedClanItemsList(clanItems)}>Reset</Button>
               </Row>
               <ul className="nav flex-column nav-clans">
                 <Typography.Title level={3} style={{ marginBottom: '-30px' }}>
@@ -977,26 +870,16 @@ export function ClanPage(props) {
                 </Typography.Title>
                 {map(filterClansByReduce, (items, index) => (
                   <ul key={index}>
-                    <Typography.Title
-                      level={3}
-                      className="nav-item"
-                      style={{ marginLeft: '-40px' }}
-                    >
+                    <Typography.Title level={3} className="nav-item" style={{ marginLeft: '-40px' }}>
                       <Link
                         to={`/vampire/Disciplines/${toLower(items.listName)}`}
-                        className={`nav-link ${getClassName(items.listName)}`}
-                      >
+                        className={`nav-link ${getClassName(items.listName)}`}>
                         {items.listName}
                       </Link>
                     </Typography.Title>
                     <li style={{ marginLeft: 10 }}>
                       {map(get(items, 'data'), (items1, index1) => (
-                        <li
-                          className="nav-item"
-                          onClick={handleNavItemsClick}
-                          value={items1.title}
-                          key={index1}
-                        >
+                        <li className="nav-item" onClick={handleNavItemsClick} value={items1.title} key={index1}>
                           <Link
                             to={`/vampire/Disciplines/${items1.power}`}
                             className={`nav-link ${getClassName(items1.power)}`}
@@ -1004,8 +887,7 @@ export function ClanPage(props) {
                             onClick={() => {
                               setPowenClanIndex(-1);
                               window.scrollTo({ top: 0, behavior: 'smooth' });
-                            }}
-                          >
+                            }}>
                             {items1.power}
                           </Link>
                         </li>
@@ -1040,12 +922,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(ClanPage);
+export default compose(withConnect, memo)(ClanPage);

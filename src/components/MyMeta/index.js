@@ -33,7 +33,7 @@ function MyMeta({ title }) {
           {
             name: 'twitter:image',
             content:
-              'https://images.ctfassets.net/yicuw1hpxsdg/VS9IcigsbONBdUC80lRBG/4626001973d10635be7222e2a014600e/logo.webp',
+              'https://images.ctfassets.net/yicuw1hpxsdg/51CkZna50G9tBUwI8BX5vQ/93a829cc00212a2a0cb8f5cf12b750b9/logo.jpeg',
           },
 
           {
