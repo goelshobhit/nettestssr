@@ -32,7 +32,7 @@ export default function Home() {
             name="description"
             content={get(
               pageData,
-              'summary[0]',
+              'description[0]',
               'Disciplines are supernatural powers granted by the Embrace. Vampires cultivate these powers and bring them to bear against foes and prey. Fueled by blood and will disciplines provide an incomparable, mystical edge and are the hallmarks of a vampire’s clan or bloodline.'
             )}
           />
