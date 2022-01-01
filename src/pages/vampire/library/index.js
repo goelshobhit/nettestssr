@@ -26,16 +26,15 @@ export default function Home() {
       <Header />
       <div className={styles.container}>
         <Head>
-          <title>Library | Vamp ByNightStudio </title>
+          <title>Library | Vamp ByNightStudio</title>
           <meta property="og:title" content="Library | Vamp ByNightStudio" />
           <meta
             name="description"
-            content="Skills provide two kinds of bonuses to your character.
-            First, they allow a character to perform certain actions
-            that an untrained character simply cannot attempt. Second,
-            they augment a character’s attributes, making certain
-            actions easier because the character has experience or
-            education with a related skill."
+            content="Disciplines are supernatural powers granted by the
+                    Embrace. Vampires cultivate these powers and bring them to
+                    bear against foes and prey. Fueled by blood and will,
+                    disciplines provide an incomparable, mystical edge and are
+                    the hallmarks of a vampire’s clan or bloodline."
           />
           <link rel="icon" href="/favicon.ico" />
           <meta
@@ -45,9 +44,9 @@ export default function Home() {
           <meta property="og:image:width" content="512px" />
           <meta property="og:image:height" content="512px" />
           <meta name="robots" content="index, follow" />
-        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="language" content="English" />
-        <meta name="revisit-after" content="1 days" />
+          <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta name="language" content="English" />
+          <meta name="revisit-after" content="1 days" />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{

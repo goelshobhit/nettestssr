@@ -28,19 +28,22 @@ export default function Home() {
       <div className={styles.container}>
         <Head>
           <title>{pageData.title} | Vamp By Night Studio </title>
-          <meta property="og:title" content={get(pageData, 'title', 'Library | Vamp By Night Studio')} />
           <meta
             name="description"
             content={get(
               pageData,
-              'description[0]',
-              '“My childe, alway remember this most important lesson: sanguis pretium amissis ludum. Blood is the price of losing the game. — Alain Martel, Luminary Elder, Clan Ventrue”'
+              'summary[0]',
+              'Disciplines are supernatural powers granted by the Embrace. Vampires cultivate these powers and bring them to bear against foes and prey. Fueled by blood and will disciplines provide an incomparable, mystical edge and are the hallmarks of a vampire’s clan or bloodline.'
             )}
           />
           <link rel="icon" href="/favicon.ico" />
           <meta
             property="og:image"
-            content="https://images.ctfassets.net/yicuw1hpxsdg/51CkZna50G9tBUwI8BX5vQ/93a829cc00212a2a0cb8f5cf12b750b9/logo.jpeg"
+            content={get(
+              pageData,
+              'clanSymbol.file.url',
+              'https://images.ctfassets.net/yicuw1hpxsdg/51CkZna50G9tBUwI8BX5vQ/93a829cc00212a2a0cb8f5cf12b750b9/logo.jpeg'
+            )}
           />
           <meta property="og:image:width" content="512px" />
           <meta property="og:image:height" content="512px" />
