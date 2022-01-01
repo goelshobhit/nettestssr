@@ -15,20 +15,7 @@ module.exports = {
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
     };
   },
-  additionalPaths: () => [
-    `${siteUrl}/server-sitemap.xml`,
-    `${siteUrl}/server-sitemap-1.xml`,
-    `${siteUrl}/server-sitemap-2.xml`,
-    `${siteUrl}/server-sitemap-3.xml`,
-    `${siteUrl}/server-sitemap-4.xml`,
-    `${siteUrl}/server-sitemap-5.xml`,
-    `${siteUrl}/server-sitemap-6.xml`,
-    `${siteUrl}/server-sitemap-7.xml`,
-    `${siteUrl}/server-sitemap-8.xml`,
-    `${siteUrl}/server-sitemap-9.xml`,
-    `${siteUrl}/server-sitemap-10.xml`,
-    `${siteUrl}/server-sitemap-11.xml`,
-  ],
+  additionalPaths: () => [`${siteUrl}/server-sitemap.xml`],
   robotsTxtOptions: {
     policies: [
       {
@@ -36,19 +23,6 @@ module.exports = {
         allow: '/',
       },
     ],
-    additionalSitemaps: [
-      `${siteUrl}/server-sitemap.xml`,
-      `${siteUrl}/server-sitemap-1.xml`,
-      `${siteUrl}/server-sitemap-2.xml`,
-      `${siteUrl}/server-sitemap-3.xml`,
-      `${siteUrl}/server-sitemap-4.xml`,
-      `${siteUrl}/server-sitemap-5.xml`,
-      `${siteUrl}/server-sitemap-6.xml`,
-      `${siteUrl}/server-sitemap-7.xml`,
-      `${siteUrl}/server-sitemap-8.xml`,
-      `${siteUrl}/server-sitemap-9.xml`,
-      `${siteUrl}/server-sitemap-10.xml`,
-      `${siteUrl}/server-sitemap-11.xml`,
-    ],
+    additionalSitemaps: [`${siteUrl}/server-sitemap.xml`],
   },
 };
