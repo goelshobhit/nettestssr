@@ -5,10 +5,9 @@ import styles from '../../../styles/Home.module.css';
 import Header from 'components/Header_1';
 import Footer from 'components/Footer_1';
 import Disciplines from 'containers/Library';
-import { orderBy, concat, find, toLower } from 'lodash';
+import { orderBy, concat, find, toLower, get } from 'lodash';
 
 import extractEntryDataFromResponse from '../../../utils/parsingText';
-
 import contentPages_1 from 'scripts/contentPages_0.json';
 
 export default function Home() {
@@ -28,16 +27,15 @@ export default function Home() {
       <Header />
       <div className={styles.container}>
         <Head>
-          <title>Library | Vamp ByNightStudio </title>
-          <meta property="og:title" content="Library | Vamp ByNightStudio" />
+          <title>{pageData.title} | Vamp By Night Studio </title>
+          <meta property="og:title" content={get(pageData,'title', 'Library | Vamp By Night Studio')} />
           <meta
             name="description"
-            content="Skills provide two kinds of bonuses to your character.
-            First, they allow a character to perform certain actions
-            that an untrained character simply cannot attempt. Second,
-            they augment a character’s attributes, making certain
-            actions easier because the character has experience or
-            education with a related skill."
+            content={get(
+              pageData,
+              'description[0]',
+              '“My childe, alway remember this most important lesson: sanguis pretium amissis ludum. Blood is the price of losing the game. — Alain Martel, Luminary Elder, Clan Ventrue”'
+            )}
           />
           <link rel="icon" href="/favicon.ico" />
           <meta
@@ -47,9 +45,9 @@ export default function Home() {
           <meta property="og:image:width" content="512px" />
           <meta property="og:image:height" content="512px" />
           <meta name="robots" content="index, follow" />
-        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="language" content="English" />
-        <meta name="revisit-after" content="1 days" />
+          <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta name="language" content="English" />
+          <meta name="revisit-after" content="1 days" />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
