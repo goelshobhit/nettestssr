@@ -28,7 +28,7 @@ export default function Home() {
       <div className={styles.container}>
         <Head>
           <title>{pageData.title} | Vamp By Night Studio </title>
-          <meta property="og:title" content={get(pageData,'title', 'Library | Vamp By Night Studio')} />
+          <meta property="og:title" content={get(pageData, 'title', 'Library | Vamp By Night Studio')} />
           <meta
             name="description"
             content={get(

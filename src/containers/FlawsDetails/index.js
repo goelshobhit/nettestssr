@@ -204,14 +204,6 @@ export function ClanPage(props) {
 
   return (
     <div className="clan-page">
-      <Helmet>
-        <title>
-          {`
-          World of Darkness - MET - Vampire - FlawsDetails -
-          ${get(selectedClan, 'flaw', '')}`}
-        </title>
-        <meta name="description" content="Description of QuickStart" />
-      </Helmet>
       <div className="container main-content">
         <div className="row">
           <div className="col-md-8 order-md-12">

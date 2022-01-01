@@ -30,7 +30,7 @@ const Page = () => {
     <div>
       <Head>
         <title>{pageData.name} | Vamp By Night Studio </title>
-        <meta name="description" content={pageData.quote} />
+        <meta name="description" content={pageData.background_html} />
         <link rel="icon" href="/favicon.ico" />
         <meta
           property="og:image"

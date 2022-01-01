@@ -47,21 +47,8 @@ const Page = () => {
           name="description"
           content={get(
             pageData,
-            'summary[0]',
-            `Flaws are disadvantages that pose challenges to a
-            character’s nightly existence and provide a player a few
-            extra experience points (XP) to spend elsewhere on her
-            sheet. If you don’t see any that suit your character, you
-            can create your character and play without adding any to
-            your sheet. Flaws add up to 7 XP to your character, but also
-            give that character a notable disadvantage in the game.
-            Flaws are designed to be interesting, signifi cant, and to
-            exemplify your character’s troubled past or personal
-            prohibitions. You should try to roleplay your character’s
-            flaws as much as possible, helping the Storyteller create a
-            rich and detailed chronicle. Perfect people are no fun to
-            roleplay, and characters with authentic-feeling traumas,
-            biases, and failings bring life and vibrancy to the game.`
+            'flawDescription[0]',
+            'Flaws are disadvantages that pose challenges to a character’s nightly existence and provide a player a few extra experience points (XP) to spend elsewhere on her sheet. If you don’t see any that suit your character, you can create your character and play without adding any to your sheet. Flaws add up to 7 XP to your character, but also give that character a notable disadvantage in the game. Flaws are designed to be interesting, signifi cant, and to exemplify your character’s troubled past or personal prohibitions. You should try to roleplay your character’s flaws as much as possible, helping the Storyteller create a rich and detailed chronicle. Perfect people are no fun to roleplay, and characters with authentic-feeling traumas, biases, and failings bring life and vibrancy to the game.'
           )}
         />
         <link rel="icon" href="/favicon.ico" />
