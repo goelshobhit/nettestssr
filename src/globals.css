@@ -108,7 +108,8 @@ hr {
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
-  margin-bottom: 0.5rem; }
+  margin-bottom: 0.5rem;
+  font-weight: bold !important;}
 
 p {
   margin-top: 0;
@@ -338,7 +339,6 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
-  font-weight: 500;
   line-height: 1.2; }
 
 h1, .h1 {
@@ -9952,26 +9952,6 @@ body.page-white {
 img {
   max-width: 100%; }
 
-h1 {
-  font-size: 32px;
-  text-transform: uppercase;
-  font-weight: 800; }
-
-h2 {
-  font-size: 24px;
-  text-transform: uppercase;
-  font-weight: 800; }
-
-h3 {
-  font-size: 18px;
-  text-transform: uppercase;
-  font-weight: 800; }
-
-h4 {
-  font-size: 18px;
-  text-transform: uppercase;
-  font-weight: 500; }
-
 p {
   margin-bottom: 2em; }
 
@@ -10734,8 +10714,12 @@ hr {
   background: #504f4f;
 }
 
-ul, #myUL {
-  list-style-type: none;
+.anchorTag {
+  color: #1890ff;
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
 }
 
 #myUL {

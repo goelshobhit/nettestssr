@@ -21,7 +21,7 @@ function Header_1() {
         <div className="row">
           <div className="col-md-3 boxLogos">
             <Link className="navbar-brand" href="/">
-              <Image src={LogoWOD} alt="Vercel Logo" />
+              <Image src={LogoWOD} alt="Vercel Logo" height={67} width={160} />
             </Link>
           </div>
           <div className="col-md-9">

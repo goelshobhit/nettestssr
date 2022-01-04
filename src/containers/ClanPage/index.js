@@ -58,7 +58,7 @@ export function ClanPage(props) {
 
   useEffect(() => {
     setSelectedClanItemsList(clanItems);
-    if(!isEmpty(props.pageData)){
+    if (!isEmpty(props.pageData)) {
       setSelectedClan(props.pageData);
     }
   }, [props]);
@@ -129,7 +129,7 @@ export function ClanPage(props) {
                 />
                 <div className="col-md-8">
                   <div className="row" style={{ fontSize: 18 }}>
-                    <h1>{get(selectedClan, 'title', '')}</h1>
+                    <h1 style={{ color: '#fff', fontWeight: 'bold' }}>{get(selectedClan, 'title', '')}</h1>
                     {get(selectedClan, 'title', '') ? (
                       <Paragraph
                         copyable={{
@@ -140,7 +140,7 @@ export function ClanPage(props) {
                       </Paragraph>
                     ) : null}
                   </div>
-                  <h4 style={{ fontSize: 18 }}>
+                  <h4 style={{ color: '#fff', fontWeight: 'bold', fontSize: 18 }}>
                     <i>{get(selectedClan, 'nickname', '')}</i>
                   </h4>
                 </div>
@@ -259,19 +259,19 @@ export function ClanPage(props) {
                   <h2>IN CLAN MERITS</h2>
                   <ul>
                     {map(getSortedList(get(selectedClan, 'inClanMerits', [])), item => (
-                    <li>
-                      <Link
-                        href={`/vampire/Merits/${item.fields.merit}`}
-                        className="anchorTag"
-                        style={{ marginRight: 10 }}
-                        onClick={() => {
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }}>
-                        <span className="anchorTag">
-                          {item.fields.merit}&nbsp;({item.fields.meritCost})
-                        </span>
-                      </Link>
-                    </li>
+                      <li>
+                        <Link
+                          href={`/vampire/Merits/${toLower(item.fields.merit)}`}
+                          className="anchorTag"
+                          style={{ marginRight: 10 }}
+                          onClick={() => {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}>
+                          <span className="anchorTag">
+                            {item.fields.merit}&nbsp;({item.fields.meritCost})
+                          </span>
+                        </Link>
+                      </li>
                     ))}
                   </ul>
                 </p>
@@ -286,7 +286,7 @@ export function ClanPage(props) {
                     {map(getSortedFlawList(get(selectedClan, 'flaws', [])), item => (
                       <li>
                         <Link
-                          href={`/vampire/Flaws/${item.fields.flaw}`}
+                          href={`/vampire/flaws/${toLower(item.fields.flaw)}`}
                           style={{ marginRight: 10 }}
                           onClick={() => {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
