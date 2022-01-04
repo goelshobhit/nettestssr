@@ -255,11 +255,11 @@ export function ClanPage(props) {
 
               {!isEmpty(get(selectedClan, 'referemces')) ? (
                 <p>
-                  <h2>specialties</h2>
+                  <h2>Specialties</h2>
                   <Row>
-                    {/* {map(get(selectedClan, 'referemces', []), (item, index) => (
+                    {map(get(selectedClan, 'referemces', []), (item, index) => (
                       <Link
-                        to={renderLink(item.fields.title, item.sys.contentType.sys.id)}
+                        href={renderLink(item.fields.title, item.sys.contentType.sys.id)}
                         key={index}
                         style={{ marginRight: 10 }}
                         role="button"
@@ -271,7 +271,7 @@ export function ClanPage(props) {
                           {size(get(selectedClan, 'referemces', [])) - 1 !== index ? ' ,' : null}
                         </span>
                       </Link>
-                    ))} */}
+                    ))}
                   </Row>
                 </p>
               ) : (
