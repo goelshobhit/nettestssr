@@ -17,7 +17,6 @@ import merits_4 from 'scripts/merits_300.json';
 import merits_5 from 'scripts/merits_400.json';
 
 export default function Home() {
-
   const contentful_discipline_1 = extractEntryDataFromResponse(merits_1);
   const contentful_discipline_2 = extractEntryDataFromResponse(merits_2);
   const contentful_discipline_3 = extractEntryDataFromResponse(merits_3);
@@ -67,9 +66,9 @@ export default function Home() {
           <meta property="og:image:width" content="512px" />
           <meta property="og:image:height" content="512px" />
           <meta name="robots" content="index, follow" />
-        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="language" content="English" />
-        <meta name="revisit-after" content="1 days" />
+          <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta name="language" content="English" />
+          <meta name="revisit-after" content="1 days" />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{

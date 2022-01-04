@@ -131,7 +131,7 @@ export function ClanPage(props) {
         <div className="row">
           <div className="col-md-8 order-md-12">
             <div className={`header-single ${getClassHeaderName(get(selectedClan, 'title'))}`} style={{ fontSize: 18 }}>
-              <h1>{get(selectedClan, 'title', '')}</h1>
+              <h1 style={{ color: '#fff' }}>{get(selectedClan, 'title', '')}</h1>
               {get(selectedClan, 'title', '') ? (
                 <Paragraph
                   copyable={{
@@ -261,7 +261,7 @@ export function ClanPage(props) {
                   </a>
                 </li>
                 <li className="breadcrumb-item">
-                  <a href="/vampire/Library">Library</a>
+                  <a href="/vampire/Library" style={{ color:'#fff !important'}}>Library</a>
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
                   {get(selectedClan, 'title', '')}

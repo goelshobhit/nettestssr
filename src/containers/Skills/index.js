@@ -92,7 +92,7 @@ export function ClanPage(props) {
           <div className="col-md-8 order-md-12">
             <div className={`header-single ${getClassHeaderName(get(selectedClan, 'title'))}`}>
               <div className="row" style={{ fontSize: 18 }}>
-                <h1>{get(selectedClan, 'title', '')}</h1>
+                <h1 style={{ color:'#fff'}}>{get(selectedClan, 'title', '')}</h1>
                 {get(selectedClan, 'title', '') ? (
                   <Paragraph
                     copyable={{

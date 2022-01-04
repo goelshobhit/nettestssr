@@ -102,7 +102,7 @@ function Footer_1() {
         <div>
           <div className="bottom-footer">
             <p className="nav-item">
-              <a href="https://www.bynightstudios.com" className="nav-link" style={{ color: '#fff' }}>
+              <a href="https://www.bynightstudios.com" className="nav-link" style={{ color: '#fff !importantq' }}>
                 <p>BY NIGHT STUDIOS | WORLD OF DARKNESS - {new Date().getFullYear()}</p>
               </a>
             </p>

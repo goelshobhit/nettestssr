@@ -15,7 +15,22 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { map, get, isEmpty, find, trim, without, uniq, filter, concat, includes, split, isEqual, sortBy, toLower } from 'lodash';
+import {
+  map,
+  get,
+  isEmpty,
+  find,
+  trim,
+  without,
+  uniq,
+  filter,
+  concat,
+  includes,
+  split,
+  isEqual,
+  sortBy,
+  toLower,
+} from 'lodash';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import { useInjectReducer } from 'utils/inject-reducer';
@@ -243,7 +258,7 @@ export function ClanPage(props) {
           <div className="col-md-8 order-md-12">
             <div className={`header-single ${getClassHeaderName(get(selectedClan, 'merit'))}`}>
               <div className="row" style={{ fontSize: 18 }}>
-                <h1>{get(selectedClan, 'merit', '')}</h1>
+                <h1 style={{ color: '#fff' }}>{get(selectedClan, 'merit', '')}</h1>
                 {get(selectedClan, 'merit', '') ? (
                   <Paragraph
                     copyable={{

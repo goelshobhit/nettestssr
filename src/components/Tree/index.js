@@ -19,7 +19,6 @@ import split from 'lodash/split';
 import map from 'lodash/map';
 import getMatchId from './getMatchId';
 
-
 const renderLink = (item, paddingLeft) => (
   <Link
     href={`/vampire/library/${toLower(item)}`}
@@ -64,8 +63,8 @@ function TreeData({ openMenu, setOpenMenu }) {
   };
 
   return (
-    <ul id="myUL">
-      <li>
+    <ul style={{ listStyle: 'none', marginLeft:'-20px'}}>
+      <li style={{ listStyle: 'none'}}>
         <span
           onClick={() => handleOnClick1('Character Creation Quick Start Guide')}
           className="caret1"
@@ -74,7 +73,7 @@ function TreeData({ openMenu, setOpenMenu }) {
         >
           {renderLink('Character Creation Quick Start Guide')}
         </span>
-        <li>
+        <li style={{ listStyle: 'none'}}>
           <span
             className="caret"
             onClick={() => handleOnClick1('Combat Maneuvers')}
@@ -82,12 +81,12 @@ function TreeData({ openMenu, setOpenMenu }) {
           >
             {renderLink('Combat Maneuvers')}
           </span>
-          <ul className="nested">
-            <li>{renderLink('Aerial Combat Maneuvers')}</li>
-            <li>{renderLink('Feral Combat Maneuvers')}</li>
+          <ul className="nested" style={{ listStyle: 'none'}}>
+            <li style={{ listStyle: 'none'}}>{renderLink('Aerial Combat Maneuvers')}</li>
+            <li style={{ listStyle: 'none'}}>{renderLink('Feral Combat Maneuvers')}</li>
           </ul>
         </li>
-        <li>
+        <li style={{ listStyle: 'none'}}>
           <span
             className="caret"
             onClick={() => handleOnClick1('Dramatic Systems')}
@@ -95,14 +94,14 @@ function TreeData({ openMenu, setOpenMenu }) {
           >
             {renderLink('Dramatic Systems')}
           </span>
-          <ul className="nested">
-            <li>{renderLink('Blood Bond')}</li>
-            <li>{renderLink('Diablerie')}</li>
-            <li>{renderLink('Tracking')}</li>
-            <li>{renderLink('Willpower')}</li>
+          <ul className="nested" style={{ listStyle: 'none'}}>
+            <li style={{ listStyle: 'none'}}>{renderLink('Blood Bond')}</li>
+            <li style={{ listStyle: 'none'}}>{renderLink('Diablerie')}</li>
+            <li style={{ listStyle: 'none'}}>{renderLink('Tracking')}</li>
+            <li style={{ listStyle: 'none'}}>{renderLink('Willpower')}</li>
           </ul>
         </li>
-        <li>
+        <li style={{ listStyle: 'none'}}>
           <span
             className="caret"
             onClick={() => handleOnClick1('Ghoul Rules')}
@@ -110,11 +109,11 @@ function TreeData({ openMenu, setOpenMenu }) {
           >
             {renderLink('Ghoul Rules')}
           </span>
-          <ul className="nested">
-            <li>{renderLink('Animal Retainers')}</li>
+          <ul className="nested" style={{ listStyle: 'none'}}>
+            <li style={{ listStyle: 'none'}}>{renderLink('Animal Retainers')}</li>
           </ul>
         </li>
-        <li>
+        <li style={{ listStyle: 'none'}}>
           <span
             className="caret"
             onClick={() => handleOnClick1('Influences- General')}
@@ -122,11 +121,11 @@ function TreeData({ openMenu, setOpenMenu }) {
           >
             {renderLink('Influences- General')}
           </span>
-          <ul className="nested">
-            <li>{renderLink('Influence- Elite and Underworld Actions')}</li>
+          <ul className="nested" style={{ listStyle: 'none'}}>
+            <li style={{ listStyle: 'none'}}>{renderLink('Influence- Elite and Underworld Actions')}</li>
           </ul>
         </li>
-        <li>
+        <li style={{ listStyle: 'none'}}>
           <span
             className="caret"
             onClick={() => handleOnClick1('Optional Rules')}
@@ -134,13 +133,13 @@ function TreeData({ openMenu, setOpenMenu }) {
           >
             {renderLink('Optional Rules')}
           </span>
-          <ul className="nested">
-            <li>{renderLink('Advanced Feeding (Optional Rules)')}</li>
-            <li>{renderLink('Blood Resonance (Optional Rules)')}</li>
-            <li>{renderLink('Feeding Territories (Optional Rules)')}</li>
+          <ul className="nested" style={{ listStyle: 'none'}}>
+            <li style={{ listStyle: 'none'}}>{renderLink('Advanced Feeding (Optional Rules)')}</li>
+            <li style={{ listStyle: 'none'}}>{renderLink('Blood Resonance (Optional Rules)')}</li>
+            <li style={{ listStyle: 'none'}}>{renderLink('Feeding Territories (Optional Rules)')}</li>
           </ul>
         </li>
-        <li>
+        <li style={{ listStyle: 'none'}}>
           <span
             className="caret"
             onClick={() => handleOnClick1('Sabbat')}
@@ -148,11 +147,11 @@ function TreeData({ openMenu, setOpenMenu }) {
           >
             {renderLink('Sabbat')}
           </span>
-          <ul className="nested">
-            <li style={{ marginLeft: 20 }}>
+          <ul className="nested" style={{ listStyle: 'none'}}>
+            <li style={{ marginLeft: 20, listStyle: 'none' }}>
               {renderLink('Factions and Faction Ritae (Sabbat)')}
             </li>
-            <li>
+            <li style={{ listStyle: 'none'}}>
               <span
                 className="caret"
                 onClick={() => handleOnClick1('The Auctoritas Ritae (Sabbat)')}
@@ -160,22 +159,22 @@ function TreeData({ openMenu, setOpenMenu }) {
               >
                 {renderLink('The Auctoritas Ritae (Sabbat)')}
               </span>
-              <ul className="nested">
-                <li>
+              <ul className="nested" style={{ listStyle: 'none'}}>
+                <li style={{ listStyle: 'none'}}>
                   {renderLink('Auctoritas Ritae-  The Vaulderie (Sabbat)')}
                 </li>
-                <li>
+                <li style={{ listStyle: 'none'}}>
                   {renderLink('Auctoritas Ritae- High Holidays (Sabbat)')}
                 </li>
-                <li>{renderLink('Auctoritas Ritae- Monomancy (Sabbat)')}</li>
-                <li>
+                <li style={{ listStyle: 'none'}}>{renderLink('Auctoritas Ritae- Monomancy (Sabbat)')}</li>
+                <li style={{ listStyle: 'none'}}>
                   {renderLink(
                     'Auctoritas Ritae- War Party and Wild Hunt (Sabbat)',
                   )}
                 </li>
               </ul>
             </li>
-            <li style={{ marginLeft: 20 }}>
+            <li style={{ marginLeft: 20, listStyle: 'none' }}>
               {renderLink('The Ignoblis Ritae (Sabbat)')}
             </li>
           </ul>
@@ -191,7 +190,7 @@ function TreeData({ openMenu, setOpenMenu }) {
         >
           {renderLink('Spending XP')}
         </span>
-        <li>
+        <li style={{ listStyle: 'none'}}>
           <span
             className="caret"
             onClick={() => handleOnClick1('Stock Locations')}
@@ -199,18 +198,18 @@ function TreeData({ openMenu, setOpenMenu }) {
           >
             {renderLink('Stock Locations')}
           </span>
-          <ul className="nested">
-            <li>
+          <ul className="nested" style={{ listStyle: 'none'}}>
+            <li style={{ listStyle: 'none'}}>
               {renderLink(
                 'Stock Locations - Iconic and Supernatural Qualities',
               )}
             </li>
-            <li>{renderLink('Stock Locations - Standard Qualities')}</li>
-            <li>{renderLink('Stock Locations- Undermining Locations')}</li>
-            <li>{renderLink('Stock Locations- Controlling them')}</li>
+            <li style={{ listStyle: 'none'}}>{renderLink('Stock Locations - Standard Qualities')}</li>
+            <li style={{ listStyle: 'none'}}>{renderLink('Stock Locations- Undermining Locations')}</li>
+            <li style={{ listStyle: 'none'}}>{renderLink('Stock Locations- Controlling them')}</li>
           </ul>
         </li>
-        <li>
+        <li style={{ listStyle: 'none'}}>
           <span
             className="caret"
             onClick={() => handleOnClick1('Stock NPC Generation')}
@@ -218,13 +217,13 @@ function TreeData({ openMenu, setOpenMenu }) {
           >
             {renderLink('Stock NPC Generation')}
           </span>
-          <ul className="nested">
-            <li>{renderLink('Hunters: Arcanum')}</li>
-            <li>{renderLink('Hunters: Project Twilight')}</li>
-            <li>{renderLink('Hunters: Those of Faith')}</li>
+          <ul className="nested" style={{ listStyle: 'none'}}>
+            <li style={{ listStyle: 'none'}}>{renderLink('Hunters: Arcanum')}</li>
+            <li style={{ listStyle: 'none'}}>{renderLink('Hunters: Project Twilight')}</li>
+            <li style={{ listStyle: 'none'}}>{renderLink('Hunters: Those of Faith')}</li>
           </ul>
         </li>
-        <li>
+        <li style={{ listStyle: 'none'}}>
           <span
             className="caret"
             onClick={() => handleOnClick1('Storytelling')}
@@ -232,16 +231,16 @@ function TreeData({ openMenu, setOpenMenu }) {
           >
             {renderLink('Storytelling')}
           </span>
-          <ul className="nested">
-            <li>
+          <ul className="nested" style={{ listStyle: 'none'}}>
+            <li style={{ listStyle: 'none'}}>
               {renderLink(
                 'Cooperative Conflict and Advanced Narration: Expert Tools for Story Creation',
               )}
             </li>
-            <li>{renderLink('Platinum Rule')}</li>
+            <li style={{ listStyle: 'none'}}>{renderLink('Platinum Rule')}</li>
           </ul>
         </li>
-        <li>
+        <li style={{ listStyle: 'none'}}>
           <span
             className="caret"
             onClick={() => handleOnClick1('The Temptation of the Beast')}
@@ -249,11 +248,11 @@ function TreeData({ openMenu, setOpenMenu }) {
           >
             {renderLink('The Temptation of the Beast')}
           </span>
-          <ul className="nested">
-            <li>{renderLink('Expanded Beast Trait System')}</li>
-            <li>{renderLink('Expanded Path Mechanics')}</li>
-            <li>{renderLink('Frenzy')}</li>
-            <li>
+          <ul className="nested" style={{ listStyle: 'none'}}>
+            <li style={{ listStyle: 'none'}}>{renderLink('Expanded Beast Trait System')}</li>
+            <li style={{ listStyle: 'none'}}>{renderLink('Expanded Path Mechanics')}</li>
+            <li style={{ listStyle: 'none'}}>{renderLink('Frenzy')}</li>
+            <li style={{ listStyle: 'none'}}>
               {renderLink('Vampire Sects and the Paths of Enlightenment')}
             </li>
           </ul>

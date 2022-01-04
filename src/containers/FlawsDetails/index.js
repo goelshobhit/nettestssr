@@ -13,7 +13,6 @@ import React, { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { map, get, isEmpty, find, without, uniq, filter, concat, includes, toLower } from 'lodash';
@@ -209,7 +208,7 @@ export function ClanPage(props) {
           <div className="col-md-8 order-md-12">
             <div className={`header-single ${getClassHeaderName(get(selectedClan, 'flaw'))}`}>
               <div className="row" style={{ fontSize: 18 }}>
-                <h1>{get(selectedClan, 'flaw', '')}</h1>
+                <h1 style={{ color: '#fff' }}>{get(selectedClan, 'flaw', '')}</h1>
                 {get(selectedClan, 'flaw', '') ? (
                   <Paragraph
                     copyable={{

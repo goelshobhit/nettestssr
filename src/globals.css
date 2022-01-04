@@ -10012,7 +10012,7 @@ hr {
 .navbar-dark .navbar-nav .nav-link {
   padding: 0px;
   margin-left: 30px;
-  color: #fff; }
+  color: #fff !important; }
 
 .navbar-dark .navbar-nav .show > .nav-link,
 .navbar-dark .navbar-nav .active > .nav-link,
@@ -10068,7 +10068,7 @@ hr {
   font-weight: 500; }
 
 .footer-page .navbar-nav .nav-link {
-  color: #fff; }
+  color: #fff !important; }
 
 .footer-page .navbar-nav .nav-link:hover {
   color: #821919; }
@@ -10779,3 +10779,4 @@ hr {
   line-height: 1.5rem;
   letter-spacing: 0px;
 }
+

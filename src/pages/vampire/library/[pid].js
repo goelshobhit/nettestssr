@@ -27,7 +27,7 @@ export default function Home() {
       <Header />
       <div className={styles.container}>
         <Head>
-          <title>{pageData.title} | Vamp By Night Studio </title>
+          <title>{get(pageData,'title', 'Library | Vamp By Night Studio')} </title>
           <meta
             name="description"
             content={get(

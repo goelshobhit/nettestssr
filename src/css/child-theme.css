@@ -9991,7 +9991,7 @@ hr {
 .navbar-dark .navbar-nav .nav-link {
   padding: 0px;
   margin-left: 30px;
-  color: #fff; }
+  color: #fff !important; }
 
 .navbar-dark .navbar-nav .show > .nav-link,
 .navbar-dark .navbar-nav .active > .nav-link,

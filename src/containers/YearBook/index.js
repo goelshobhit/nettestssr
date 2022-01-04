@@ -160,7 +160,7 @@ export function ClanPage(props) {
               <div style={{ display: 'flex' }}>
                 <div className="col-md-8">
                   <div className="row" style={{ fontSize: 18 }}>
-                    <h1>{get(selectedClan, 'name', '')}</h1>
+                    <h1 style={{ color:'#fff'}}>{get(selectedClan, 'name', '')}</h1>
                     {get(selectedClan, 'name', '') ? (
                       <Paragraph
                         copyable={{
@@ -205,7 +205,7 @@ export function ClanPage(props) {
 
                   {!isEmpty(get(selectedClan, 'drive')) ? (
                     <>
-                      <h2>drive</h2>
+                      <h2>Drive</h2>
                       <p>{get(selectedClan, 'drive', '')}</p>
                     </>
                   ) : null}
@@ -391,7 +391,7 @@ export function ClanPage(props) {
                   </a>
                 </li>
                 <li className="breadcrumb-item">
-                  <a href="/vampire/YearBook">YearBook</a>
+                  <a href="/vampire/YearBook" style={{ color:'#fff'}}>YearBook</a>
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
                   {get(selectedClan, 'name', '')}
