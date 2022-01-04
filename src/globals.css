@@ -10722,6 +10722,10 @@ hr {
   cursor: pointer;
 }
 
+.disc-indicator {
+  color: #fff
+}
+
 #myUL {
   margin: 0;
   padding: 0;

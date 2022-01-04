@@ -94,7 +94,7 @@ export function ClanPage(props) {
   );
 
   useEffect(() => {
-    const id = get(props, 'pageData.title',{});
+    const id = get(props, 'pageData.title', {});
 
     const findClanData = find(filterClans, o => o.power === trim(id));
 
@@ -335,7 +335,7 @@ export function ClanPage(props) {
                 <div className="disc-cols3 hideMobile" style={{ color: 'black' }}>
                   <span onClick={() => handleClanPower('cost')}>Cost</span>
                 </div>
-                <div className="indicator" />
+                <div className="indicator" style={{ color: '#fff' }} />
               </div>
               <div className="listing-body">
                 <Space direction="vertical" style={{ width: '100%' }}>
@@ -564,7 +564,7 @@ export function ClanPage(props) {
             <div className={`header-single ${getClassHeaderName(get(selectedClan, 'power'))}`}>
               <h1>
                 <div className="row" style={{ fontSize: 18 }}>
-                  <h1>{get(selectedClan, 'power', '')}</h1>
+                  <h1 style={{ color: '#fff' }}>{get(selectedClan, 'power', '')}</h1>
                   {get(selectedClan, 'power', '') ? (
                     <Paragraph
                       copyable={{
@@ -784,7 +784,7 @@ export function ClanPage(props) {
                     </span>
                   </a>
                 </li>
-                <li className="breadcrumb-item">
+                <li className="breadcrumb-item" style={{ color: '#fff' }}>
                   <a to="/vampire/Disciplines">Disciplines</a>
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
@@ -811,7 +811,7 @@ export function ClanPage(props) {
                 {map(filterClansByReduce, (items, index) => (
                   <ul key={index}>
                     <Typography.Title level={3} className="nav-item" style={{ marginLeft: '-40px' }}>
-                      <Link href={`/vampire/Disciplines/${items.listName}`}>
+                      <Link href={`/vampire/Disciplines/${toLower(items.listName)}`}>
                         <span className={`nav-link ${getClassName(items.listName)}`}>{items.listName} </span>
                       </Link>
                     </Typography.Title>

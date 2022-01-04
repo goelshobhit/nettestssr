@@ -193,7 +193,7 @@ export function ClanPage(props) {
                 <div className="row">
                   <div className="col-lg-7 col-md-12 order-lg-12">
                     <div className="row" style={{ fontSize: 18 }}>
-                      <h1>{get(selectedClan, 'title', '')}</h1>
+                      <h1 style={{ color:'#fff'}}>{get(selectedClan, 'title', '')}</h1>
                       {get(selectedClan, 'title', '') ? (
                         <Paragraph
                           copyable={{
