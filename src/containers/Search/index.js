@@ -12,7 +12,7 @@ import { compose } from 'redux';
 import Router from 'next/router'
 import { Input, AutoComplete, Empty } from 'antd';
 import Highlighter from 'react-highlight-words';
-import { map, uniqBy, find, isEmpty } from 'lodash';
+import { map, uniqBy, find, isEmpty, split, toLower } from 'lodash';
 import get from 'lodash/get';
 import { useRouter } from 'next/router';
 import { useInjectReducer } from 'utils/inject-reducer';
@@ -176,6 +176,11 @@ export function Search() {
     return item.replace('/', null);
   };
 
+  const getLastEle = url => {
+    const urlQ = split(url, '/');
+    return `/${urlQ[1]}/${urlQ[2]}/${toLower(urlQ[3])}`;
+  };
+
   const myAntdSearchBox = ({ refine, searchResults, searchState }) => (
     <AutoComplete
       allowClear
@@ -187,9 +192,8 @@ export function Search() {
       options={searchResult(get(searchResults, 'hits', []), searchState)}
       onSelect={item => {
         const filterItem = find(get(searchResults, 'hits', []), o => getItems(o) === item);
-        console.log(pathname);
         if(filterItem){
-          Router.replace(filterItem.url);
+          Router.replace(getLastEle(filterItem.url));
         }
 
         // window.location.href = `${window.location.href}${filterItem.url}`;

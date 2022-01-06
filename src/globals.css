@@ -10013,6 +10013,9 @@ hr {
   padding: 0px;
   margin-left: 30px;
   color: #fff !important; }
+  .navbar-dark .navbar-nav .nav-dark-link {
+    padding: 0px;
+    margin-left: 30px; }
 
 .navbar-dark .navbar-nav .show > .nav-link,
 .navbar-dark .navbar-nav .active > .nav-link,
@@ -10780,3 +10783,33 @@ hr {
   letter-spacing: 0px;
 }
 
+
+.site-collapse-custom-collapse {
+  background: #191919;
+  display: none;
+
+}
+
+.site-collapse-custom-collapse .ant-collapse-header {
+  background: #191919;
+  color: #fff !important;
+}
+
+.site-collapse-custom-collapse .ant-collapse-content .ant-collapse-content-active {
+  background: #191919;
+  color: #fff !important;
+}
+
+.site-collapse-custom-collapse .ant-collapse-content-box {
+  background: #191919;
+  color: #fff !important;
+
+}
+
+
+@media screen and (max-width: 799px) {
+  .site-collapse-custom-collapse {
+    padding-top: 20px;
+    display: block;
+  }
+  }

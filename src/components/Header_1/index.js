@@ -11,8 +11,13 @@
 import React, { memo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+
+import { Collapse } from 'antd';
+
 import Search from 'containers/Search';
 import LogoWOD from '../../images/newLogo.png';
+
+const { Panel } = Collapse;
 
 function Header_1() {
   return (
@@ -23,8 +28,73 @@ function Header_1() {
             <Link className="navbar-brand" href="/">
               <Image src={LogoWOD} alt="Vercel Logo" height={67} width={160} />
             </Link>
+
+            <Collapse
+              className="site-collapse-custom-collapse"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarResponsive"
+              aria-controls="navbarResponsive"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <Panel header="Expand to Open Menus" key="1">
+                <ul className="navbar-nav ml-auto">
+                  <li>
+                    <Search />
+                  </li>
+                  <li className="nav-item">
+                    <Link activeClassName="nav-link active" href="/vampire/clan/assamite/">
+                      <span className="nav-link"> Clans</span>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link activeClassName="nav-link active" href="/vampire/Disciplines/abyss%20mysticism">
+                      <span className="nav-link"> Disciplines</span>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link activeClassName="nav-link active" href="/vampire/Rituals/abyssal%20ichor">
+                      <span className="nav-link">Rituals</span>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link activeClassName="nav-link active" href="/vampire/Techniques/abrupt%20internment">
+                      <span className="nav-link">Techniques</span>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link activeClassName="nav-link active" href="/vampire/Skills/academics">
+                      <span className="nav-link">Skills</span>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link activeClassName="nav-link active" href="/vampire/Merits/absent%20sway">
+                      <span className="nav-link">Merits</span>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link activeClassName="nav-link active" href="/vampire/flaws/accused%20of%20heresy">
+                      <span className="nav-link">Flaws</span>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      activeClassName="nav-link active"
+                      href="/vampire/library/character%20creation%20quick%20start%20guide">
+                      <span className="nav-link"> Library</span>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link activeClassName="nav-link active" href="/vampire/YearBook/anna%20dogherty">
+                      <span className="nav-link">Yearbook</span>
+                    </Link>
+                  </li>
+                </ul>
+              </Panel>
+            </Collapse>
+
           </div>
-          <div className="col-md-9">
+          <div className="col-md-9 hideMobile">
             <div className="navbar navbarUpper" id="navbarUpper">
               <ul className="navbar-nav ml-auto mr-auto navbarExtra hideMobile">
                 <li className="nav-item">
@@ -37,15 +107,6 @@ function Header_1() {
                     <span className="nav-link">Backers</span>
                   </Link>
                 </li>
-                {/* <li className="nav-item">
-                   <a
-                     className="nav-link"
-                     href="/Contributors"
-                     title="Contributors"
-                   >
-                     Contributors
-                   </a>
-                 </li> */}
                 <li className="nav-item">
                   <Link href="/SupportUs" title="Contributors">
                     <span className="nav-link">Support Us</span>
@@ -77,17 +138,7 @@ function Header_1() {
               </ul>
             </div>
           </div>
-          <div className="col-md-12">
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarResponsive"
-              aria-controls="navbarResponsive"
-              aria-expanded="false"
-              aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon" />
-            </button>
+          <div className="col-md-12 boxLogos hideMobile">
             <div className="collapse navbar-collapse navbarBottom" id="navbarResponsive">
               <ul className="navbar-nav ml-auto mr-auto navbarExtra showMobile">
                 <li className="nav-item">
@@ -161,16 +212,6 @@ function Header_1() {
                     <span className="nav-link">Yearbook</span>
                   </Link>
                 </li>
-                {/*  <li className="nav-item">
-                   <a
-                     className={`nav-link ${
-                       pathname === '/vampire/Backgrounds' ? 'active' : null
-                     }`}
-                     href="/vampire/Backgrounds"
-                   >
-                     Backgrounds
-                   </a>
-                 </li> */}
               </ul>
             </div>
           </div>

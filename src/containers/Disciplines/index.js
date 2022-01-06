@@ -72,7 +72,7 @@ export function ClanPage(props) {
   const [direction, setDirection] = useState('asc');
   const [powerClanIndex, setPowenClanIndex] = useState(-1);
   const [clanItemsList, setSelectedClanItemsList] = useState([]);
-
+  const [filterValue, setFilterValue] = useState('filter by source book');
   const collapseRef = null;
 
   const { app } = props;
@@ -314,6 +314,7 @@ export function ClanPage(props) {
   const uniqSourceBook = without(uniq(sourceBook), '');
 
   function handleChangeFilter(item) {
+    setFilterValue(item);
     const filterClanItems = filter(clanItems, o => get(o, 'sourceBook_html.fields.bookTitle') === item);
     setSelectedClanItemsList(filterClanItems);
   }
@@ -795,6 +796,7 @@ export function ClanPage(props) {
             <div className="boxWhite">
               <Row type="flex">
                 <Select
+                  value={filterValue}
                   style={{ width: '70%', marginBottom: 10, color: 'black' }}
                   placeholder="filter by source book"
                   onChange={handleChangeFilter}>
@@ -802,7 +804,13 @@ export function ClanPage(props) {
                     <Option value={item}>{item}</Option>
                   ))}
                 </Select>
-                <Button onClick={() => setSelectedClanItemsList(clanItems)}>Reset</Button>
+                <Button
+                  onClick={() => {
+                    setSelectedClanItemsList(clanItems);
+                    setFilterValue('filter by source book');
+                  }}>
+                  Reset
+                </Button>
               </Row>
               <ul className="nav flex-column nav-clans">
                 <Typography.Title level={3} style={{ marginBottom: '-30px' }}>

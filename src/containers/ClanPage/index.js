@@ -13,6 +13,7 @@
 
 import React, { memo, useEffect, useState } from 'react';
 import Link from 'next/link';
+import Router from 'next/router';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -206,19 +207,17 @@ export function ClanPage(props) {
                 <p>
                   <h2>In Clan Discipline</h2>
                   <Row>
-                    {/* {map(get(selectedClan, 'inClanDisciplines', []), (item, index) => (
-                      <Link
-                        href={`/vampire/Disciplines/${item.fields.title}`}
+                    {map(get(selectedClan, 'inClanDisciplines', []), (item, index) => (
+                      <a
+                        target="_blank"
+                        href={`/vampire/Disciplines/${toLower(item.fields.title)}`}
                         key={index}
-                        className="anchorTag"
-                        style={{ marginRight: 10 }}
-                        onClick={() => {
-                          history.push(`/vampire/Disciplines/${item.fields.title}`, item);
-                        }}
-                        role="button">
-                        {item.fields.title}
-                      </Link>
-                    ))} */}
+                        className="anchorTag">
+                        <span style={{ marginRight: 10 }} className="anchorTag">
+                          {item.fields.title + '  '}
+                        </span>
+                      </a>
+                    ))}
                   </Row>
                 </p>
               ) : (
