@@ -24,8 +24,8 @@ const Page = () => {
   return (
     <div>
       <Head>
-        <title>{get(pageData, 'title', 'Vamp: By Night Studio')} | Vamp By Night Studio </title>
-        <meta name="description" content={get(pageData, 'description[0]', 'Vamp: By Night Studio')} />
+        <title>{get(pageData, 'title', 'Vamp: By Night Studios')} | Vamp By Night Studios </title>
+        <meta name="description" content={get(pageData, 'description[0]', 'Vamp: By Night Studios')} />
         <link rel="icon" href="/favicon.ico" />
         <meta
           property="og:image"
@@ -54,10 +54,10 @@ const Page = () => {
                 postalCode: '70116',
                 streetAddress: '1228 Royal St, New Orleans, LA 70116, United States',
               },
-              email: 'mailto:support@bynightstudios.com',
+              email: 'mailto:support@bynightStudioss.com',
               jobTitle: 'Organisation Product',
-              name: 'Vamp BYNightStudio',
-              url: 'https://bynightstudios.com/',
+              name: 'Vamp BYNightStudios',
+              url: 'https://bynightStudioss.com/',
               sameAs: ['https://bit.ly/3D1e7vA'],
               aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.7', bestRating: '5', ratingCount: '54' },
               logo:

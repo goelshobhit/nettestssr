@@ -31,7 +31,7 @@ const App = ({ Component, pageProps, reduxStore }) => {
     <>
       <React.StrictMode>
         <Head>
-          <title>Vamp By Night Studio</title>
+          <title>Vamp By Night Studios</title>
         </Head>
 
         {/* Global Site Tag (gtag.js) - Google Analytics */}

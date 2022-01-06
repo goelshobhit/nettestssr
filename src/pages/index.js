@@ -9,7 +9,7 @@ export class IndexPage extends React.PureComponent {
     return (
       <div>
         <Head>
-          <title>Vamp By Night Studio</title>
+          <title>Vamp By Night Studios</title>
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
@@ -23,10 +23,10 @@ export class IndexPage extends React.PureComponent {
                   postalCode: '70116',
                   streetAddress: '1228 Royal St, New Orleans, LA 70116, United States',
                 },
-                email: 'mailto:support@bynightstudios.com',
+                email: 'mailto:support@bynightStudioss.com',
                 jobTitle: 'Organisation Product',
-                name: 'Vamp BYNightStudio',
-                url: 'https://bynightstudios.com/',
+                name: 'Vamp BYNightStudios',
+                url: 'https://bynightStudioss.com/',
                 sameAs: ['https://bit.ly/3D1e7vA'],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.7', bestRating: '5', ratingCount: '54' },
                 logo:

@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Quick Start | Vamp By Night Studio</title>
+        <title>Quick Start | Vamp By Night Studios</title>
         <meta property="og:title" content="Quick Start | Vamp ByNightStudio" />
         <meta
           name="description"

@@ -19,7 +19,7 @@ export default function QuickStart() {
   return (
     <div>
       <Head>
-        <title>Support Us | Vamp By Night Studio</title>
+        <title>Support Us | Vamp By Night Studios</title>
         <meta property="og:title" content="Quick Start | Vamp ByNightStudio" />
         <meta
           name="description"

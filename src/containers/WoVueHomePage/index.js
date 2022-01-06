@@ -24,7 +24,7 @@ export function WoVueHomePage() {
 
   return (
     <div>
-      <MyMeta title="HomePage | Vamp by Night Studio" />
+      <MyMeta title="HomePage | Vamp by Night Studios" />
       <div className="container main-content">
         <div className="row rowBox">
           <div className="col-lg-4 col-md-6 col-sm-6">

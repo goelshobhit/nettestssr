@@ -28,7 +28,7 @@ const Page = () => {
   return (
     <div>
       <Head>
-        <title>{pageData.attribute} | Vamp By Night Studio </title>
+        <title>{pageData.attribute} | Vamp By Night Studios </title>
         <meta name="description" content={pageData.description[0]} />
         <link rel="icon" href="/favicon.ico" />
         <meta

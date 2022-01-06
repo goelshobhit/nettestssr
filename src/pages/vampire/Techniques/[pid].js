@@ -37,7 +37,7 @@ const Page = () => {
   return (
     <div>
       <Head>
-        <title>{get(pageData, 'technique')} | Vamp By Night Studio </title>
+        <title>{get(pageData, 'technique')} | Vamp By Night Studios </title>
         <meta
           name="description"
           content={get(
@@ -46,8 +46,8 @@ const Page = () => {
             'Merits are special advantages that help distinguish a character and show the effects of her history and ongoing story. If you don’t see any that suit your character, you can create your character and play without adding any to your sheet. You may purchase up to 7 points of merits. However, a character can never have more than 7 points of merits at any time. This rule encourages players to make significant choices about the qualities that make a character unique.'
           )}
         />
-        <meta name="keywords" content="Merits, SRD, VampByNight Studio" />
-        <meta name="author" content="Vamp by night studio"></meta>
+        <meta name="keywords" content="Merits, SRD, VampByNight Studios" />
+        <meta name="author" content="Vamp by night Studios"></meta>
         <link rel="icon" href="/favicon.ico" />
         <meta
           property="og:image"
@@ -76,10 +76,10 @@ const Page = () => {
                 postalCode: '70116',
                 streetAddress: '1228 Royal St, New Orleans, LA 70116, United States',
               },
-              email: 'mailto:support@bynightstudios.com',
+              email: 'mailto:support@bynightStudioss.com',
               jobTitle: 'Organisation Product',
-              name: 'Vamp BYNightStudio',
-              url: 'https://bynightstudios.com/',
+              name: 'Vamp BYNightStudios',
+              url: 'https://bynightStudioss.com/',
               sameAs: ['https://bit.ly/3D1e7vA'],
               aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.7', bestRating: '5', ratingCount: '54' },
               logo:
