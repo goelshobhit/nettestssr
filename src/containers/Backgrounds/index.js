@@ -83,18 +83,11 @@ export function ClanPage(props) {
 
   return (
     <div className="clan-page">
-      <Helmet>
-        <title>
-          {`World of Darkness - MET - Vampire - Backgrounds -
-          ${get(selectedClan, 'title')}`}
-        </title>
-        <meta name="description" content="Description of QuickStart" />
-      </Helmet>
       <div className="container main-content">
         <div className="row">
           <div className="col-md-8 order-md-12">
             <div className={`header-single ${getClassHeaderName(get(selectedClan, 'title'))}`} style={{ fontSize: 18 }}>
-              <h1>{get(selectedClan, 'title', '')}</h1>
+              <h1 style={{ color:"#fff"}}>{get(selectedClan, 'title', '')}</h1>
               {get(selectedClan, 'title', '') ? (
                 <Paragraph
                   copyable={{

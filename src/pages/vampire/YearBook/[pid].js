@@ -43,7 +43,7 @@ const Page = () => {
           property="og:image"
           content={get(
             pageData,
-            'clanSymbol.file.url',
+            'art_html.fields.file.url',
             'https://images.ctfassets.net/yicuw1hpxsdg/51CkZna50G9tBUwI8BX5vQ/93a829cc00212a2a0cb8f5cf12b750b9/logo.jpeg'
           )}
         />

@@ -77,7 +77,6 @@ export function ClanPage(props) {
   }, []);
 
   useEffect(() => {
-    console.log(props);
     const id = get(props, 'pageData.merit', null);
 
     const findClanData = find(clanItems, { merit: trim(id) });

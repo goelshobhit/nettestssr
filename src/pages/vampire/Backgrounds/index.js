@@ -27,8 +27,8 @@ export default function Home() {
       <Header />
       <div className={styles.container}>
         <Head>
-          <title>Backgrounds | Vamp ByNightStudio </title>
-          <meta property="og:title" content="backgrounds | Vamp ByNightStudio" />
+          <title>Background | Vamp ByNightStudio</title>
+          <meta property="og:title" content="Background | Vamp ByNightStudio" />
           <meta
             name="description"
             content="The following backgrounds are available to your character. In general, having multiple dots in a background allows for more effective or more frequent use of that background’s benefit. Some backgrounds change your character during character creation, while others affect the character only after she enters the game. Read each background carefully to determine which are appropriate for your character’s story."
@@ -41,9 +41,9 @@ export default function Home() {
           <meta property="og:image:width" content="512px" />
           <meta property="og:image:height" content="512px" />
           <meta name="robots" content="index, follow" />
-        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="language" content="English" />
-        <meta name="revisit-after" content="1 days" />
+          <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta name="language" content="English" />
+          <meta name="revisit-after" content="1 days" />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{

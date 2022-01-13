@@ -37,7 +37,6 @@ function TreeData({ openMenu, setOpenMenu }) {
   const useRouter1 = useRouter();
 
   useEffect(() => {
-    console.log(useRouter1);
     // const matchId = last(split(pathname, '/'));
 
     // const elements = getMatchId(matchId);

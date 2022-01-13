@@ -47,7 +47,13 @@ const Page = () => {
   return (
     <div>
       <Head>
-        <title>{pageData.title} | Vamp By Night Studios </title>
+        <title>
+          {pageData.power} {pageData.power && '|'} {pageData.title} | Vamp By Night Studios
+        </title>
+        <meta
+          property="og:title"
+          content={`${pageData.power} ${pageData.power && '|'} ${pageData.title} | Vamp By Night Studios`}
+        />
         <meta
           name="description"
           content={get(

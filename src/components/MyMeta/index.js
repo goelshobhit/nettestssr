@@ -21,7 +21,6 @@ function MyMeta({ title }) {
         encodeSpecialCharacters
         defer={false}
         onChangeClientState={(newState, addedTags, removedTags) =>
-          console.log(newState, addedTags, removedTags)
         }
         title="World of Darkness"
         meta={[
