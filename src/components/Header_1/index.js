@@ -1,7 +1,4 @@
 /* eslint-disable camelcase */
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 /**
  *
  * Header_1
@@ -28,8 +25,8 @@ function Header_1() {
             <Link className="navbar-brand" href="/">
               <Image src={LogoWOD} alt="Vercel Logo" height={67} width={160} />
             </Link>
-
             <Collapse
+              open
               className="site-collapse-custom-collapse"
               type="button"
               data-toggle="collapse"
@@ -42,6 +39,23 @@ function Header_1() {
                   <li>
                     <Search />
                   </li>
+
+                  <li className="nav-item">
+                    <Link href="/QuickStart" title="QuickStart">
+                      <span className="nav-link">QuickStart</span>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link href="/Backers" title="Backers">
+                      <span className="nav-link">Backers</span>
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link href="/SupportUs" title="Contributors">
+                      <span className="nav-link">Support Us</span>
+                    </Link>
+                  </li>
+
                   <li className="nav-item">
                     <Link activeClassName="nav-link active" href="/vampire/clan/assamite/">
                       <span className="nav-link"> Clans</span>
@@ -49,7 +63,7 @@ function Header_1() {
                   </li>
                   <li className="nav-item">
                     <Link activeClassName="nav-link active" href="/vampire/Disciplines/abyss%20mysticism">
-                      <span className="nav-link"> Disciplines</span>
+                      <span className="nav-link">Disciplines</span>
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -92,9 +106,8 @@ function Header_1() {
                 </ul>
               </Panel>
             </Collapse>
-
           </div>
-          <div className="col-md-9 hideMobile">
+          <div className="col-md-9">
             <div className="navbar navbarUpper" id="navbarUpper">
               <ul className="navbar-nav ml-auto mr-auto navbarExtra hideMobile">
                 <li className="nav-item">

@@ -10,9 +10,7 @@ import forEach from 'lodash/forEach';
 
 function MyMeta({ title }) {
   useEffect(() => {
-    forEach(document.getElementsByTagName('meta'), item =>
-      item.removeAttribute('data-react-helmet'),
-    );
+    forEach(document.getElementsByTagName('meta'), item => item.removeAttribute('data-react-helmet'));
   }, []);
 
   return (
@@ -20,8 +18,6 @@ function MyMeta({ title }) {
       <Helmet
         encodeSpecialCharacters
         defer={false}
-        onChangeClientState={(newState, addedTags, removedTags) =>
-        }
         title="World of Darkness"
         meta={[
           { name: 'author', content: 'vamp.bynightstudios' },
@@ -50,12 +46,12 @@ function MyMeta({ title }) {
           },
           {
             property: 'og:description',
-            content:  "Art is the most important non-verbal language because it is universal and readily available and accessible to everyone. Creativity is the one source of power that will never run out for it preserves the insight of a culture's history. Together, art and creativity can traverse any boundary, impart any emotion, and communicate across time and space. — Nitara Elliot (formerly Sarah Driscol), Neonate of Clan Toreador",
+            content:
+              "Art is the most important non-verbal language because it is universal and readily available and accessible to everyone. Creativity is the one source of power that will never run out for it preserves the insight of a culture's history. Together, art and creativity can traverse any boundary, impart any emotion, and communicate across time and space. — Nitara Elliot (formerly Sarah Driscol), Neonate of Clan Toreador",
           },
           { property: 'og:site_name', content: 'vamp.bynightstudios' },
           { name: 'viewport', content: 'width=device-width, maximum-scale=1' },
-        ]}
-      >
+        ]}>
         <title>{title}</title>
       </Helmet>
     </div>
