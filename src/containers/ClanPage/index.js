@@ -465,23 +465,36 @@ export function ClanPage(props) {
               <ul className="nav flex-column nav-clans">
                 {map(clanItemsList, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
-                    <Link
-                      href={`/vampire/clan/${toLower(items.title)}`}
-                      value={items.title}
-                      onClick={() => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    <span
+                      style={{
+                        display: 'block',
+                        padding: '0.5rem 1rem',
+                        cursor: 'pointer',
+                        color: '#000000',
                       }}>
-                      <span className="nav-link">
-                        <img
-                          src={get(items, 'clanSymbol.file.url')}
-                          alt={items.title}
-                          style={{
-                            width: 22,
-                          }}
-                        />{' '}
+                      <img
+                        src={get(items, 'clanSymbol.file.url')}
+                        alt={items.title}
+                        style={{
+                          width: 22,
+                          marginRight: 10,
+                        }}
+                      />
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={`/vampire/clan/${toLower(items.title)}`}
+                        value={items.title}
+                        onClick={() => {
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        style={{
+                          color: '#000000',
+                        }}
+                        >
                         {items.title}
-                      </span>
-                    </Link>
+                      </a>
+                    </span>
                   </li>
                 ))}
               </ul>

@@ -819,14 +819,16 @@ export function ClanPage(props) {
                 {map(filterClansByReduce, (items, index) => (
                   <ul key={index}>
                     <Typography.Title level={3} className="nav-item" style={{ marginLeft: '-40px' }}>
-                      <Link href={`/vampire/Disciplines/${toLower(items.listName)}`}>
+                      <a href={`/vampire/Disciplines/${toLower(items.listName)}`}>
                         <span className={`nav-link ${getClassName(items.listName)}`}>{items.listName} </span>
-                      </Link>
+                      </a>
                     </Typography.Title>
                     <li style={{ marginLeft: 10 }}>
                       {map(get(items, 'data'), (items1, index1) => (
                         <li className="nav-item" onClick={handleNavItemsClick} value={items1.title} key={index1}>
-                          <Link
+                          <a
+                            target="_blank"
+                            rel="noreferrer"
                             href={`/vampire/Disciplines/${toLower(items1.power)}`}
                             value={items1.power}
                             onClick={() => {
@@ -834,7 +836,7 @@ export function ClanPage(props) {
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}>
                             <span className={`nav-link ${getClassName(items1.power)}`}> {items1.power}</span>
-                          </Link>
+                          </a>
                         </li>
                       ))}
                     </li>

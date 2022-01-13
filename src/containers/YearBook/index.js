@@ -258,7 +258,9 @@ export function ClanPage(props) {
                   <h2>Specialties</h2>
                   <Row>
                     {map(get(selectedClan, 'referemces', []), (item, index) => (
-                      <Link
+                      <a
+                      rel="noreferrer"
+                      target="_blank"
                         href={renderLink(item.fields.title, item.sys.contentType.sys.id)}
                         key={index}
                         style={{ marginRight: 10 }}
@@ -270,7 +272,7 @@ export function ClanPage(props) {
                           {item.fields.title}
                           {size(get(selectedClan, 'referemces', [])) - 1 !== index ? ' ,' : null}
                         </span>
-                      </Link>
+                      </a>
                     ))}
                   </Row>
                 </p>
@@ -452,14 +454,16 @@ export function ClanPage(props) {
               <ul className="nav flex-column nav-clans">
                 {map(clanItemsList, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.name} key={index}>
-                    <Link
+                    <a
+                    rel="noreferrer"
+                    target="_blank"
                       href={`/vampire/YearBook/${toLower(items.name)}`}
                       value={items.name}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}>
                       <span className="nav-link">{items.name}</span>
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>

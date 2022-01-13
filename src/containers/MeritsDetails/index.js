@@ -589,14 +589,16 @@ export function ClanPage(props) {
               <ul className="nav flex-column nav-clans">
                 {map(clanItemsList, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.merit} key={index}>
-                    <Link
+                    <a
+                      target='_blank'
+                      rel="noreferrer"
                       href={`/vampire/Merits/${toLower(items.merit)}`}
                       value={items.merit}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}>
                       <span className="nav-link">{items.merit}</span>
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>

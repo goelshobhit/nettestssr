@@ -365,14 +365,16 @@ export function ClanPage(props) {
               <ul className="nav flex-column nav-clans">
                 {map(filterClans, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.technique} key={index}>
-                    <Link
+                    <a
+                    rel="noreferrer"
+                    target="_blank"
                       href={`/vampire/Techniques/${toLower(items.technique)}`}
                       value={items.technique}
                       onClick={() => {
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}>
                       <span className={`nav-link ${getClassName(items.technique)}`}>{items.technique}</span>
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>
