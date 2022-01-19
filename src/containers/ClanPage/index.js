@@ -209,7 +209,7 @@ export function ClanPage(props) {
                   <Row>
                     {map(get(selectedClan, 'inClanDisciplines', []), (item, index) => (
                       <a
-                        target="_blank"
+
                         href={`/vampire/Disciplines/${toLower(item.fields.title)}`}
                         key={index}
                         className="anchorTag">
@@ -481,7 +481,7 @@ export function ClanPage(props) {
                         }}
                       />
                       <a
-                        target="_blank"
+
                         rel="noreferrer"
                         href={`/vampire/clan/${toLower(items.title)}`}
                         value={items.title}

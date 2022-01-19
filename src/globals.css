@@ -10678,6 +10678,7 @@ hr {
 
   .disc-name, .discipline {
     width: calc(100% - 210px); } }
+
 @media screen and (max-width: 499px) {
   .power, .disc-power {
     display: none !important; }

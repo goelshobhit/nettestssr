@@ -260,7 +260,7 @@ export function ClanPage(props) {
                     {map(get(selectedClan, 'referemces', []), (item, index) => (
                       <a
                       rel="noreferrer"
-                      target="_blank"
+
                         href={renderLink(item.fields.title, item.sys.contentType.sys.id)}
                         key={index}
                         style={{ marginRight: 10 }}
@@ -456,7 +456,7 @@ export function ClanPage(props) {
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.name} key={index}>
                     <a
                     rel="noreferrer"
-                    target="_blank"
+
                       href={`/vampire/YearBook/${toLower(items.name)}`}
                       value={items.name}
                       onClick={() => {

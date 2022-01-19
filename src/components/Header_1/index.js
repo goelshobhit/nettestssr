@@ -164,15 +164,6 @@ function Header_1() {
                     Backers
                   </a>
                 </li>
-                {/* <li className="nav-item">
-                   <a
-                     className="nav-link"
-                     href="/Contributors"
-                     title="Contributors"
-                   >
-                     Contributors
-                   </a>
-                 </li> */}
               </ul>
               <ul className="navbar-nav ml-auto">
                 <li>

@@ -367,7 +367,7 @@ export function ClanPage(props) {
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.technique} key={index}>
                     <a
                     rel="noreferrer"
-                    target="_blank"
+
                       href={`/vampire/Techniques/${toLower(items.technique)}`}
                       value={items.technique}
                       onClick={() => {
