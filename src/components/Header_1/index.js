@@ -109,7 +109,7 @@ function Header_1() {
           </div>
           <div className="col-md-9">
             <div className="navbar navbarUpper" id="navbarUpper">
-              <ul className="navbar-nav ml-auto mr-auto navbarExtra hideMobile">
+              <ul className="navbar-nav ml-auto mr-auto navbarExtra">
                 <li className="nav-item">
                   <Link href="/QuickStart" title="QuickStart">
                     <span className="nav-link">QuickStart</span>

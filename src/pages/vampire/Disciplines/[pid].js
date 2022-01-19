@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { map, find, get, orderBy, toString, concat, toLower } from 'lodash';
+import { map, find, get, orderBy, toString, concat, toLower, isEqual } from 'lodash';
 
 import extractEntryDataFromResponse from '../../../utils/parsingText';
 import clanMock from '../../../scripts/clans.json';
@@ -52,7 +52,10 @@ const Page = () => {
         </title>
         <meta
           property="og:title"
-          content={`${pageData.power} ${pageData.power && '|'} ${pageData.title} | Vamp By Night Studios`}
+          content={`${!isEqual(pageData.title, pageData.power) && pageData.power} ${!isEqual(
+            pageData.title,
+            pageData.power
+          ) && '|'} ${pageData.title} | Vamp By Night Studios`}
         />
         <meta
           name="description"

@@ -208,11 +208,7 @@ export function ClanPage(props) {
                   <h2>In Clan Discipline</h2>
                   <Row>
                     {map(get(selectedClan, 'inClanDisciplines', []), (item, index) => (
-                      <a
-
-                        href={`/vampire/Disciplines/${toLower(item.fields.title)}`}
-                        key={index}
-                        className="anchorTag">
+                      <a href={`/vampire/Disciplines/${toLower(item.fields.title)}`} key={index} className="anchorTag">
                         <span style={{ marginRight: 10 }} className="anchorTag">
                           {item.fields.title + '  '}
                         </span>
@@ -259,17 +255,15 @@ export function ClanPage(props) {
                   <ul>
                     {map(getSortedList(get(selectedClan, 'inClanMerits', [])), item => (
                       <li>
-                        <Link
+                        <a
+                          rel="noreferrer"
                           href={`/vampire/Merits/${toLower(item.fields.merit)}`}
-                          className="anchorTag"
                           style={{ marginRight: 10 }}
                           onClick={() => {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                           }}>
-                          <span className="anchorTag">
-                            {item.fields.merit}&nbsp;({item.fields.meritCost})
-                          </span>
-                        </Link>
+                          {item.fields.merit}&nbsp;({item.fields.meritCost})
+                        </a>
                       </li>
                     ))}
                   </ul>
@@ -284,16 +278,14 @@ export function ClanPage(props) {
                   <ul>
                     {map(getSortedFlawList(get(selectedClan, 'flaws', [])), item => (
                       <li>
-                        <Link
+                        <a
+                          rel="noreferrer"
                           href={`/vampire/flaws/${toLower(item.fields.flaw)}`}
-                          style={{ marginRight: 10 }}
                           onClick={() => {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                           }}>
-                          <span className="anchorTag">
-                            {item.fields.flaw}&nbsp;({item.fields.flawCost})
-                          </span>
-                        </Link>
+                          {item.fields.flaw}&nbsp;({item.fields.flawCost})
+                        </a>
                       </li>
                     ))}
                   </ul>
@@ -481,7 +473,6 @@ export function ClanPage(props) {
                         }}
                       />
                       <a
-
                         rel="noreferrer"
                         href={`/vampire/clan/${toLower(items.title)}`}
                         value={items.title}
@@ -490,8 +481,7 @@ export function ClanPage(props) {
                         }}
                         style={{
                           color: '#000000',
-                        }}
-                        >
+                        }}>
                         {items.title}
                       </a>
                     </span>

@@ -28,8 +28,7 @@ const Page = () => {
   return (
     <div>
       <Head>
-        <title> {get(pageData, 'title')} | Vamp ByNightStudio</title>
-        <meta property="og:title" content="Background | Vamp ByNightStudio" />
+        <title> {get(pageData, 'title', 'Background')} | Vamp ByNightStudio</title>
         <meta
           name="description"
           content={get(

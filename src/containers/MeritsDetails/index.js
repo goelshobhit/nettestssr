@@ -159,14 +159,18 @@ export function ClanPage(props) {
 
   function handleChangeFilter(item) {
     setBook(item);
-    let filterClanItems = filter(clanItems, o => trim(get(o, 'sourceBook_html.fields.bookTitle')) === trim(item));
 
-    // filterClanItems = handleClanFilter(
-    //   disc,
-    //   filterClanItems,
-    //   clansDataWithMerits,
-    // );
-
+    let filterClanItems = [];
+    if (disc && disc !== 'filter by Clan') {
+      filterClanItems = handleClanFilter(disc, clanItems, clansDataWithMerits);
+      setSelectedClanItemsList(filterClanItems);
+    }
+    if (item && item !== 'filter by source book') {
+      filterClanItems = filter(
+        isEmpty(filterClanItems) ? clanItems : filterClanItems,
+        o => get(o, 'sourceBook_html.fields.bookTitle') === book
+      );
+    }
     if (costName && costName !== 'filter by Cost') {
       filterClanItems = filter(filterClanItems, o => get(o, 'meritCost') === costName);
     }
@@ -175,10 +179,19 @@ export function ClanPage(props) {
 
   function handleFilterCostType(item) {
     setCost(item);
-
-    let filterClanItems = filter(clanItems, o => get(o, 'meritCost') === item);
+    let filterClanItems = [];
+    if (disc && disc !== 'filter by Clan') {
+      filterClanItems = handleClanFilter(disc, clanItems, clansDataWithMerits);
+      setSelectedClanItemsList(filterClanItems);
+    }
     if (book && book !== 'filter by source book') {
-      filterClanItems = filter(filterClanItems, o => get(o, 'sourceBook_html.fields.bookTitle') === book);
+      filterClanItems = filter(
+        isEmpty(filterClanItems) ? clanItems : filterClanItems,
+        o => get(o, 'sourceBook_html.fields.bookTitle') === book
+      );
+    }
+    if (item && item !== 'filter by Cost') {
+      filterClanItems = filter(filterClanItems, o => get(o, 'meritCost') === costName);
     }
     setSelectedClanItemsList(filterClanItems);
   }
@@ -590,7 +603,6 @@ export function ClanPage(props) {
                 {map(clanItemsList, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.merit} key={index}>
                     <a
-                      target='_blank'
                       rel="noreferrer"
                       href={`/vampire/Merits/${toLower(items.merit)}`}
                       value={items.merit}
