@@ -31,10 +31,10 @@ function Header_1() {
             <div className="navbar navbarUpper" id="navbarUpper">
               <ul className="navbar-nav ml-auto mr-auto navbarExtra hideMobile">
                 <li className="nav-item nav-link">
-                  <NavLink href="/QuickStart" name="Quick Start" color="#fff" />
+                  <NavLink href="/QuickStart" name="Quick Start" color="white" />
                 </li>
                 <li className="nav-item nav-link">
-                  <NavLink href="/Backers" name="Backers" color="#fff" />
+                  <NavLink href="/Backers" name="Backers" color="white" />
                 </li>
                 {/* <li className="nav-item">
                     <a
@@ -46,7 +46,7 @@ function Header_1() {
                     </a>
                   </li> */}
                 <li className="nav-item nav-link">
-                  <NavLink href="/SupportUs" name="Support Us" color="#fff" />
+                  <NavLink href="/SupportUs" name="Support Us" color="white" />
                 </li>
               </ul>
               <ul className="navbar-nav navbarSocial">

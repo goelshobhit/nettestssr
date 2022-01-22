@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import Router from 'next/router'
+import Router from 'next/router';
 import { Input, AutoComplete, Empty } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { map, uniqBy, find, isEmpty, split, toLower } from 'lodash';
@@ -176,9 +176,19 @@ export function Search() {
     return item.replace('/', null);
   };
 
+  const getItems2 = item => {
+    if (item === 'Flaws') {
+      return 'flaws';
+    }
+    return item;
+  };
+
   const getLastEle = url => {
     const urlQ = split(url, '/');
-    return `/${urlQ[1]}/${urlQ[2]}/${toLower(urlQ[3])}`;
+    if (getItems2(urlQ[1]) === 'vampire') {
+      return `/${getItems2(urlQ[1])}/${urlQ[2]}/${toLower(urlQ[3])}`;
+    }
+    return `/vampire/${getItems2(urlQ[1])}/${urlQ[2]}/${toLower(urlQ[3])}`;
   };
 
   const myAntdSearchBox = ({ refine, searchResults, searchState }) => (
@@ -192,7 +202,7 @@ export function Search() {
       options={searchResult(get(searchResults, 'hits', []), searchState)}
       onSelect={item => {
         const filterItem = find(get(searchResults, 'hits', []), o => getItems(o) === item);
-        if(filterItem){
+        if (filterItem) {
           Router.replace(getLastEle(filterItem.url));
         }
 
