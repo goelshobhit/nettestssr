@@ -10533,8 +10533,6 @@ hr {
     display: none !important; }
 
   .navbarExtra {
-    position: absolute;
-    top: 73px;
     right: 100px;
     flex-direction: row; }
 

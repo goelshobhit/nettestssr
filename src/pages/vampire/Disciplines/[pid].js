@@ -44,19 +44,18 @@ const Page = () => {
     },
   };
 
+  const renderTitle = () => {
+    if (!isEqual(pageData.title, pageData.power)) {
+      return `${pageData.power} | ${pageData.title} |`;
+    } else {
+      return `${pageData.title} | `;
+    }
+  };
   return (
     <div>
       <Head>
-        <title>
-          {pageData.power} {pageData.power && '|'} {pageData.title} | Vamp By Night Studios
-        </title>
-        <meta
-          property="og:title"
-          content={`${!isEqual(pageData.title, pageData.power) && pageData.power} ${!isEqual(
-            pageData.title,
-            pageData.power
-          ) && '|'} ${pageData.title} | Vamp By Night Studios`}
-        />
+        <title>{renderTitle()} Vamp By Night Studios</title>
+        <meta property="og:title" content={`${renderTitle()} | Vamp By Night Studios`} />
         <meta
           name="description"
           content={get(
