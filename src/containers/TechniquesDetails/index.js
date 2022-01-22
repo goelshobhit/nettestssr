@@ -12,6 +12,7 @@
 import React, { memo, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { connect } from 'react-redux';
+import NavLink from 'components/NavLink';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -167,7 +168,7 @@ export function ClanPage(props) {
           <div className="col-md-8 order-md-12">
             <div className={`header-single ${getClassHeaderName(get(selectedClan, 'technique'))}`}>
               <div className="row" style={{ fontSize: 18 }}>
-                <h1 style={{ color:"#fff"}}>{get(selectedClan, 'technique', '')}</h1>
+                <h1 style={{ color: '#fff' }}>{get(selectedClan, 'technique', '')}</h1>
                 {get(selectedClan, 'technique', '') ? (
                   <Paragraph
                     copyable={{
@@ -365,16 +366,15 @@ export function ClanPage(props) {
               <ul className="nav flex-column nav-clans">
                 {map(filterClans, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.technique} key={index}>
-                    <a
-                    rel="noreferrer"
-
-                      href={`/vampire/Techniques/${toLower(items.technique)}`}
-                      value={items.technique}
-                      onClick={() => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}>
-                      <span className={`nav-link ${getClassName(items.technique)}`}>{items.technique}</span>
-                    </a>
+                    <span className={`nav-link ${getClassName(items.technique)}`}>
+                      <NavLink
+                        href={`/vampire/Techniques/${toLower(items.technique)}`}
+                        name={items.technique}
+                        onClick={() => {
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                      />
+                    </span>
                   </li>
                 ))}
               </ul>

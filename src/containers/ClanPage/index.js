@@ -21,7 +21,7 @@ import { Row, Typography, Select, Button } from 'antd';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { map, find, get, isEmpty, slice, uniq, filter, orderBy, toLower } from 'lodash';
 import history from 'utils/history';
-
+import NavLink from 'components/NavLink';
 import { useInjectReducer } from 'utils/inject-reducer';
 import { useInjectSaga } from 'utils/inject-saga';
 
@@ -208,11 +208,14 @@ export function ClanPage(props) {
                   <h2>In Clan Discipline</h2>
                   <Row>
                     {map(get(selectedClan, 'inClanDisciplines', []), (item, index) => (
-                      <a href={`/vampire/Disciplines/${toLower(item.fields.title)}`} key={index} className="anchorTag">
-                        <span style={{ marginRight: 10 }} className="anchorTag">
-                          {item.fields.title + '  '}
-                        </span>
-                      </a>
+                      <NavLink
+                        href={`/vampire/Disciplines/${toLower(item.fields.title)}`}
+                        name={`${item.fields.title} `}
+                        onClick={() => {
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        color="Dodger Blue"
+                      />
                     ))}
                   </Row>
                 </p>
@@ -255,15 +258,14 @@ export function ClanPage(props) {
                   <ul>
                     {map(getSortedList(get(selectedClan, 'inClanMerits', [])), item => (
                       <li>
-                        <a
-                          rel="noreferrer"
+                        <NavLink
                           href={`/vampire/Merits/${toLower(item.fields.merit)}`}
-                          style={{ marginRight: 10 }}
+                          name={`${item.fields.merit}${' '}${item.fields.meritCost}`}
                           onClick={() => {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
-                          }}>
-                          {item.fields.merit}&nbsp;({item.fields.meritCost})
-                        </a>
+                          }}
+                          color="Dodger Blue"
+                        />
                       </li>
                     ))}
                   </ul>
@@ -278,14 +280,14 @@ export function ClanPage(props) {
                   <ul>
                     {map(getSortedFlawList(get(selectedClan, 'flaws', [])), item => (
                       <li>
-                        <a
-                          rel="noreferrer"
+                        <NavLink
                           href={`/vampire/flaws/${toLower(item.fields.flaw)}`}
+                          name={`${item.fields.flaw}" "${item.fields.flawCost}`}
                           onClick={() => {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
-                          }}>
-                          {item.fields.flaw}&nbsp;({item.fields.flawCost})
-                        </a>
+                          }}
+                          color="Dodger Blue"
+                        />
                       </li>
                     ))}
                   </ul>
@@ -517,18 +519,13 @@ export function ClanPage(props) {
                           marginRight: 10,
                         }}
                       />
-                      <a
-                        rel="noreferrer"
+                      <NavLink
                         href={`/vampire/clan/${toLower(items.title)}`}
-                        value={items.title}
+                        name={items.title}
                         onClick={() => {
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
-                        style={{
-                          color: '#000000',
-                        }}>
-                        {items.title}
-                      </a>
+                      />
                     </span>
                   </li>
                 ))}

@@ -11,6 +11,7 @@
 
 import React, { memo, useEffect, useState, useRef } from 'react';
 import { Events } from 'react-scroll';
+import NavLink from 'components/NavLink';
 import Link from 'next/link';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -826,17 +827,16 @@ export function ClanPage(props) {
                     <li style={{ marginLeft: 10 }}>
                       {map(get(items, 'data'), (items1, index1) => (
                         <li className="nav-item" onClick={handleNavItemsClick} value={items1.title} key={index1}>
-                          <a
-
-                            rel="noreferrer"
-                            href={`/vampire/Disciplines/${toLower(items1.power)}`}
-                            value={items1.power}
-                            onClick={() => {
-                              setPowenClanIndex(-1);
-                              window.scrollTo({ top: 0, behavior: 'smooth' });
-                            }}>
-                            <span className={`nav-link ${getClassName(items1.power)}`}> {items1.power}</span>
-                          </a>
+                          <span className="nav-link">
+                            <NavLink
+                              href={`/vampire/Disciplines/${toLower(items1.power)}`}
+                              name={items1.power}
+                              onClick={() => {
+                                setPowenClanIndex(-1);
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                              }}
+                            />
+                          </span>
                         </li>
                       ))}
                     </li>

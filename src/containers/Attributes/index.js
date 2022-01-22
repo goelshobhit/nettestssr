@@ -10,7 +10,7 @@
 
 import React, { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import NavLink from 'components/NavLink';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
@@ -88,7 +88,7 @@ export function ClanPage(props) {
             <div
               className={`header-single ${getClassHeaderName(get(selectedClan, 'attribute'))}`}
               style={{ fontSize: 18 }}>
-              <h1 style={{ color: '#fff'}}>{get(selectedClan, 'attribute', '')}</h1>
+              <h1 style={{ color: '#fff' }}>{get(selectedClan, 'attribute', '')}</h1>
               {get(selectedClan, 'attribute', '') ? (
                 <Paragraph
                   copyable={{
@@ -255,14 +255,15 @@ export function ClanPage(props) {
               <ul className="nav flex-column nav-clans">
                 {map(filterClans, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
-                    <Link
-                      href={`/vampire/Attributes/${toLower(items.attribute)}`}
-                      value={items.attribute}
-                      onClick={() => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}>
-                      <span className={`nav-link ${getClassName(items.attribute)}`}>{items.attribute}</span>
-                    </Link>
+                    <span className={`nav-link ${getClassName(items.attribute)}`}>
+                      <NavLink
+                        href={`/vampire/Attributes/${toLower(items.attribute)}`}
+                        name={items.attribute}
+                        onClick={() => {
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                      />
+                    </span>
                   </li>
                 ))}
               </ul>

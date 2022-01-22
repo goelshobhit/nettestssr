@@ -9,6 +9,7 @@
  */
 
 import React, { memo, useState, useEffect } from 'react';
+import NavLink from 'components/NavLink';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { connect } from 'react-redux';
@@ -602,15 +603,15 @@ export function ClanPage(props) {
               <ul className="nav flex-column nav-clans">
                 {map(clanItemsList, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.merit} key={index}>
-                    <a
-                      rel="noreferrer"
-                      href={`/vampire/Merits/${toLower(items.merit)}`}
-                      value={items.merit}
-                      onClick={() => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}>
-                      <span className="nav-link">{items.merit}</span>
-                    </a>
+                    <span className="nav-link">
+                      <NavLink
+                        href={`/vampire/Merits/${toLower(items.merit)}`}
+                        name={items.merit}
+                        onClick={() => {
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                      />
+                    </span>
                   </li>
                 ))}
               </ul>

@@ -13,6 +13,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import Search from 'containers/Search';
+import NavLink from 'components/NavLink';
 import LogoWOD from '../../images/newLogo.png';
 
 function Header_1() {
@@ -30,14 +31,10 @@ function Header_1() {
             <div className="navbar navbarUpper" id="navbarUpper">
               <ul className="navbar-nav ml-auto mr-auto navbarExtra hideMobile">
                 <li className="nav-item nav-link">
-                  <Link href="/QuickStart" title="QuickStart" passHref>
-                    Quick Start
-                  </Link>
+                  <NavLink href="/QuickStart" name="Quick Start" color="#fff" />
                 </li>
                 <li className="nav-item nav-link">
-                  <Link href="/Backers" title="Backers">
-                    Backers
-                  </Link>
+                  <NavLink href="/Backers" name="Backers" color="#fff" />
                 </li>
                 {/* <li className="nav-item">
                     <a
@@ -49,9 +46,7 @@ function Header_1() {
                     </a>
                   </li> */}
                 <li className="nav-item nav-link">
-                  <Link href="/SupportUs" title="Contributors">
-                    Support Us
-                  </Link>
+                  <NavLink href="/SupportUs" name="Support Us" color="#fff" />
                 </li>
               </ul>
               <ul className="navbar-nav navbarSocial">

@@ -10,7 +10,7 @@
  */
 
 import React, { memo, useEffect } from 'react';
-import Link from 'next/link';
+import NavLink from 'components/NavLink';
 import Router from 'next/router'
 import { useRouter } from 'next/router'
 import { toLower  } from 'lodash';
@@ -20,16 +20,20 @@ import map from 'lodash/map';
 import getMatchId from './getMatchId';
 
 const renderLink = (item, paddingLeft) => (
-  <Link
-    href={`/vampire/library/${toLower(item)}`}
-    value={item}
-    onClick={() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }}
+
+
+
+  <span
     style={{ paddingLeft }}
   >
-    {item}
-  </Link>
+    <NavLink
+  href={`/vampire/library/${toLower(item)}`}
+                        name={item}
+                        onClick={() => {
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                      />
+  </span>
 );
 
 function TreeData({ openMenu, setOpenMenu }) {

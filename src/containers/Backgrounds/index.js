@@ -11,12 +11,11 @@
 
 import React, { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import NavLink from 'components/NavLink';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { map, get, isEmpty, find, toLower} from 'lodash';
+import { map, get, isEmpty, find, toLower } from 'lodash';
 import { Typography } from 'antd';
 
 import { useInjectReducer } from 'utils/inject-reducer';
@@ -87,7 +86,7 @@ export function ClanPage(props) {
         <div className="row">
           <div className="col-md-8 order-md-12">
             <div className={`header-single ${getClassHeaderName(get(selectedClan, 'title'))}`} style={{ fontSize: 18 }}>
-              <h1 style={{ color:"#fff"}}>{get(selectedClan, 'title', '')}</h1>
+              <h1 style={{ color: '#fff' }}>{get(selectedClan, 'title', '')}</h1>
               {get(selectedClan, 'title', '') ? (
                 <Paragraph
                   copyable={{
@@ -260,14 +259,15 @@ export function ClanPage(props) {
               <ul className="nav flex-column nav-clans">
                 {map(filterClans, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
-                    <Link
-                      href={`/vampire/Backgrounds/${toLower(items.title)}`}
-                      value={items.title}
-                      onClick={() => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}>
-                      <span className={`nav-link ${getClassName(items.title)}`}>{items.title}</span>
-                    </Link>
+                    <span className={`nav-link ${getClassName(items.title)}`}>
+                      <NavLink
+                        href={`/vampire/Backgrounds/${toLower(items.title)}`}
+                        name={items.title}
+                        onClick={() => {
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                      />
+                    </span>
                   </li>
                 ))}
               </ul>

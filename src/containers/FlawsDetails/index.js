@@ -11,7 +11,7 @@
 import React, { memo, useState, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import NavLink from 'components/NavLink';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -518,16 +518,15 @@ export function ClanPage(props) {
               <ul className="nav flex-column nav-clans">
                 {map(clanItemsList, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.flaw} key={index}>
-                    <a
-                      rel="noreferrer"
-
-                      href={`/vampire/flaws/${toLower(items.flaw)}`}
-                      value={items.flaw}
-                      onClick={() => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}>
-                      <span className={`nav-link ${getClassName(items.flaw)}`}>{items.flaw}</span>
-                    </a>
+                    <span className={`nav-link ${getClassName(items.flaw)}`}>
+                      <NavLink
+                        href={`/vampire/flaws/${toLower(items.flaw)}`}
+                        name={items.flaw}
+                        onClick={() => {
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                      />
+                    </span>
                   </li>
                 ))}
               </ul>

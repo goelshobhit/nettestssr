@@ -12,7 +12,7 @@
  */
 
 import React, { memo, useEffect, useState } from 'react';
-import Link from 'next/link';
+import NavLink from 'components/NavLink';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
@@ -160,7 +160,7 @@ export function ClanPage(props) {
               <div style={{ display: 'flex' }}>
                 <div className="col-md-8">
                   <div className="row" style={{ fontSize: 18 }}>
-                    <h1 style={{ color:'#fff'}}>{get(selectedClan, 'name', '')}</h1>
+                    <h1 style={{ color: '#fff' }}>{get(selectedClan, 'name', '')}</h1>
                     {get(selectedClan, 'name', '') ? (
                       <Paragraph
                         copyable={{
@@ -258,21 +258,16 @@ export function ClanPage(props) {
                   <h2>Specialties</h2>
                   <Row>
                     {map(get(selectedClan, 'referemces', []), (item, index) => (
-                      <a
-                      rel="noreferrer"
-
-                        href={renderLink(item.fields.title, item.sys.contentType.sys.id)}
-                        key={index}
-                        style={{ marginRight: 10 }}
-                        role="button"
-                        onClick={() => {
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }}>
-                        <span className="anchorTag">
-                          {item.fields.title}
-                          {size(get(selectedClan, 'referemces', [])) - 1 !== index ? ' ,' : null}
-                        </span>
-                      </a>
+                      <span className="anchorTag">
+                        <NavLink
+                          href={`/vampire/library/${toLower(item)}`}
+                          name={`${item.fields.title}
+                        ${size(get(selectedClan, 'referemces', [])) - 1 !== index ? ' ,' : null}`}
+                          onClick={() => {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
+                        />
+                      </span>
                     ))}
                   </Row>
                 </p>
@@ -393,7 +388,9 @@ export function ClanPage(props) {
                   </a>
                 </li>
                 <li className="breadcrumb-item">
-                  <a href="/vampire/YearBook" style={{ color:'#fff'}}>YearBook</a>
+                  <a href="/vampire/YearBook" style={{ color: '#fff' }}>
+                    YearBook
+                  </a>
                 </li>
                 <li className="breadcrumb-item active" aria-current="page">
                   {get(selectedClan, 'name', '')}
@@ -455,8 +452,7 @@ export function ClanPage(props) {
                 {map(clanItemsList, (items, index) => (
                   <li className="nav-item" onClick={handleNavItemsClick} value={items.name} key={index}>
                     <a
-                    rel="noreferrer"
-
+                      rel="noreferrer"
                       href={`/vampire/YearBook/${toLower(items.name)}`}
                       value={items.name}
                       onClick={() => {

@@ -10,7 +10,7 @@
 
 import React, { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import NavLink from 'components/NavLink';
 import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -193,7 +193,7 @@ export function ClanPage(props) {
                 <div className="row">
                   <div className="col-lg-7 col-md-12 order-lg-12">
                     <div className="row" style={{ fontSize: 18 }}>
-                      <h1 style={{ color:'#fff'}}>{get(selectedClan, 'title', '')}</h1>
+                      <h1 style={{ color: '#fff' }}>{get(selectedClan, 'title', '')}</h1>
                       {get(selectedClan, 'title', '') ? (
                         <Paragraph
                           copyable={{
@@ -495,16 +495,15 @@ export function ClanPage(props) {
                     {!isEmpty(itemData.data) ? <b style={{ marginTop: 20, fontSize: 20 }}>{itemData.listName}</b> : ''}
                     {map(itemData.data, (items, index) => (
                       <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
-                        <a
-
-                          rel="noreferrer"
-                          href={`/vampire/Rituals/${toLower(items.title)}`}
-                          value={items.title}
-                          onClick={() => {
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                          }}>
-                          <span className={`nav-link ${getClassName(items.title)}`}>{items.title}</span>
-                        </a>
+                        <span className={`nav-link ${getClassName(items.title)}`}>
+                          <NavLink
+                            href={`/vampire/Rituals/${toLower(items.title)}`}
+                            name={items.title}
+                            onClick={() => {
+                              window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                          />
+                        </span>
                       </li>
                     ))}
                   </ul>
