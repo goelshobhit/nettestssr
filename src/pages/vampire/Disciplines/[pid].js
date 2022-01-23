@@ -55,7 +55,6 @@ const Page = () => {
     <div>
       <Head>
         <title>{renderTitle()} Vamp By Night Studios</title>
-        <meta property="og:title" content={`${renderTitle()} | Vamp By Night Studios`} />
         <meta
           name="description"
           content={get(
