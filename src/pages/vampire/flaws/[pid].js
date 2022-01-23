@@ -6,7 +6,7 @@ import { map, find, get, orderBy, toString, concat, toLower } from 'lodash';
 import extractEntryDataFromResponse from '../../../utils/parsingText';
 import Header from 'components/Header_1';
 import Footer from 'components/Footer_1';
-import ClanPage from 'containers/FlawsDetails';
+import ClanPage from 'containers/FlawsDetailsWC';
 
 import flaws_1 from 'scripts/flaws_0.json';
 import flaws_2 from 'scripts/flaws_100.json';

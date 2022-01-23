@@ -1,0 +1,56 @@
+.clan-page h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.clan-page .header-single h1, h4 {
+    color: #ffffff !important;
+}
+
+.system p {
+  white-space: break-spaces;
+}
+
+
+.content-page-wrap {
+  white-space: pre-wrap;
+}
+
+a {
+  color:#000000;
+}
+
+.ant-menu-item {
+  /* padding-left: 18px !important; */
+}
+
+.ant-tree-switcher {
+  transform: translateY(-5px);
+  -webkit-transform: translateY(-5px);
+  -moz-transform: translateY(-5px);
+  -ms-transform: translateY(-5px);
+  -o-transform: translateY(-5px);
+}
+
+.anticon-file {
+  visibility: hidden;
+}
+
+.ant-menu-submenu-title {
+  height: 20px !important;
+  line-height: 20px !important;
+}
+
+.ant-menu-item {
+  height: 20px !important;
+  line-height: 20px !important;
+  white-space: pre-wrap !important;
+}
+
+.ant-menu-item-1 {
+  height: 30px !important;
+  line-height: 30px !important;
+  white-space: pre-wrap !important;
+}

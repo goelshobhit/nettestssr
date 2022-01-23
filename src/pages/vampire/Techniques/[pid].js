@@ -6,7 +6,7 @@ import { find, get, orderBy, concat, toLower } from 'lodash';
 import extractEntryDataFromResponse from '../../../utils/parsingText';
 import Header from 'components/Header_1';
 import Footer from 'components/Footer_1';
-import ClanPage from 'containers/TechniquesDetails';
+import ClanPage from 'containers/TechniquesDetailsWC';
 
 import discipline_1 from 'scripts/techniques_0.json';
 import discipline_2 from 'scripts/techniques_100.json';

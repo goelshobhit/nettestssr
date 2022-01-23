@@ -7,7 +7,7 @@ import extractEntryDataFromResponse from '../../../utils/parsingText';
 import clanMock from '../../../scripts/clans.json';
 import Header from 'components/Header_1';
 import Footer from 'components/Footer_1';
-import ClanPage from 'containers/ClanPage';
+import ClanPage from 'containers/ClanPageWC';
 import styles from '../../../styles/Home.module.css';
 
 const Page = () => {

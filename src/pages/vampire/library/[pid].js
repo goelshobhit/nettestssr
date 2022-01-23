@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import styles from '../../../styles/Home.module.css';
 import Header from 'components/Header_1';
 import Footer from 'components/Footer_1';
-import Disciplines from 'containers/Library';
+import Disciplines from 'containers/LibraryWC';
 import { orderBy, concat, find, toLower, get } from 'lodash';
 
 import extractEntryDataFromResponse from '../../../utils/parsingText';

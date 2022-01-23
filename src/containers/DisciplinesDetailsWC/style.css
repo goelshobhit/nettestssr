@@ -1,0 +1,27 @@
+.clan-page h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.clan-page .header-single h1, h4 {
+    color: #ffffff !important;
+}
+
+/* height: 76px;
+    background-color: #f5f2f2;
+    box-shadow: 0px 5px 10px 0px rgb(0 0 0 / 30%); */
+
+.site-collapse-custom-collapse .site-collapse-custom-panel,
+.site-collapse-custom-collapse .site-collapse-custom-panel {
+  height: 76px;
+  background-color: #f5f2f2;
+  box-shadow: 0px 5px 10px 0px rgb(0 0 0 / 30%);
+}
+
+.position-sticky {
+  position: sticky;
+  top: 0;
+  background-color: yellow;
+}

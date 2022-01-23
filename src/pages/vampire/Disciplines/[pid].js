@@ -7,7 +7,7 @@ import extractEntryDataFromResponse from '../../../utils/parsingText';
 import clanMock from '../../../scripts/clans.json';
 import Header from 'components/Header_1';
 import Footer from 'components/Footer_1';
-import ClanPage from 'containers/Disciplines';
+import ClanPage from 'containers/DisciplinesWC';
 
 import discipline_1 from 'scripts/discipline_0.json';
 import discipline_2 from 'scripts/discipline_100.json';

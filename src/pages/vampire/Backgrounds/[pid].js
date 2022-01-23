@@ -7,7 +7,7 @@ import extractEntryDataFromResponse from '../../../utils/parsingText';
 
 import Header from 'components/Header_1';
 import Footer from 'components/Footer_1';
-import ClanPage from 'containers/Backgrounds';
+import ClanPage from 'containers/BackgroundsWC';
 
 import discipline_1 from 'scripts/backgrounds.json';
 
