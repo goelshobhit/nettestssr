@@ -6,6 +6,7 @@ import styled from 'styled-components';
 // This creates a custom component that wraps an <a> tag
 const RedLink = styled.a`
   color: ${props => props.color || 'black !important'};
+  display: block;
   &:hover: {
     color: ${props => props.color} !important;
   }

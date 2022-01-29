@@ -167,10 +167,7 @@ export function ClanPage(props) {
       setSelectedClanItemsList(filterClanItems);
     }
     if (item && item !== 'filter by source book') {
-      filterClanItems = filter(
-        isEmpty(filterClanItems) ? clanItems : filterClanItems,
-        o => get(o, 'sourceBook_html.fields.bookTitle') === book
-      );
+      filterClanItems = filter(filterClanItems, o => get(o, 'sourceBook_html.fields.bookTitle') === item);
     }
     if (costName && costName !== 'filter by Cost') {
       filterClanItems = filter(filterClanItems, o => get(o, 'meritCost') === costName);
