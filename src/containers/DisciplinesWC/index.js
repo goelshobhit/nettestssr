@@ -784,7 +784,7 @@ export function ClanPage(props) {
                 </Button>
               </Row>
               <ul className="nav flex-column nav-clans">
-                <Typography.Title level={3} style={{ marginBottom: '-30px' }}>
+                <Typography.Title level={3} style={{ marginBottom: '-15px' }}>
                   Disciplines
                 </Typography.Title>
                 {map(filterClansByReduce, (items, index) => (
@@ -796,8 +796,8 @@ export function ClanPage(props) {
                     </Typography.Title>
                     <li style={{ marginLeft: 10 }}>
                       {map(get(items, 'data'), (items1, index1) => (
-                        <li className="nav-item" onClick={handleNavItemsClick} value={items1.title} key={index1}>
-                          <span className="nav-link">
+                        <li key={index1} style={{ marginBottom: 15 }}>
+                          <span style={{ marginBottom: 15 }}>
                             <NavLink
                               href={`/vampire/Disciplines/${toLower(items1.power)}`}
                               name={items1.power}
@@ -805,6 +805,7 @@ export function ClanPage(props) {
                                 setPowenClanIndex(-1);
                                 window.scrollTo({ top: 0, behavior: 'smooth' });
                               }}
+                              style={{ marginBottom: 15 }}
                             />
                           </span>
                         </li>

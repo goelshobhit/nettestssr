@@ -227,8 +227,8 @@ export function ClanPage(props) {
               <h3>ATTRIBUTES</h3>
               <ul className="nav flex-column nav-clans">
                 {map(filterClans, (items, index) => (
-                  <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
-                    <span className={`nav-link ${getClassName(items.attribute)}`}>
+                  <li style={{ marginBottom: 15 }}>
+                    <span>
                       <NavLink
                         href={`/vampire/Attributes/${toLower(items.attribute)}`}
                         name={items.attribute}

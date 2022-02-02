@@ -208,14 +208,17 @@ export function ClanPage(props) {
                   <h2>In Clan Discipline</h2>
                   <Row>
                     {map(get(selectedClan, 'inClanDisciplines', []), (item, index) => (
-                      <NavLink
-                        href={`/vampire/Disciplines/${toLower(item.fields.title)}`}
-                        name={`${item.fields.title} `}
-                        onClick={() => {
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }}
-                        color="Dodger Blue"
-                      />
+                      <span>
+                        <NavLink
+                          href={`/vampire/Disciplines/${toLower(item.fields.title)}`}
+                          name={`${item.fields.title}`}
+                          onClick={() => {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
+                          color="Dodger Blue"
+                        />
+                        &nbsp;
+                      </span>
                     ))}
                   </Row>
                 </p>
@@ -260,7 +263,7 @@ export function ClanPage(props) {
                       <li>
                         <NavLink
                           href={`/vampire/Merits/${toLower(item.fields.merit)}`}
-                          name={`${item.fields.merit}${' '}${item.fields.meritCost}`}
+                          name={`${item.fields.merit} (${item.fields.meritCost})`}
                           onClick={() => {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                           }}
@@ -282,7 +285,7 @@ export function ClanPage(props) {
                       <li>
                         <NavLink
                           href={`/vampire/flaws/${toLower(item.fields.flaw)}`}
-                          name={`${item.fields.flaw}" "${item.fields.flawCost}`}
+                          name={`${item.fields.flaw} (${item.fields.flawCost})`}
                           onClick={() => {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                           }}
@@ -455,31 +458,29 @@ export function ClanPage(props) {
               <h3>CLANS & BLOODLINES</h3>
               <ul className="nav flex-column nav-clans">
                 {map(clanItemsList, (items, index) => (
-                  <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
-                    <span
+                  <span
+                    style={{
+                      cursor: 'pointer',
+                      color: '#000000',
+                      width: 'fit-content',
+                      marginBottom: '15px',
+                    }}>
+                    <img
+                      src={get(items, 'clanSymbol.file.url')}
+                      alt={items.title}
                       style={{
-                        display: 'block',
-                        padding: '0.5rem 1rem',
-                        cursor: 'pointer',
-                        color: '#000000',
-                      }}>
-                      <img
-                        src={get(items, 'clanSymbol.file.url')}
-                        alt={items.title}
-                        style={{
-                          width: 22,
-                          marginRight: 10,
-                        }}
-                      />
-                      <NavLink
-                        href={`/vampire/clan/${toLower(items.title)}`}
-                        name={items.title}
-                        onClick={() => {
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }}
-                      />
-                    </span>
-                  </li>
+                        width: 22,
+                        marginRight: 10,
+                      }}
+                    />
+                    <NavLink
+                      href={`/vampire/clan/${toLower(items.title)}`}
+                      name={items.title}
+                      onClick={() => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                    />
+                  </span>
                 ))}
               </ul>
             </div>

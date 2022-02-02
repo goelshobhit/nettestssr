@@ -246,8 +246,8 @@ export function ClanPage(props) {
               <h3>BACKGROUNDS</h3>
               <ul className="nav flex-column nav-clans">
                 {map(filterClans, (items, index) => (
-                  <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
-                    <span className={`nav-link ${getClassName(items.title)}`}>
+                  <li style={{ marginBottom: 15 }}>
+                    <span>
                       <NavLink
                         href={`/vampire/Backgrounds/${toLower(items.title)}`}
                         name={items.title}

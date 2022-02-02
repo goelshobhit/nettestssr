@@ -464,8 +464,8 @@ export function ClanPage(props) {
                   <ul key={index1}>
                     {!isEmpty(itemData.data) ? <b style={{ marginTop: 20, fontSize: 20 }}>{itemData.listName}</b> : ''}
                     {map(itemData.data, (items, index) => (
-                      <li className="nav-item" onClick={handleNavItemsClick} value={items.title} key={index}>
-                        <span className={`nav-link ${getClassName(items.title)}`}>
+                      <li  style={{ marginBottom: '15px'}}>
+                        <span>
                           <NavLink
                             href={`/vampire/Rituals/${toLower(items.title)}`}
                             name={items.title}

@@ -559,8 +559,8 @@ export function ClanPage(props) {
               <h3>MERITS</h3>
               <ul className="nav flex-column nav-clans">
                 {map(clanItemsList, (items, index) => (
-                  <li className="nav-item" onClick={handleNavItemsClick} value={items.merit} key={index}>
-                    <span className="nav-link">
+                  <li style={{ marginBottom: '15px'}}>
+                    <span>
                       <NavLink
                         href={`/vampire/Merits/${toLower(items.merit)}`}
                         name={items.merit}

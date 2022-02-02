@@ -438,17 +438,15 @@ export function ClanPage(props) {
               <h3>YearBook</h3>
               <ul className="nav flex-column nav-clans">
                 {map(clanItemsList, (items, index) => (
-                  <li className="nav-item" onClick={handleNavItemsClick} value={items.name} key={index}>
-                    <a
-                      rel="noreferrer"
-                      href={`/vampire/YearBook/${toLower(items.name)}`}
-                      value={items.name}
-                      onClick={() => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}>
-                      <span className="nav-link">{items.name}</span>
-                    </a>
-                  </li>
+                  <a
+                    rel="noreferrer"
+                    href={`/vampire/YearBook/${toLower(items.name)}`}
+                    value={items.name}
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}>
+                    <span className="nav-link">{items.name}</span>
+                  </a>
                 ))}
               </ul>
             </div>
